@@ -6,7 +6,7 @@
         <br>      
         <span>
             <span>
-                Crown官方交流群：223706133
+                Crown official exchange group: 223706133
             </span>
             <span>
                 <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=180c0eb468ec425c7208f49f142e4057f3f83a2fdabfe07ccb4606a414cd6413">
