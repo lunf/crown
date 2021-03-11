@@ -22,79 +22,79 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `gen_table`;
 CREATE TABLE `gen_table` (
-  `table_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `table_name` varchar(200) DEFAULT '' COMMENT '表名称',
-  `table_comment` varchar(500) DEFAULT '' COMMENT '表描述',
-  `class_name` varchar(100) DEFAULT '' COMMENT '实体类名称',
-  `tpl_category` varchar(200) DEFAULT 'crud' COMMENT '使用的模板（crud单表操作 tree树表操作）',
-  `package_name` varchar(100) DEFAULT NULL COMMENT '生成包路径',
-  `module_name` varchar(30) DEFAULT NULL COMMENT '生成模块名',
-  `business_name` varchar(30) DEFAULT NULL COMMENT '生成业务名',
-  `function_name` varchar(50) DEFAULT NULL COMMENT '生成功能名',
-  `function_author` varchar(50) DEFAULT NULL COMMENT '生成功能作者',
-  `options` varchar(1000) DEFAULT NULL COMMENT '其它生成选项',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+  `table_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'serial number',
+  `table_name` varchar(200) DEFAULT '' COMMENT 'table name',
+  `table_comment` varchar(500) DEFAULT '' COMMENT 'table description',
+  `class_name` varchar(100) DEFAULT '' COMMENT 'entity class name',
+  `tpl_category` varchar(200) DEFAULT 'crud' COMMENT 'template used（crud single table operation & tree table operation）',
+  `package_name` varchar(100) DEFAULT NULL COMMENT 'generate package path',
+  `module_name` varchar(30) DEFAULT NULL COMMENT 'generate module name',
+  `business_name` varchar(30) DEFAULT NULL COMMENT 'generate business name',
+  `function_name` varchar(50) DEFAULT NULL COMMENT 'generate function name',
+  `function_author` varchar(50) DEFAULT NULL COMMENT 'generate function author',
+  `options` varchar(1000) DEFAULT NULL COMMENT 'other build options',
+  `create_by` varchar(64) DEFAULT '' COMMENT 'creator',
+  `create_time` datetime DEFAULT NULL COMMENT 'date created',
+  `update_by` varchar(64) DEFAULT '' COMMENT 'updater',
+  `update_time` datetime DEFAULT NULL COMMENT 'date modified',
+  `remark` varchar(500) DEFAULT NULL COMMENT 'remarks',
   PRIMARY KEY (`table_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Code generation business table';
 
 -- ----------------------------
 -- Table structure for gen_table_column
 -- ----------------------------
 DROP TABLE IF EXISTS `gen_table_column`;
 CREATE TABLE `gen_table_column` (
-  `column_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `table_id` varchar(64) DEFAULT NULL COMMENT '归属表编号',
-  `column_name` varchar(200) DEFAULT NULL COMMENT '列名称',
-  `column_comment` varchar(500) DEFAULT NULL COMMENT '列描述',
-  `column_type` varchar(100) DEFAULT NULL COMMENT '列类型',
-  `java_type` varchar(500) DEFAULT NULL COMMENT 'JAVA类型',
-  `java_field` varchar(200) DEFAULT NULL COMMENT 'JAVA字段名',
-  `is_pk` char(1) DEFAULT NULL COMMENT '是否主键（1是）',
-  `is_increment` char(1) DEFAULT NULL COMMENT '是否自增（1是）',
-  `is_required` char(1) DEFAULT NULL COMMENT '是否必填（1是）',
-  `is_insert` char(1) DEFAULT NULL COMMENT '是否为插入字段（1是）',
-  `is_edit` char(1) DEFAULT NULL COMMENT '是否编辑字段（1是）',
-  `is_list` char(1) DEFAULT NULL COMMENT '是否列表字段（1是）',
-  `is_query` char(1) DEFAULT NULL COMMENT '是否查询字段（1是）',
-  `query_type` varchar(200) DEFAULT '=' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
-  `html_type` varchar(200) DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
-  `dict_type` varchar(200) DEFAULT '' COMMENT '字典类型',
-  `sort` int(11) DEFAULT NULL COMMENT '排序',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `column_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'serial number',
+  `table_id` varchar(64) DEFAULT NULL COMMENT 'attribution table number',
+  `column_name` varchar(200) DEFAULT NULL COMMENT 'column name',
+  `column_comment` varchar(500) DEFAULT NULL COMMENT 'column description',
+  `column_type` varchar(100) DEFAULT NULL COMMENT 'column type',
+  `java_type` varchar(500) DEFAULT NULL COMMENT 'JAVA type',
+  `java_field` varchar(200) DEFAULT NULL COMMENT 'JAVA field name',
+  `is_pk` char(1) DEFAULT NULL COMMENT 'primary key（is 1）',
+  `is_increment` char(1) DEFAULT NULL COMMENT 'whether to increase（is 1）',
+  `is_required` char(1) DEFAULT NULL COMMENT 'is it required（is 1）',
+  `is_insert` char(1) DEFAULT NULL COMMENT 'is it an insert field（is 1）',
+  `is_edit` char(1) DEFAULT NULL COMMENT 'whether to edit the field（is 1）',
+  `is_list` char(1) DEFAULT NULL COMMENT 'list field（is 1）',
+  `is_query` char(1) DEFAULT NULL COMMENT 'whether to query the field（is 1）',
+  `query_type` varchar(200) DEFAULT '=' COMMENT 'query method (equal to, not equal to, greater than, less than, range）',
+  `html_type` varchar(200) DEFAULT NULL COMMENT 'display type (text box, text field, drop-down box, check box, radio button, date control)',
+  `dict_type` varchar(200) DEFAULT '' COMMENT 'dictionary type',
+  `sort` int(11) DEFAULT NULL COMMENT 'sort',
+  `create_by` varchar(64) DEFAULT '' COMMENT 'creator',
+  `create_time` datetime DEFAULT NULL COMMENT 'date created',
+  `update_by` varchar(64) DEFAULT '' COMMENT 'updater',
+  `update_time` datetime DEFAULT NULL COMMENT 'date modified',
   PRIMARY KEY (`column_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表字段';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='code generation business table fields';
 
 -- ----------------------------
 -- Table structure for sys_config
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_config`;
 CREATE TABLE `sys_config` (
-  `config_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '参数主键',
-  `config_name` varchar(100) COLLATE utf8mb4_bin DEFAULT '' COMMENT '参数名称',
-  `config_key` varchar(100) COLLATE utf8mb4_bin DEFAULT '' COMMENT '参数键名',
-  `config_value` varchar(100) COLLATE utf8mb4_bin DEFAULT '' COMMENT '参数键值',
-  `config_type` char(1) COLLATE utf8mb4_bin DEFAULT 'N' COMMENT '系统内置（Y是 N否）',
-  `create_by` varchar(64) COLLATE utf8mb4_bin DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `config_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'parameter primary key',
+  `config_name` varchar(100) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'parameter name',
+  `config_key` varchar(100) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'parameter key name',
+  `config_value` varchar(100) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'parameter key value',
+  `config_type` char(1) COLLATE utf8mb4_bin DEFAULT 'N' COMMENT 'Built-in system (Y yes N no)',
+  `create_by` varchar(64) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'creator',
+  `create_time` datetime DEFAULT NULL COMMENT 'date created',
+  `update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'updater',
+  `update_time` datetime DEFAULT NULL COMMENT 'date modified',
+  `remark` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'remarks',
   PRIMARY KEY (`config_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='参数配置表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='parameter configuration table';
 
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_config` VALUES (1, '主框架页-默认皮肤样式名称', 'sys.index.skinName', 'skin-random', 'Y', 'crown', '2018-03-16 11:33:00', NULL, '2019-07-23 17:35:13', '蓝色 skin-blue、绿色 skin-green、紫色 skin-purple、红色 skin-red、黄色 skin-yellow、随机 skin-random');
-INSERT INTO `sys_config` VALUES (2, '用户管理-账号初始密码', 'sys.user.initPassword', '123456', 'Y', 'crown', '2018-03-16 11:33:00', 'crown', '2018-03-16 11:33:00', '初始化密码 123456');
+INSERT INTO `sys_config` VALUES (1, 'main frame page-default skin style name', 'sys.index.skinName', 'skin-random', 'Y', 'crown', '2018-03-16 11:33:00', NULL, '2019-07-23 17:35:13', '蓝色 skin-blue、绿色 skin-green、紫色 skin-purple、红色 skin-red、黄色 skin-yellow、随机 skin-random');
+INSERT INTO `sys_config` VALUES (2, 'User Management-Account Initial Password', 'sys.user.initPassword', '123456', 'Y', 'crown', '2018-03-16 11:33:00', 'crown', '2018-03-16 11:33:00', '初始化密码 123456');
 COMMIT;
 
 -- ----------------------------
@@ -102,12 +102,12 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept`;
 CREATE TABLE `sys_dept` (
-  `dept_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '部门id',
-  `parent_id` bigint(20) DEFAULT '0' COMMENT '父部门id',
-  `ancestors` varchar(50) COLLATE utf8mb4_bin DEFAULT '' COMMENT '祖级列表',
-  `dept_name` varchar(30) COLLATE utf8mb4_bin DEFAULT '' COMMENT '部门名称',
-  `order_num` int(4) DEFAULT '0' COMMENT '显示顺序',
-  `leader` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '负责人',
+  `dept_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'department ID',
+  `parent_id` bigint(20) DEFAULT '0' COMMENT 'parent department ID',
+  `ancestors` varchar(50) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'list of parent departments',
+  `dept_name` varchar(30) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'department name',
+  `order_num` int(4) DEFAULT '0' COMMENT 'display order',
+  `leader` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'person in charge',
   `phone` varchar(11) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '联系电话',
   `email` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮箱',
   `status` char(1) COLLATE utf8mb4_bin DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
