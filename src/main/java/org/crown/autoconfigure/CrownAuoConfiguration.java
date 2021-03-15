@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * <p>
- * Crown项目SpringBoot相关配置
+ * Crown project SpringBoot related configuration
  * </p>
  *
  * @author Caratacus
@@ -31,10 +31,10 @@ public class CrownAuoConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        /** 文件上传路径 */
+        /** File upload path */
         registry.addResourceHandler(properties.getPath().getResourceHandler()).addResourceLocations("file:" + properties.getPath().getFilePath());
 
-        /** swagger配置 */
+        /** swagger configuration */
         registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }

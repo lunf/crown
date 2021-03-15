@@ -43,7 +43,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 
 /**
- * 权限配置加载
+ * Permission configuration loading
  *
  * @author Crown
  */
@@ -58,7 +58,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 缓存管理器 使用Ehcache实现
+     * Cache manager implemented using Ehcache
      */
     @Bean
     public EhCacheManager getEhCacheManager() {
@@ -74,7 +74,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 返回配置文件流 避免ehcache配置文件一直被占用，无法完全销毁项目重新部署
+     * Return to the configuration file stream to prevent the ehcache configuration file from being occupied all the time, and the project cannot be completely destroyed and redeployed
      */
     protected InputStream getCacheManagerConfigFileInputStream() {
         String configFile = "classpath:ehcache/ehcache-shiro.xml";
@@ -88,7 +88,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 自定义Realm
+     * Custom Realm
      */
     @Bean
     public UserRealm userRealm(EhCacheManager cacheManager) {
@@ -98,7 +98,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 自定义sessionDAO会话
+     * Custom sessionDAO session
      */
     @Bean
     public OnlineSessionDAO sessionDAO() {
@@ -106,7 +106,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 自定义sessionFactory会话
+     * Custom sessionFactory session
      */
     @Bean
     public OnlineSessionFactory sessionFactory() {
@@ -114,49 +114,49 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 会话管理器
+     * Session manager
      */
     @Bean
     public OnlineWebSessionManager sessionManager() {
         OnlineWebSessionManager manager = new OnlineWebSessionManager();
-        // 加入缓存管理器
+        // Join the cache manager
         manager.setCacheManager(getEhCacheManager());
-        // 删除过期的session
+        // Delete expired session
         manager.setDeleteInvalidSessions(true);
-        // 设置全局session超时时间
+        // Set the global session timeout
         manager.setGlobalSessionTimeout(properties.getSession().getExpireTime() * 60 * 1000);
-        // 去掉 JSESSIONID
+        // Remove JSESSIONID
         manager.setSessionIdUrlRewritingEnabled(false);
-        // 定义要使用的无效的Session定时调度器
+        // Define invalid Session timing scheduler to be used
         manager.setSessionValidationScheduler(ApplicationUtils.getBean(SpringSessionValidationScheduler.class));
-        // 是否定时检查session
+        // Whether to check the session regularly
         manager.setSessionValidationSchedulerEnabled(true);
-        // 自定义SessionDao
+        // Custom SessionDao
         manager.setSessionDAO(sessionDAO());
-        // 自定义sessionFactory
+        // Custom sessionFactory
         manager.setSessionFactory(sessionFactory());
         return manager;
     }
 
     /**
-     * 安全管理器
+     * Security Manager
      */
     @Bean
     public SecurityManager securityManager(UserRealm userRealm, SpringSessionValidationScheduler springSessionValidationScheduler) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        // 设置realm.
+        // Set realm.
         securityManager.setRealm(userRealm);
-        // 记住我
+        // Remember me
         securityManager.setRememberMeManager(rememberMeManager());
-        // 注入缓存管理器;
+        // Set cache manager;
         securityManager.setCacheManager(getEhCacheManager());
-        // session管理器
+        // Session manager
         securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 
     /**
-     * 退出过滤器
+     * Exit filter
      */
     public LogoutFilter logoutFilter() {
         LogoutFilter logoutFilter = new LogoutFilter();
@@ -173,20 +173,20 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * Shiro过滤器配置
+     * Shiro filter configuration
      */
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        // Shiro的核心安全接口,这个属性是必须的
+        // Shiro's core security interface, this attribute is required
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        // 身份认证失败，则跳转到登录页面的配置
+        // If the identity authentication fails, jump to the configuration of the login page
         shiroFilterFactoryBean.setLoginUrl(properties.getLoginUrl());
-        // 权限认证失败，则跳转到指定页面
+        // If permission authentication fails, jump to the specified page
         shiroFilterFactoryBean.setUnauthorizedUrl(properties.getUnauthUrl());
-        // Shiro连接约束配置，即过滤链的定义
+        // Shiro connection constraint configuration, that is, the definition of the filter chain
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        // 对静态资源设置匿名访问
+        // Set up anonymous access to static resources
         filterChainDefinitionMap.put("/favicon.ico**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/docs/**", "anon");
@@ -195,23 +195,23 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
         filterChainDefinitionMap.put("/ajax/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/crown/**", "anon");
-        // 退出 logout地址，shiro去清除session
+        // Exit the logout address, shiro to clear the session
         filterChainDefinitionMap.put("/logout", "logout");
-        // 不需要拦截的访问
+        // Access that does not need to be intercepted
         filterChainDefinitionMap.put("/login", "anon");
-        //验证码
+        //Verification code
         filterChainDefinitionMap.put("/captcha", "anon");
 
         Map<String, Filter> filters = new LinkedHashMap<>();
         filters.put("onlineSession", onlineSessionFilter());
         filters.put("syncOnlineSession", syncOnlineSessionFilter());
         filters.put("kickout", kickoutSessionFilter());
-        // 注销成功，则跳转到指定页面
+        // Logout is successful, then jump to the specified page
         filters.put("logout", logoutFilter());
         filters.put("user", userFilter());
         shiroFilterFactoryBean.setFilters(filters);
 
-        // 所有请求需要认证
+        // All requests require authentication
         filterChainDefinitionMap.put("/**", "user,kickout,onlineSession,syncOnlineSession");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
@@ -219,7 +219,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 自定义在线用户处理过滤器
+     * Custom online user processing filter
      */
     @Bean
     public OnlineSessionFilter onlineSessionFilter() {
@@ -229,7 +229,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 自定义在线用户同步过滤器
+     * Customize online user synchronization filter
      */
     @Bean
     public SyncOnlineSessionFilter syncOnlineSessionFilter() {
@@ -237,7 +237,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * cookie 属性设置
+     * cookie attribute settings
      */
     public SimpleCookie rememberMeCookie() {
         SimpleCookie cookie = new SimpleCookie("rememberMe");
@@ -250,7 +250,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 记住我
+     * remember me
      */
     public CookieRememberMeManager rememberMeManager() {
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
@@ -263,23 +263,23 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 同一个用户多设备登录限制
+     * Multi-device login restriction for the same user
      */
     public KickoutSessionFilter kickoutSessionFilter() {
         KickoutSessionFilter kickoutSessionFilter = new KickoutSessionFilter();
         kickoutSessionFilter.setCacheManager(getEhCacheManager());
         kickoutSessionFilter.setSessionManager(sessionManager());
-        // 同一个用户最大的会话数，默认-1无限制；比如2的意思是同一个用户允许最多同时两个人登录
+        // The maximum number of sessions for the same user, the default is -1 without limit; for example, 2 means that the same user allows up to two people to log in at the same time
         kickoutSessionFilter.setMaxSession(properties.getSession().getMaxSession());
-        // 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；踢出顺序
+        // Whether to kick out those who log in later, the default is false; that is, the user who logs later will kick out the user who logs in before
         kickoutSessionFilter.setKickoutAfter(properties.getSession().isKickoutAfter());
-        // 被踢出后重定向到的地址；
+        // The address to be redirected to after being kicked out
         kickoutSessionFilter.setKickoutUrl("/login?kickout=1");
         return kickoutSessionFilter;
     }
 
     /**
-     * thymeleaf模板引擎和shiro框架的整合
+     * Integration of thymeleaf template engine and shiro framework
      */
     @Bean
     public ShiroDialect shiroDialect() {
@@ -287,7 +287,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 开启Shiro注解通知器
+     * Turn on Shiro annotation notifier
      */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
@@ -298,7 +298,7 @@ public class ShiroAuoConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 默认首页的设置，当输入域名是可以自动跳转到默认指定的网页
+     * The default homepage setting, when you enter the domain name, you can automatically jump to the default specified webpage
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {

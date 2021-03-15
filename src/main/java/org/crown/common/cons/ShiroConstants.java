@@ -1,34 +1,34 @@
 package org.crown.common.cons;
 
 /**
- * Shiro通用常量
+ * Shiro general constants
  *
  * @author Crown
  */
 public interface ShiroConstants {
 
     /**
-     * 用户名
+     * username
      */
     String CURRENT_USERNAME = "username";
 
     /**
-     * 当前在线会话
+     * Current online session
      */
     String ONLINE_SESSION = "online_session";
 
     /**
-     * 验证码key
+     * Verification code key
      */
     String CURRENT_CAPTCHA = "captcha";
 
     /**
-     * 登录记录缓存
+     * Login record cache
      */
     String LOGINRECORDCACHE = "loginRecordCache";
 
     /**
-     * 系统活跃用户缓存
+     * System active user cache
      */
     String SYS_USERCACHE = "sys-userCache";
 }

@@ -26,7 +26,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 
 /**
- * Debug LambdaUpdateWrapper (用于调试LambdaUpdateWrapper)
+ * Debug LambdaUpdateWrapper (Used to debug LambdaUpdateWrapper)
  *
  * @author Caratacus
  * @see LambdaUpdateWrapper

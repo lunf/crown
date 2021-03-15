@@ -13,7 +13,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
- * 通用拦截器
+ * Universal interceptor
  *
  * @author Caratacus
  */

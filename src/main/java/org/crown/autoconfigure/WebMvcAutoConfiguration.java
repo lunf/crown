@@ -69,7 +69,7 @@ import io.undertow.Undertow;
 
 /**
  * <p>
- * Spring Boot 配置
+ * Spring Boot configuration
  * </p>
  *
  * @author Caratacus

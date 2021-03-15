@@ -21,7 +21,7 @@
 package org.crown.common.enums;
 
 /**
- * HTTP方法枚举
+ * HTTP method enumeration
  *
  * @author Caratacus
  */

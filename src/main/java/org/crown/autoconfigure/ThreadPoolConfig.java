@@ -11,17 +11,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
- * 线程池配置
+ * Thread pool configuration
  *
  * @author Crown
  **/
 @Configuration
 public class ThreadPoolConfig {
 
-    // 核心线程池大小
+    // Core thread pool size
     private final int corePoolSize = 50;
 
-    // 最大可创建的线程数
+    // Maximum number of threads that can be created
     private final int maxPoolSize = 200;
 
     // 队列最大长度
@@ -37,13 +37,13 @@ public class ThreadPoolConfig {
         executor.setCorePoolSize(corePoolSize);
         executor.setQueueCapacity(queueCapacity);
         executor.setKeepAliveSeconds(keepAliveSeconds);
-        // 线程池对拒绝任务(无线程可用)的处理策略
+        // Thread pool's processing strategy for rejected tasks (no threads are available)Thread pool's processing strategy for rejected tasks (no threads are available)
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         return executor;
     }
 
     /**
-     * 执行周期性或定时任务
+     * Perform periodic or timed tasks
      */
     @Bean(name = "scheduledExecutorService")
     protected ScheduledExecutorService scheduledExecutorService() {

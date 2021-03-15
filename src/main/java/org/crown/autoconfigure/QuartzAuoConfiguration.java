@@ -13,7 +13,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Component;
 
 /**
- * 定时任务配置
+ * Scheduled task configuration
  *
  * @author Caratacus
  */
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class QuartzAuoConfiguration {
 
     /**
-     * 解决Job中注入Spring Bean为null的问题
+     * Solve the problem of null injection of Spring Bean in Job
      */
     @Component("quartzJobFactory")
     public static class QuartzJobFactory extends AdaptableJobFactory {
@@ -32,7 +32,7 @@ public class QuartzAuoConfiguration {
         @Override
         protected Object createJobInstance(TriggerFiredBundle bundle) throws Exception {
 
-            //调用父类的方法
+            //Call the method of the parent class
             Object jobInstance = super.createJobInstance(bundle);
             capableBeanFactory.autowireBean(jobInstance);
             return jobInstance;
@@ -40,7 +40,7 @@ public class QuartzAuoConfiguration {
     }
 
     /**
-     * 注入scheduler到spring
+     * Inject scheduler into spring
      *
      * @param quartzJobFactory
      * @return
@@ -51,9 +51,9 @@ public class QuartzAuoConfiguration {
         SchedulerFactoryBean factoryBean = new SchedulerFactoryBean();
         factoryBean.setJobFactory(quartzJobFactory);
         factoryBean.afterPropertiesSet();
-        // quartz参数
+        // quartz parameter
         Properties prop = new Properties();
-        // 线程池配置
+        // Thread pool configuration
         prop.put("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
         prop.put("org.quartz.threadPool.threadCount", "20");
         prop.put("org.quartz.threadPool.threadPriority", "5");

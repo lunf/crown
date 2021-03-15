@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 自定义导出Excel数据注解
+ * Custom export Excel data annotation
  *
  * @author Crown
  */
@@ -15,62 +15,62 @@ import java.lang.annotation.Target;
 public @interface Excel {
 
     /**
-     * 导出到Excel中的名字.
+     * Name exported to Excel.
      */
     String name() default "";
 
     /**
-     * 日期格式, 如: yyyy-MM-dd
+     * Date format, such as: yyyy-MM-dd
      */
     String dateFormat() default "";
 
     /**
-     * 读取内容转表达式 (如: 0=男,1=女,2=未知)
+     * Read content to expression (e.g.: 0=male, 1=female, 2=unknown)
      */
     String readConverterExp() default "";
 
     /**
-     * 导出时在excel中每个列的高度 单位为字符
+     * The height of each column in excel when exporting in characters
      */
     double height() default 14;
 
     /**
-     * 导出时在excel中每个列的宽 单位为字符
+     * The width of each column in excel when exporting in characters
      */
     double width() default 16;
 
     /**
-     * 文字后缀,如% 90 变成90%
+     * Text suffix, such as% 90 becomes 90%
      */
     String suffix() default "";
 
     /**
-     * 当值为空时,字段的默认值
+     * When the value is empty, the default value of the field
      */
     String defaultValue() default "";
 
     /**
-     * 提示信息
+     * Prompt information
      */
     String prompt() default "";
 
     /**
-     * 设置只能选择不能输入的列内容.
+     * You can only select the column content that cannot be entered.
      */
     String[] combo() default {};
 
     /**
-     * 是否导出数据,应对需求:有时我们需要导出一份模板,这是标题需要但内容需要用户手工填写.
+     * Whether to export data and respond to requirements: sometimes it is needed to export a template, which is required for the title but the content needs to be filled in manually by the user.
      */
     boolean isExport() default true;
 
     /**
-     * 另一个类中的属性名称,支持多级获取,以小数点隔开
+     * The attribute name in another class supports multi-level acquisition, separated by decimal points
      */
     String targetAttr() default "";
 
     /**
-     * 字段类型（0：导出导入；1：仅导出；2：仅导入）
+     * Field type (0: export and import; 1: only export; 2: only import)
      */
     Type type() default Type.ALL;
 

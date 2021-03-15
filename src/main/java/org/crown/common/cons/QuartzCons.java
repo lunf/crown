@@ -2,7 +2,7 @@ package org.crown.common.cons;
 
 /**
  * <p>
- * Quartz常量
+ * Quartz constant
  * </p>
  *
  * @author Caratacus
@@ -10,11 +10,11 @@ package org.crown.common.cons;
 public interface QuartzCons {
 
     /**
-     * 定时任务KEY前缀
+     * Timing task KEY prefix
      */
     String JOB_KEY_PREFIX = "JOB_KEY_PREFIX";
     /**
-     * 定时任务名称前缀
+     * Scheduled task name prefix
      */
     String JOB_NAME_PREFIX = "TASK_";
 

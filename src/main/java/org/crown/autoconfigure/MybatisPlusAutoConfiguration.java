@@ -32,7 +32,7 @@ import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.github.pagehelper.PageInterceptor;
 
 /**
- * MybatisPlus 配置
+ * MybatisPlus configuration
  *
  * @author Caratacus
  */
@@ -40,7 +40,7 @@ import com.github.pagehelper.PageInterceptor;
 public class MybatisPlusAutoConfiguration {
 
     /**
-     * 基于baomidou dynamic datasource读写分离
+     * Read and write separation based on baomidou dynamic datasource
      *
      * @return
      */
@@ -50,7 +50,7 @@ public class MybatisPlusAutoConfiguration {
     }
 
     /**
-     * 乐观锁
+     * Optimistic lock
      *
      * @return
      */
@@ -60,7 +60,7 @@ public class MybatisPlusAutoConfiguration {
     }
 
     /**
-     * 自动填充
+     * Autofill
      *
      * @return
      */
@@ -70,7 +70,7 @@ public class MybatisPlusAutoConfiguration {
     }
 
     /**
-     * 自定义注入语句
+     * Custom injection statement
      *
      * @return
      */
@@ -80,7 +80,7 @@ public class MybatisPlusAutoConfiguration {
     }
 
     /**
-     * 分页插件
+     * Paging plugin
      *
      * @return
      */

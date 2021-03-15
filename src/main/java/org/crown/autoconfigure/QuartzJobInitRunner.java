@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 定时任务初始化
+ * Timing task initialization
  *
  * @author Caratacus
  */
@@ -26,14 +26,14 @@ public class QuartzJobInitRunner implements ApplicationRunner {
     private QuartzManage quartzManage;
 
     /**
-     * 项目启动时重新激活启用的定时任务
+     * Reactivate enabled scheduled tasks when the project starts
      *
      * @param applicationArguments
      */
     @Override
     public void run(ApplicationArguments applicationArguments) {
-        log.info("Quartz定时任务 - 数据加载中");
+        log.info("Quartz timing task-loading data");
         jobService.query().eq(Job::getPaused, false).list().forEach(quartzJob -> quartzManage.addJob(quartzJob));
-        log.info("Quartz定时任务 - 数据加载完成");
+        log.info("Quartz timing task-data loading completed");
     }
 }

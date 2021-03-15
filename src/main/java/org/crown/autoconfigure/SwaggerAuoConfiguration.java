@@ -35,7 +35,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * <p>
- * RESTful 服务 API 管理框架 Swagger 配置初始化
+ * RESTful service API management framework Swagger configuration initialization
  * </p>
  *
  * @author Caratacus
@@ -54,14 +54,14 @@ public class SwaggerAuoConfiguration {
     }
 
     /**
-     * 获取swagger ApiInfo
+     * Get swagger ApiInfo
      *
      * @return
      */
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Crown API")
-                .description("Crown Swagger API 文档")
+                .description("Crown Swagger API documentation")
                 .termsOfServiceUrl("https://github.com/Caratacus/Crown2")
                 .version("2.0")
                 .contact(new Contact("Crown2", "https://github.com/Caratacus", "caratacus@qq.cn"))

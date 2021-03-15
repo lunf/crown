@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import org.springframework.http.HttpStatus;
 
 /**
- * 包装API返回注解
+ * Wrapping API return annotation
  *
  * @author Crown
  */
@@ -19,12 +19,12 @@ import org.springframework.http.HttpStatus;
 public @interface UnifiedReturn {
 
     /**
-     * 是否包装返回
+     * Whether to wrap the return
      */
     boolean wrapper() default false;
 
     /**
-     * 正常返回httpcode码
+     * Return http code normally
      */
     HttpStatus status() default HttpStatus.OK;
 }

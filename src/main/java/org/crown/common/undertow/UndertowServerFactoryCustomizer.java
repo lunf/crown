@@ -36,7 +36,7 @@ import io.undertow.server.DefaultByteBufferPool;
 import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
 
 /**
- * 设置Undertow服务器 XnioWorker Buffers
+ * Set up the Undertow server Xnio Worker Buffers
  *
  * @author Caratacus
  * @see <a>https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-programmatic-embedded-container-customization</a>
@@ -56,7 +56,7 @@ public class UndertowServerFactoryCustomizer implements WebServerFactoryCustomiz
     }
 
     /**
-     * 获取XnioWorker
+     * Get XnioWorker
      *
      * @return
      */

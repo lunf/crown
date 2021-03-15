@@ -1,44 +1,44 @@
 package org.crown.common.cons;
 
 /**
- * 通用常量信息
+ * General constant information
  *
  * @author Crown
  */
 public class Constants {
 
     /**
-     * UTF-8 字符集
+     * UTF-8 character set
      */
     public static final String UTF8 = "UTF-8";
 
     /**
-     * 通用成功标识
+     * General success indicator
      */
     public static final int SUCCESS = 1;
 
     /**
-     * 通用失败标识
+     * General failure indicator
      */
     public static final int FAIL = 0;
 
     /**
-     * 登录成功
+     * login successful
      */
     public static final String LOGIN_SUCCESS = "Success";
 
     /**
-     * 注销
+     * logout
      */
     public static final String LOGOUT = "Logout";
 
     /**
-     * 登录失败
+     * login failed
      */
     public static final String LOGIN_FAIL = "Error";
 
     /**
-     * 自动去除表前缀
+     * Automatically remove table prefix
      */
     public static final String AUTO_REOMVE_PRE = "true";
 

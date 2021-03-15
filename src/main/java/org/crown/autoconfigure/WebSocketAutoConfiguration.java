@@ -23,7 +23,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 配置WebSocket消息代理端点，即stomp服务端
+ * Configure the WebSocket message proxy endpoint, the stomp server
  *
  * @author Caratacus
  * @link https://cloud.tencent.com/developer/article/1096792
@@ -55,7 +55,7 @@ public class WebSocketAutoConfiguration implements WebSocketMessageBrokerConfigu
     }
 
     /**
-     * 推送日志到/topic/pullLogger
+     * Push logs/topic/pullLogger
      */
     @PostConstruct
     public void pushLogger() {
@@ -68,7 +68,7 @@ public class WebSocketAutoConfiguration implements WebSocketMessageBrokerConfigu
                         messagingTemplate.convertAndSend("/topic/consolelog", log);
                     }
                 } catch (Exception e) {
-                    log.warn("推送日志失败:{}", e.getMessage());
+                    log.warn("Failed to push log:{}", e.getMessage());
                 }
             }
         };

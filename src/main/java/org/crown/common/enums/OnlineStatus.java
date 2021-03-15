@@ -2,9 +2,9 @@ package org.crown.common.enums;
 
 public enum OnlineStatus {
     /**
-     * 用户状态
+     * user status
      */
-    on_line("在线"), off_line("离线");
+    on_line("Online"), off_line("Offline");
     private final String info;
 
     OnlineStatus(String info) {

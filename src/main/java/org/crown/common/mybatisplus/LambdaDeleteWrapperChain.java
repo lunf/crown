@@ -32,7 +32,7 @@ import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.service.additional.AbstractChainWrapper;
 
 /**
- * Lambda删除Wrapper
+ * Lambda delete wrapper
  *
  * @author Caratacus
  */

@@ -22,7 +22,7 @@ package org.crown.common.cons;
 
 /**
  * <p>
- * API常量
+ * API constant
  * </p>
  *
  * @author Caratacus

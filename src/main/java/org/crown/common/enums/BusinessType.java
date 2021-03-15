@@ -1,58 +1,58 @@
 package org.crown.common.enums;
 
 /**
- * 业务操作类型
+ * Business operation type
  *
  * @author Crown
  */
 public enum BusinessType {
     /**
-     * 其它
+     * other
      */
     OTHER,
 
     /**
-     * 新增
+     * add
      */
     INSERT,
 
     /**
-     * 修改
+     * modify
      */
     UPDATE,
 
     /**
-     * 删除
+     * delete
      */
     DELETE,
 
     /**
-     * 授权
+     * authorization
      */
     GRANT,
 
     /**
-     * 导出
+     * export
      */
     EXPORT,
 
     /**
-     * 导入
+     * import
      */
     IMPORT,
 
     /**
-     * 强退
+     * forced withdrawal
      */
     FORCE,
 
     /**
-     * 生成代码
+     * generate code
      */
     GENCODE,
 
     /**
-     * 清空数据
+     * clear data
      */
     CLEAN,
 }

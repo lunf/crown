@@ -14,7 +14,7 @@ import org.crown.framework.servlet.wrapper.GlobalRequestWrapper;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * 防止XSS攻击的过滤器
+ * Filters to prevent XSS attacks
  *
  * @author Crown
  */

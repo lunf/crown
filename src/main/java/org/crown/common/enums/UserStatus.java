@@ -1,12 +1,12 @@
 package org.crown.common.enums;
 
 /**
- * 用户状态
+ * user status
  *
  * @author Crown
  */
 public enum UserStatus {
-    OK("0", "正常"), DISABLE("1", "停用");
+    OK("0", "normal"), DISABLE("1", "deactivated");
 
     private final String code;
     private final String info;

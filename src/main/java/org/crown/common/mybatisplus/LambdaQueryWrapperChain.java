@@ -36,7 +36,7 @@ import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.service.additional.AbstractChainWrapper;
 
 /**
- * Lambda查询Wrapper
+ * Lambda query wrapper
  *
  * @author Caratacus
  */

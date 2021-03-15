@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 通用数据库映射Map数据
+ * General database mapping Map data
  *
  * @author Crown
  */
 public class CommonMap {
 
     /**
-     * 状态编码转换
+     * State code conversion
      */
     public static final Map<String, String> javaTypeMap = new HashMap<>();
 
@@ -20,7 +20,7 @@ public class CommonMap {
     }
 
     /**
-     * 返回状态映射
+     * Return state mapping
      */
     public static void initJavaTypeMap() {
         javaTypeMap.put("tinyint", "Integer");

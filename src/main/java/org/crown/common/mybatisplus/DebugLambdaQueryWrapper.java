@@ -26,7 +26,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 
 /**
- * Debug LambdaQueryWrapper (用于调试LambdaQueryWrapper)
+ * Debug LambdaQueryWrapper (Used to debug LambdaQueryWrapper)
  *
  * @author Caratacus
  * @see LambdaQueryWrapper

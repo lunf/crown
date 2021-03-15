@@ -1,23 +1,23 @@
 package org.crown.common.enums;
 
 /**
- * 操作人类别
+ * Operator category
  *
  * @author Crown
  */
 public enum OperatorType {
     /**
-     * 其它
+     * Other
      */
     OTHER,
 
     /**
-     * 后台用户
+     * Background users
      */
     MANAGE,
 
     /**
-     * 手机端用户
+     * Mobile users
      */
     MOBILE
 }

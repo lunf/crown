@@ -28,30 +28,30 @@ import org.crown.common.utils.security.ShiroUtils;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 
 /**
- * 通用填充类 适用于mybatis plus
+ * General filling class for mybatis plus
  *
  * @author Caratacus
  */
 public class CommonMetaObjectHandler implements MetaObjectHandler {
 
     /**
-     * 创建时间
+     * Time created
      */
     private final String createTime = "createTime";
     /**
-     * 修改时间
+     * Time modified
      */
     private final String updateTime = "updateTime";
     /**
-     * 创建者
+     * Creator
      */
     private final String createBy = "createBy";
     /**
-     * 修改者
+     * Modifier
      */
     private final String updateBy = "updateBy";
     /**
-     * 删除标志（0代表存在 2代表删除）
+     * Delete flag (0 remaining, 2 deleted)
      */
     private final String deleted = "deleted";
 
@@ -71,7 +71,7 @@ public class CommonMetaObjectHandler implements MetaObjectHandler {
     }
 
     /*  *
-     * 获取当前用户名
+     * Get current user name
      */
     private String currentLoginName() {
         String loginName = "";

@@ -22,7 +22,7 @@ package org.crown.common.exception;
 
 /**
  * <p>
- * 未知枚举 异常
+ * Unknown enumeration exception
  * </p>
  *
  * @author Caratacus

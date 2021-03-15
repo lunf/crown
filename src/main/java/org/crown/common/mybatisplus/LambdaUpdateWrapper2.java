@@ -30,7 +30,7 @@ import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 
 /**
  * <p>
- * Lambda 更新封装
+ * Lambda update package
  * </p>
  *
  * @author hubin miemie HCL
@@ -40,12 +40,12 @@ public class LambdaUpdateWrapper2<T> extends AbstractLambdaWrapper<T, LambdaUpda
         implements Update<LambdaUpdateWrapper2<T>, SFunction<T, ?>> {
 
     /**
-     * SQL 更新字段内容，例如：name='1',age=2
+     * SQL update field content, for example: name='1',age=2
      */
     private final List<String> sqlSet;
 
     public LambdaUpdateWrapper2() {
-        // 如果无参构造函数，请注意实体 NULL 情况 SET 必须有否则 SQL 异常
+        // If there is no parameter constructor, please pay attention to the entity NULL situation SET must have otherwise SQL exception
         this(null);
     }
 
