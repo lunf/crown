@@ -40,7 +40,7 @@ import com.baomidou.mybatisplus.core.toolkit.ClassUtils;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 
 /**
- * 转换工具类
+ * Conversion tools
  *
  * @author Caratacus
  */
@@ -63,7 +63,7 @@ public class BeanConverter {
     }
 
     /**
-     * 获取 modelMapper
+     * Get modelMapper
      *
      * @return
      */
@@ -72,7 +72,7 @@ public class BeanConverter {
     }
 
     /**
-     * Bean转换为Map
+     * Convert Bean to Map
      *
      * @param bean
      * @param <T>
@@ -91,7 +91,7 @@ public class BeanConverter {
     }
 
     /**
-     * List<E>转换为List<Map<String, Object>>
+     * List<E> is converted to List<Map<String, Object>>
      *
      * @param objList
      * @param <T>
@@ -113,7 +113,7 @@ public class BeanConverter {
     }
 
     /**
-     * map转为bean
+     * map to bean
      *
      * @param <T>       the type parameter
      * @param mapList   the map list
@@ -136,7 +136,7 @@ public class BeanConverter {
     }
 
     /**
-     * map转为bean
+     * map to bean
      *
      * @param map       the map
      * @param beanClass the bean class
@@ -150,7 +150,7 @@ public class BeanConverter {
     }
 
     /**
-     * 列表转换
+     * List conversion
      *
      * @param clazz the clazz
      * @param list  the list
@@ -160,11 +160,11 @@ public class BeanConverter {
     }
 
     /**
-     * 单个对象转换
+     * Single object conversion
      *
-     * @param targetClass 目标对象
-     * @param source      源对象
-     * @return 转换后的目标对象
+     * @param targetClass target
+     * @param source      Source object
+     * @return Target audience after conversion
      */
     public static <T> T convert(Class<T> targetClass, Object source) {
         return getModelMapper().map(source, targetClass);
