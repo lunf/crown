@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public abstract class ClassUtils {
 
     /**
-     * 初始化实例
+     * Initialize the instance
      *
      * @param clazz
      * @return
@@ -27,12 +27,12 @@ public abstract class ClassUtils {
         try {
             return clazz.newInstance();
         } catch (Exception e) {
-            throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "创建新的实例异常，Class：" + (clazz == null ? "null" : clazz.getName()), e);
+            throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Create a new instance exception，Class：" + (clazz == null ? "null" : clazz.getName()), e);
         }
     }
 
     /**
-     * 根据名称获取Class
+     * Get Class by name
      *
      * @param clazz
      * @return
@@ -46,7 +46,7 @@ public abstract class ClassUtils {
     }
 
     /**
-     * 判断是否为代理对象
+     * Determine whether it is a proxy object
      *
      * @param clazz
      * @return
@@ -69,7 +69,7 @@ public abstract class ClassUtils {
     }
 
     /**
-     * 获取当前对象的class
+     * Get the class of the current object
      *
      * @param clazz
      * @return
@@ -79,7 +79,7 @@ public abstract class ClassUtils {
     }
 
     /**
-     * 获取当前对象的class
+     * Get the class of the current object
      *
      * @param object
      * @returna

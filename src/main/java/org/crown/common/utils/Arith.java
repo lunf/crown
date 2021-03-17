@@ -4,29 +4,29 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * 精确的浮点数运算
+ * Precise floating-point arithmetic
  *
  * @author Crown
  */
 public class Arith {
 
     /**
-     * 默认除法运算精度
+     * Default division precision
      */
     private static final int DEF_DIV_SCALE = 10;
 
     /**
-     * 这个类不能实例化
+     * This class cannot be instantiated
      */
     private Arith() {
     }
 
     /**
-     * 提供精确的加法运算。
+     * Provide precise addition operations。
      *
-     * @param v1 被加数
-     * @param v2 加数
-     * @return 两个参数的和
+     * @param v1 Summand
+     * @param v2 Addend
+     * @return The sum of the two parameters
      */
     public static double add(double v1, double v2) {
         BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -35,11 +35,11 @@ public class Arith {
     }
 
     /**
-     * 提供精确的减法运算。
+     * Provide precise subtraction。
      *
-     * @param v1 被减数
-     * @param v2 减数
-     * @return 两个参数的差
+     * @param v1 Minute
+     * @param v2 Minus
+     * @return Difference between two parameters
      */
     public static double sub(double v1, double v2) {
         BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -48,11 +48,11 @@ public class Arith {
     }
 
     /**
-     * 提供精确的乘法运算。
+     * Provide precise multiplication。
      *
-     * @param v1 被乘数
-     * @param v2 乘数
-     * @return 两个参数的积
+     * @param v1 Multiplicand
+     * @param v2 multiplier
+     * @return Product of two parameters
      */
     public static double mul(double v1, double v2) {
         BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -61,25 +61,25 @@ public class Arith {
     }
 
     /**
-     * 提供（相对）精确的除法运算，当发生除不尽的情况时，精确到
-     * 小数点以后10位，以后的数字四舍五入。
+     * Provide (relatively) accurate division operation, when the division is inexhaustible, accurate to
+     * 10 digits after the decimal point, and subsequent numbers are rounded。
      *
-     * @param v1 被除数
-     * @param v2 除数
-     * @return 两个参数的商
+     * @param v1 Dividend
+     * @param v2 divisor
+     * @return Quotient of two parameters
      */
     public static double div(double v1, double v2) {
         return div(v1, v2, DEF_DIV_SCALE);
     }
 
     /**
-     * 提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指
-     * 定精度，以后的数字四舍五入。
+     * Provides (relatively) precise division operations. When there is an inexhaustible division, the scale parameter refers to
+     * Set the precision, and the subsequent figures are rounded。
      *
-     * @param v1    被除数
-     * @param v2    除数
-     * @param scale 表示表示需要精确到小数点以后几位。
-     * @return 两个参数的商
+     * @param v1    Dividend
+     * @param v2    divisor
+     * @param scale Indicates that it needs to be accurate to a few decimal places.
+     * @return Quotient of two parameters
      */
     public static double div(double v1, double v2, int scale) {
         if (scale < 0) {
@@ -95,11 +95,11 @@ public class Arith {
     }
 
     /**
-     * 提供精确的小数位四舍五入处理。
+     * Provide accurate rounding of decimal places。
      *
-     * @param v     需要四舍五入的数字
-     * @param scale 小数点后保留几位
-     * @return 四舍五入后的结果
+     * @param v     Number that needs to be rounded
+     * @param scale Keep a few digits after the decimal point
+     * @return Rounded result
      */
     public static double round(double v, int scale) {
         if (scale < 0) {

@@ -1,7 +1,7 @@
 package org.crown.common.utils.file;
 
 /**
- * 媒体类型工具类
+ * Media type tools
  *
  * @author Crown
  */
@@ -25,7 +25,7 @@ public class MimeTypes {
             "asf", "rm", "rmvb"};
 
     public static final String[] DEFAULT_ALLOWED_EXTENSION = {
-            // 图片
+            // image
             "bmp", "gif", "jpg", "jpeg", "png",
             // word excel powerpoint
             "doc", "docx", "xls", "xlsx", "ppt", "pptx", "html", "htm", "txt",

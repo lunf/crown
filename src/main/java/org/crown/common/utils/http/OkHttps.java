@@ -25,7 +25,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * <p>
- * OkHttp工具类
+ * OkHttp Tools
  * </p>
  *
  * @author Caratacus
@@ -53,7 +53,7 @@ public class OkHttps {
     }
 
     /**
-     * 获取httpClient
+     * Get httpClient
      *
      * @return
      */
@@ -62,7 +62,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpGet请求
+     * Send HttpGet request
      *
      * @param url
      * @return String
@@ -72,7 +72,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpGet请求
+     * Send HttpGet request
      *
      * @param url
      * @param headers
@@ -83,7 +83,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送请求
+     * send request
      *
      * @param method
      * @param url
@@ -92,7 +92,7 @@ public class OkHttps {
      * @return
      */
     public static String request(HTTPMethod method, String url, Map<String, String> headers, Map<String, String> params) {
-        log.info("请求地址:{},请求方法:{},请求头:{},请求参数:{}", url, method.name(), headers.toString(), params.toString());
+        log.info("Request address:{},Request method:{},Request header:{},Request parameter:{}", url, method.name(), headers.toString(), params.toString());
         Request.Builder requestBuild = new Request.Builder().url(url);
         addHeaders(requestBuild, headers);
         switch (method) {
@@ -113,14 +113,14 @@ public class OkHttps {
                 requestBuild.method(method.name(), formBody);
                 break;
             default:
-                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "内部请求方式不正确");
+                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "Incorrect internal request method");
         }
         Call call = getClient().newCall(requestBuild.build());
         return getStringResult(call);
     }
 
     /**
-     * 添加请求头
+     * Add request header
      *
      * @param headers
      * @param requestBuild
@@ -133,7 +133,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPost请求
+     * Send HttpPost request
      *
      * @param url
      * @return String
@@ -143,7 +143,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPost请求
+     * Send HttpPost request
      *
      * @param url
      * @param params
@@ -154,7 +154,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPost请求
+     * Send HttpPost request
      *
      * @param url
      * @param headers
@@ -166,7 +166,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPut请求
+     * Send HttpPut request
      *
      * @param url
      * @return String
@@ -176,7 +176,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPut请求
+     * Send HttpPut request
      *
      * @param url
      * @param params
@@ -187,7 +187,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPut请求
+     * Send HttpPut request
      *
      * @param url
      * @param params
@@ -199,7 +199,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPatch请求
+     * Send HttpPatch request
      *
      * @param url
      * @return String
@@ -209,7 +209,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPatch请求
+     * Send HttpPatch request
      *
      * @param url
      * @param params
@@ -220,7 +220,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送HttpPatch请求
+     * Send HttpPatch request
      *
      * @param url
      * @param params
@@ -232,7 +232,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送带请求体请求只适用于继承HttpEntityEnclosingRequestBase的请求(POST,PUT,PATCH)
+     * Sending a request with a request body is only applicable to requests that inherit HttpEntityEnclosingRequestBase (POST, PUT, PATCH)
      *
      * @param method
      * @param url
@@ -242,7 +242,7 @@ public class OkHttps {
      */
     public static String requestBody(HTTPMethod method, String url, Map<String, String> headers, Object body) {
         String content = JSON.toJSONString(body);
-        log.info("请求地址:{},请求方法:{},请求头:{},请求体:{}", url, method.name(), headers.toString(), content);
+        log.info("Request address:{},Request method:{},Request header:{},Request body:{}", url, method.name(), headers.toString(), content);
         Request.Builder requestBuild = new Request.Builder().url(url);
         addHeaders(requestBuild, headers);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), content);
@@ -257,7 +257,7 @@ public class OkHttps {
                 requestBuild.patch(requestBody);
                 break;
             default:
-                throw new RuntimeException("内部请求方式不正确");
+                throw new RuntimeException("Incorrect internal request method");
 
         }
         Call call = getClient().newCall(requestBuild.build());
@@ -266,7 +266,7 @@ public class OkHttps {
     }
 
     /**
-     * Post请求
+     * Post request
      *
      * @param url
      * @param headers
@@ -279,7 +279,7 @@ public class OkHttps {
     }
 
     /**
-     * Put请求
+     * Put request
      *
      * @param url
      * @param headers
@@ -292,7 +292,7 @@ public class OkHttps {
     }
 
     /**
-     * Patch请求
+     * Patch request
      *
      * @param url
      * @param headers
@@ -305,7 +305,7 @@ public class OkHttps {
     }
 
     /**
-     * Post请求
+     * Post request
      *
      * @param url
      * @param body
@@ -317,7 +317,7 @@ public class OkHttps {
     }
 
     /**
-     * Put请求
+     * Put request
      *
      * @param url
      * @param body
@@ -329,7 +329,7 @@ public class OkHttps {
     }
 
     /**
-     * Patch请求
+     * Patch request
      *
      * @param url
      * @param object
@@ -341,7 +341,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送Delete请求
+     * Send delete request
      *
      * @param url
      * @return
@@ -351,7 +351,7 @@ public class OkHttps {
     }
 
     /**
-     * 发送Delete请求
+     * Send delete request
      *
      * @param url
      * @return
@@ -361,7 +361,7 @@ public class OkHttps {
     }
 
     /**
-     * 获取请求返回
+     * Get request return
      *
      * @param call
      * @return

@@ -7,23 +7,23 @@ import java.util.List;
 import org.crown.project.system.menu.domain.Menu;
 
 /**
- * 权限数据处理
+ * Authorization data processing
  *
  * @author Crown
  */
 public class TreeUtils {
 
     /**
-     * 根据父节点的ID获取所有子节点
+     * Get all child nodes according to the ID of the parent node
      *
-     * @param list     分类表
-     * @param parentId 传入的父节点ID
+     * @param list     Classification table
+     * @param parentId Incoming parent node ID
      * @return String
      */
     public static List<Menu> getChildPerms(List<Menu> list, int parentId) {
         List<Menu> returnList = new ArrayList<>();
         for (Menu t : list) {
-            // 一、根据传入的某个父节点ID,遍历该父节点的所有子节点
+            // 1. According to a parent node ID passed in, traverse all child nodes of the parent node
             if (t.getParentId() == parentId) {
                 recursionFn(list, t);
                 returnList.add(t);
@@ -33,18 +33,18 @@ public class TreeUtils {
     }
 
     /**
-     * 递归列表
+     * Recursive list
      *
      * @param list
      * @param t
      */
     private static void recursionFn(List<Menu> list, Menu t) {
-        // 得到子节点列表
+        // Get a list of child nodes
         List<Menu> childList = getChildList(list, t);
         t.setChildren(childList);
         for (Menu tChild : childList) {
             if (hasChild(list, tChild)) {
-                // 判断是否有子节点
+                // Determine whether there are child nodes
                 Iterator<Menu> it = childList.iterator();
                 while (it.hasNext()) {
                     Menu n = it.next();
@@ -55,7 +55,7 @@ public class TreeUtils {
     }
 
     /**
-     * 得到子节点列表
+     * Get a list of child nodes
      */
     private static List<Menu> getChildList(List<Menu> list, Menu t) {
 
@@ -73,22 +73,22 @@ public class TreeUtils {
     final List<Menu> returnList = new ArrayList<>();
 
     /**
-     * 根据父节点的ID获取所有子节点
+     * Get all child nodes according to the ID of the parent node
      *
-     * @param list   分类表
-     * @param typeId 传入的父节点ID
-     * @param prefix 子节点前缀
+     * @param list   Classification table
+     * @param typeId Incoming parent node ID
+     * @param prefix Child node prefix
      */
     public List<Menu> getChildPerms(List<Menu> list, int typeId, String prefix) {
         if (list == null) {
             return null;
         }
         for (Menu node : list) {
-            // 一、根据传入的某个父节点ID,遍历该父节点的所有子节点
+            // 1. According to a parent node ID passed in, traverse all child nodes of the parent node
             if (node.getParentId() == typeId) {
                 recursionFn(list, node, prefix);
             }
-            // 二、遍历所有的父节点下的所有子节点
+            // 2. Traverse all child nodes under all parent nodes
             /*
              * if (node.getParentId()==0) { recursionFn(list, node); }
              */
@@ -97,10 +97,10 @@ public class TreeUtils {
     }
 
     private void recursionFn(List<Menu> list, Menu node, String p) {
-        // 得到子节点列表
+        // Get a list of child nodes
         List<Menu> childList = getChildList(list, node);
         if (hasChild(list, node)) {
-            // 判断是否有子节点
+            // Determine whether there are child nodes
             returnList.add(node);
             Iterator<Menu> it = childList.iterator();
             while (it.hasNext()) {
@@ -114,7 +114,7 @@ public class TreeUtils {
     }
 
     /**
-     * 判断是否有子节点
+     * Determine whether there are child nodes
      */
     private static boolean hasChild(List<Menu> list, Menu t) {
         return getChildList(list, t).size() > 0;

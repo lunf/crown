@@ -4,7 +4,7 @@ import org.crown.common.utils.StringUtils;
 import org.crown.common.utils.converter.Convert;
 
 /**
- * 字符串格式化
+ * String formatting
  *
  * @author Crown
  */
@@ -16,17 +16,17 @@ public class StrFormatter {
     public static final char C_DELIM_END = '}';
 
     /**
-     * 格式化字符串<br>
-     * 此方法只是简单将占位符 {} 按照顺序替换为参数<br>
-     * 如果想输出 {} 使用 \\转义 { 即可，如果想输出 {} 之前的 \ 使用双转义符 \\\\ 即可<br>
-     * 例：<br>
-     * 通常使用：format("this is {} for {}", "a", "b") -> this is a for b<br>
-     * 转义{}： format("this is \\{} for {}", "a", "b") -> this is \{} for a<br>
-     * 转义\： format("this is \\\\{} for {}", "a", "b") -> this is \a for b<br>
+     * Format string<br>
+     * This method simply replaces the placeholder {} with parameters in order<br>
+     * If you want to output {}, use \\ to escape {, if you want to output the \ before {}, use the double escape character \\\\<br>
+     * Example：<br>
+     * Often used：format("this is {} for {}", "a", "b") -> this is a for b<br>
+     * Escape{}： format("this is \\{} for {}", "a", "b") -> this is \{} for a<br>
+     * Escape\： format("this is \\\\{} for {}", "a", "b") -> this is \a for b<br>
      *
-     * @param strPattern 字符串模板
-     * @param argArray   参数列表
-     * @return 结果
+     * @param strPattern String template
+     * @param argArray   parameter list
+     * @return result
      */
     public static String format(final String strPattern, final Object... argArray) {
         if (StringUtils.isEmpty(strPattern) || StringUtils.isEmpty(argArray)) {
@@ -34,36 +34,36 @@ public class StrFormatter {
         }
         final int strPatternLength = strPattern.length();
 
-        // 初始化定义好的长度以获得更好的性能
+        // Initialize the defined length for better performance
         StringBuilder sbuf = new StringBuilder(strPatternLength + 50);
 
         int handledPosition = 0;
-        int delimIndex;// 占位符所在位置
+        int delimIndex;// Placeholder location
         for (int argIndex = 0; argIndex < argArray.length; argIndex++) {
             delimIndex = strPattern.indexOf(EMPTY_JSON, handledPosition);
             if (delimIndex == -1) {
                 if (handledPosition == 0) {
                     return strPattern;
-                } else { // 字符串模板剩余部分不再包含占位符，加入剩余部分后返回结果
+                } else { // The remaining part of the string template no longer contains placeholders, and the result will be returned after adding the remaining part
                     sbuf.append(strPattern, handledPosition, strPatternLength);
                     return sbuf.toString();
                 }
             } else {
                 if (delimIndex > 0 && strPattern.charAt(delimIndex - 1) == C_BACKSLASH) {
                     if (delimIndex > 1 && strPattern.charAt(delimIndex - 2) == C_BACKSLASH) {
-                        // 转义符之前还有一个转义符，占位符依旧有效
+                        // There is an escape character before the escape character, the placeholder is still valid
                         sbuf.append(strPattern, handledPosition, delimIndex - 1);
                         sbuf.append(Convert.utf8Str(argArray[argIndex]));
                         handledPosition = delimIndex + 2;
                     } else {
-                        // 占位符被转义
+                        // Placeholder is escaped
                         argIndex--;
                         sbuf.append(strPattern, handledPosition, delimIndex - 1);
                         sbuf.append(C_DELIM_START);
                         handledPosition = delimIndex + 1;
                     }
                 } else {
-                    // 正常占位符
+                    // Placeholder is escaped
                     sbuf.append(strPattern, handledPosition, delimIndex);
                     sbuf.append(Convert.utf8Str(argArray[argIndex]));
                     handledPosition = delimIndex + 2;
@@ -71,7 +71,7 @@ public class StrFormatter {
             }
         }
         // append the characters following the last {} pair.
-        // 加入最后一个占位符后所有的字符
+        // Add all characters after the last placeholder
         sbuf.append(strPattern, handledPosition, strPattern.length());
 
         return sbuf.toString();

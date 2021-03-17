@@ -38,7 +38,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 /**
- * 修改fastjson类型转换
+ * Modify fastjson type conversion
  *
  * @author Caratacus
  * https://github.com/alibaba/fastjson/blob/master/src/main/java/com/alibaba/fastjson/util/TypeUtils.java
@@ -279,7 +279,7 @@ public abstract class TypeUtils {
         if (value == null) {
             return null;
         }
-        // 使用频率最高的，应优先处理
+        // The most frequently used ones should be handled first
         if (value instanceof Date) {
             return (Date) value;
         }
@@ -421,7 +421,7 @@ public abstract class TypeUtils {
         }
 
         if (longValue <= 0) {
-            // 忽略 1970-01-01 之前的时间处理？
+            // Ignore the time processing before 1970-01-01?
             throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "无法转换为Date, 值为 : " + value);
         }
 
@@ -706,10 +706,10 @@ public abstract class TypeUtils {
                 }
             }
         } catch (Exception ex) {
-            throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "无法转换为 : " + clazz.getName(), ex);
+            throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Cannot be converted to : " + clazz.getName(), ex);
         }
 
-        throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "无法转换为 : " + clazz.getName());
+        throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Cannot be converted to : " + clazz.getName());
     }
 
     public static <T> T castToEnum(Object value, Class<T> clazz, T defaults) {

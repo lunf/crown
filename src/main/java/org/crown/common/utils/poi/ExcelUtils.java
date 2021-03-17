@@ -54,7 +54,7 @@ import org.crown.framework.exception.Crown2Exception;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Excel相关处理
+ * Excel related processing
  *
  * @author Crown
  */
@@ -62,42 +62,42 @@ import lombok.extern.slf4j.Slf4j;
 public class ExcelUtils<T> {
 
     /**
-     * Excel sheet最大行数，默认65536
+     * Maximum number of rows in Excel sheet, 65536 by default
      */
     public static final int sheetSize = 65536;
 
     /**
-     * 工作表名称
+     * Worksheet name
      */
     private String sheetName;
 
     /**
-     * 导出类型（EXPORT:导出数据；IMPORT：导入模板）
+     * Export type (EXPORT: export data; IMPORT: import template)
      */
     private Type type;
 
     /**
-     * 工作薄对象
+     * Workbook object
      */
     private Workbook wb;
 
     /**
-     * 工作表对象
+     * Worksheet object
      */
     private Sheet sheet;
 
     /**
-     * 导入导出数据列表
+     * Import and export data list
      */
     private List<T> list;
 
     /**
-     * 注解列表
+     * Annotation list
      */
     private List<Object[]> fields;
 
     /**
-     * 实体对象
+     * Entity object
      */
     public final Class<T> clazz;
 
@@ -117,21 +117,21 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 对excel表单默认第一个索引名转换成list
+     * The default first index name for excel forms is converted to list
      *
-     * @param is 输入流
-     * @return 转换后集合
+     * @param is Input stream
+     * @return Collection after conversion
      */
     public List<T> importExcel(InputStream is) throws Exception {
         return importExcel(StringUtils.EMPTY, is);
     }
 
     /**
-     * 对excel表单指定表格索引名转换成list
+     * Convert the specified table index name to the excel form into a list
      *
-     * @param sheetName 表格索引名
-     * @param is        输入流
-     * @return 转换后集合
+     * @param sheetName Table index name
+     * @param is        Input stream
+     * @return Collection after conversion
      */
     public List<T> importExcel(String sheetName, InputStream is) throws Exception {
         this.type = Type.IMPORT;
@@ -139,53 +139,53 @@ public class ExcelUtils<T> {
         List<T> list = new ArrayList<>();
         Sheet sheet;
         if (StringUtils.isNotEmpty(sheetName)) {
-            // 如果指定sheet名,则取指定sheet中的内容.
+            // If you specify the sheet name, take the content in the specified sheet.
             sheet = wb.getSheet(sheetName);
         } else {
-            // 如果传入的sheet名不存在则默认指向第1个sheet.
+            // If the passed sheet name does not exist, it will point to the first sheet by default.
             sheet = wb.getSheetAt(0);
         }
 
         if (sheet == null) {
-            throw new IOException("文件sheet不存在");
+            throw new IOException("File sheet does not exist");
         }
 
         int rows = sheet.getPhysicalNumberOfRows();
 
         if (rows > 0) {
-            // 定义一个map用于存放excel列的序号和field.
+            // Define a map to store the serial number and field of the excel column.
             Map<String, Integer> cellMap = new HashMap<>();
-            // 获取表头
+            // Get header
             Row heard = sheet.getRow(0);
             for (int i = 0; i < heard.getPhysicalNumberOfCells(); i++) {
                 String value = this.getCellValue(heard, i).toString();
                 cellMap.put(value, i);
             }
-            // 有数据时才处理 得到类的所有field.
+            // Process only when there is data, get all the fields of the class.
             Field[] allFields = clazz.getDeclaredFields();
-            // 定义一个map用于存放列的序号和field.
+            // Define a map to store the serial number and field of the column.
             Map<Integer, Field> fieldsMap = new HashMap<>();
             for (Field field : allFields) {
                 Excel attr = field.getAnnotation(Excel.class);
                 if (attr != null && (attr.type() == Type.ALL || attr.type() == type)) {
-                    // 设置类的私有字段属性可访问.
+                    // Set the private field properties of the class to be accessible.
                     field.setAccessible(true);
                     Integer column = cellMap.get(attr.name());
                     fieldsMap.put(column, field);
                 }
             }
             for (int i = 1; i < rows; i++) {
-                // 从第2行开始取数据,默认第一行是表头.
+                // Start to fetch data from the second row, the default first row is the header.
                 Row row = sheet.getRow(i);
                 T entity = null;
                 for (Map.Entry<Integer, Field> entry : fieldsMap.entrySet()) {
                     Object val = this.getCellValue(row, entry.getKey());
 
-                    // 如果不存在实例则新建.
+                    // If there is no instance, create a new one.
                     entity = (entity == null ? clazz.newInstance() : entity);
-                    // 从map中得到对应列的field.
+                    // Get the field of the corresponding column from the map.
                     Field field = fieldsMap.get(entry.getKey());
-                    // 取得类型,并根据对象类型设置值.
+                    //Get the type and set the value according to the object type.
                     Class<?> fieldType = field.getType();
                     if (String.class == fieldType) {
                         String s = Convert.toStr(val);
@@ -229,11 +229,11 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 对list数据源将其里面的数据导入到excel表单
+     * Import the data in the list data source into the excel form
      *
-     * @param list      导出数据集合
-     * @param sheetName 工作表的名称
-     * @return 结果
+     * @param list      Export data collection
+     * @param sheetName The name of the worksheet
+     * @return result
      */
     public String exportExcel(List<T> list, String sheetName) {
         this.init(list, sheetName, Type.EXPORT);
@@ -241,10 +241,10 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 对list数据源将其里面的数据导入到excel表单
+     * Import the data in the list data source into the excel form
      *
-     * @param sheetName 工作表的名称
-     * @return 结果
+     * @param sheetName The name of the worksheet
+     * @return result
      */
     public String importTemplateExcel(String sheetName) {
         this.init(null, sheetName, Type.IMPORT);
@@ -252,22 +252,22 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 对list数据源将其里面的数据导入到excel表单
+     * Import the data in the list data source into the excel form
      *
-     * @return 结果
+     * @return result
      */
     public String exportExcel() {
         OutputStream out = null;
         try {
-            // 取出一共有多少个sheet.
+            // How many sheets are taken out.
             double sheetNo = Math.ceil(list.size() / sheetSize);
             for (int index = 0; index <= sheetNo; index++) {
                 createSheet(sheetNo, index);
 
-                // 产生一行
+                // Produce a line
                 Row row = sheet.createRow(0);
                 int column = 0;
-                // 写入各个字段的列头名称
+                // Write the column header name of each field
                 for (Object[] os : fields) {
                     Excel excel = (Excel) os[1];
                     this.createCell(excel, row, column++);
@@ -288,26 +288,26 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 填充excel数据
+     * Fill in excel data
      *
-     * @param index 序号
+     * @param index Serial number
      */
     public void fillExcelData(int index) {
         int startNo = index * sheetSize;
         int endNo = Math.min(startNo + sheetSize, list.size());
-        // 写入各条记录,每条记录对应excel表中的一行
+        // Write each record, each record corresponds to a row in the excel table
         CellStyle cs = wb.createCellStyle();
         cs.setAlignment(HorizontalAlignment.CENTER);
         cs.setVerticalAlignment(VerticalAlignment.CENTER);
         for (int i = startNo; i < endNo; i++) {
             Row row = sheet.createRow(i + 1 - startNo);
-            // 得到导出对象.
+            // Get the exported object.
             T vo = list.get(i);
             int column = 0;
             for (Object[] os : fields) {
                 Field field = (Field) os[0];
                 Excel excel = (Excel) os[1];
-                // 设置实体类私有属性可访问
+                // Set the private properties of the entity class to be accessible
                 field.setAccessible(true);
                 this.addCell(excel, row, vo, field, column++, cs);
             }
@@ -315,12 +315,12 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 创建单元格
+     * Create cell
      */
     public Cell createCell(Excel attr, Row row, int column) {
-        // 创建列
+        // Create column
         Cell cell = row.createCell(column);
-        // 写入列名
+        // Write column name
         cell.setCellValue(attr.name());
         CellStyle cellStyle = createStyle(attr, row, column);
         cell.setCellStyle(cellStyle);
@@ -328,13 +328,13 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 创建表格样式
+     * Create table style
      */
     public CellStyle createStyle(Excel attr, Row row, int column) {
         CellStyle cellStyle = wb.createCellStyle();
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        if (attr.name().contains("注：")) {
+        if (attr.name().contains("Note：")) {
             Font font = wb.createFont();
             font.setColor(HSSFFont.COLOR_RED);
             cellStyle.setFont(font);
@@ -342,45 +342,45 @@ public class ExcelUtils<T> {
             sheet.setColumnWidth(column, 6000);
         } else {
             Font font = wb.createFont();
-            // 粗体显示
+            // Bold
             font.setBold(true);
-            // 选择需要用到的字体格式
+            // Choose the font format you need to use
             cellStyle.setFont(font);
             cellStyle.setFillForegroundColor(HSSFColorPredefined.LIGHT_YELLOW.getIndex());
-            // 设置列宽
+            // Set column width
             sheet.setColumnWidth(column, (int) ((attr.width() + 0.72) * 256));
             row.setHeight((short) (attr.height() * 20));
         }
         cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         cellStyle.setWrapText(true);
-        // 如果设置了提示信息则鼠标放上去提示.
+        // If the prompt information is set, the mouse will be placed on the prompt.
         if (StringUtils.isNotEmpty(attr.prompt())) {
-            // 这里默认设了2-101列提示.
+            // There are 2-101 columns of prompts by default.
             setXSSFPrompt(sheet, "", attr.prompt(), 1, 100, column, column);
         }
-        // 如果设置了combo属性则本列只能选择不能输入
+        // If the combo attribute is set, this column can only be selected but not entered
         if (attr.combo().length > 0) {
-            // 这里默认设了2-101列只能选择不能输入.
+            // By default, columns 2-101 can only be selected and cannot be entered.
             setXSSFValidation(sheet, attr.combo(), 1, 100, column, column);
         }
         return cellStyle;
     }
 
     /**
-     * 添加单元格
+     * Add cell
      */
     public Cell addCell(Excel attr, Row row, T vo, Field field, int column, CellStyle cs) {
         Cell cell = null;
         try {
-            // 设置行高
+            // Set row height
             row.setHeight((short) (attr.height() * 20));
-            // 根据Excel中设置情况决定是否导出,有些情况需要保持为空,希望用户填写这一列.
+            // Decide whether or not to export according to the settings in Excel. In some cases, you need to keep it blank, and users are expected to fill in this column.
             if (attr.isExport()) {
-                // 创建cell
+                // Create cell
                 cell = row.createCell(column);
                 cell.setCellStyle(cs);
 
-                // 用于读取对象中的属性
+                // Used to read the attributes in the object
                 Object value = getTargetValue(vo, field, attr);
                 String dateFormat = attr.dateFormat();
                 String readConverterExp = attr.readConverterExp();
@@ -389,26 +389,26 @@ public class ExcelUtils<T> {
                 } else if (StringUtils.isNotEmpty(readConverterExp) && StringUtils.isNotNull(value)) {
                     cell.setCellValue(convertByExp(String.valueOf(value), readConverterExp));
                 } else {
-                    // 如果数据存在就填入,不存在填入空格.
+                    // Fill in if the data exists, and fill in the blank if it does not exist.
                     cell.setCellValue(StringUtils.isNull(value) ? attr.defaultValue() : value + attr.suffix());
                 }
             }
         } catch (Exception e) {
-            throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "导出Excel添加单元格失败", e);
+            throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to export Excel to add cells", e);
         }
         return cell;
     }
 
     /**
-     * 设置 POI XSSFSheet 单元格提示
+     * Set POI XSSFSheet cell tips
      *
-     * @param sheet         表单
-     * @param promptTitle   提示标题
-     * @param promptContent 提示内容
-     * @param firstRow      开始行
-     * @param endRow        结束行
-     * @param firstCol      开始列
-     * @param endCol        结束列
+     * @param sheet         Form
+     * @param promptTitle   Prompt title
+     * @param promptContent Prompt content
+     * @param firstRow      Start line
+     * @param endRow        End line
+     * @param firstCol      Start column
+     * @param endCol        End column
      */
     public void setXSSFPrompt(Sheet sheet, String promptTitle, String promptContent, int firstRow, int endRow,
                               int firstCol, int endCol) {
@@ -422,25 +422,25 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 设置某些列的值只能输入预制的数据,显示下拉框.
+     * To set the value of some columns, only numeric data can be entered, and a drop-down box is displayed.
      *
-     * @param sheet    要设置的sheet.
-     * @param textlist 下拉框显示的内容
-     * @param firstRow 开始行
-     * @param endRow   结束行
-     * @param firstCol 开始列
-     * @param endCol   结束列
+     * @param sheet    The sheet to be set.
+     * @param textlist The content displayed in the drop-down box
+     * @param firstRow Start line
+     * @param endRow   End line
+     * @param firstCol Start column
+     * @param endCol   End column
      * @return 设置好的sheet.
      */
     public void setXSSFValidation(Sheet sheet, String[] textlist, int firstRow, int endRow, int firstCol, int endCol) {
         DataValidationHelper helper = sheet.getDataValidationHelper();
-        // 加载下拉列表内容
+        // Load drop-down list content
         DataValidationConstraint constraint = helper.createExplicitListConstraint(textlist);
-        // 设置数据有效性加载在哪个单元格上,四个参数分别是：起始行、终止行、起始列、终止列
+        // Set the cell on which the data validity is loaded, the four parameters are: start row, end row, start column, end column
         CellRangeAddressList regions = new CellRangeAddressList(firstRow, endRow, firstCol, endCol);
-        // 数据有效性对象
+        // Data validity object
         DataValidation dataValidation = helper.createValidation(constraint, regions);
-        // 处理Excel兼容性问题
+        // Dealing with Excel compatibility issues
         if (dataValidation instanceof XSSFDataValidation) {
             dataValidation.setSuppressDropDownArrow(true);
             dataValidation.setShowErrorBox(true);
@@ -452,11 +452,11 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 解析导出值 0=男,1=女,2=未知
+     * Analyze the derived value 0=male, 1=female, 2=unknown
      *
-     * @param propertyValue 参数值
-     * @param converterExp  翻译注解
-     * @return 解析后值
+     * @param propertyValue Parameter value
+     * @param converterExp  Translation notes
+     * @return Parsed value
      */
     public static String convertByExp(String propertyValue, String converterExp) {
         String[] convertSource = converterExp.split(",");
@@ -470,11 +470,11 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 反向解析值 男=0,女=1,未知=2
+     * Reverse analytic value male=0, female=1, unknown=2
      *
-     * @param propertyValue 参数值
-     * @param converterExp  翻译注解
-     * @return 解析后值
+     * @param propertyValue Parameter value
+     * @param converterExp  Translation notes
+     * @return Parsed value
      */
     public static String reverseByExp(String propertyValue, String converterExp) {
         String[] convertSource = converterExp.split(",");
@@ -488,16 +488,16 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 编码文件名
+     * Encoding file name
      */
     public String encodingFilename(String filename) {
         return filename + "_" + UUID.randomUUID().toString() + ".xlsx";
     }
 
     /**
-     * 获取下载路径
+     * Get download path
      *
-     * @param filename 文件名称
+     * @param filename file name
      */
     public String getAbsoluteFile(String filename) {
         String downloadPath = Crowns.getDownloadPath(filename);
@@ -510,12 +510,12 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 获取bean中的属性值
+     * Get the attribute value in the bean
      *
-     * @param vo    实体对象
-     * @param field 字段
-     * @param excel 注解
-     * @return 最终的属性值
+     * @param vo    Entity object
+     * @param field Field
+     * @param excel annotation
+     * @return Final attribute value
      * @throws Exception
      */
     private Object getTargetValue(T vo, Field field, Excel excel) throws Exception {
@@ -535,7 +535,7 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 以类的属性的get方法方法形式获取值
+     * Get the value in the form of the get method method of the attribute of the class
      *
      * @param o
      * @param name
@@ -553,7 +553,7 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 得到所有定义字段
+     * Get all defined fields
      */
     private void createExcelField() {
         this.fields = new ArrayList<>();
@@ -578,7 +578,7 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 放到字段集合中
+     * Put it in the field collection
      */
     private void putToField(Field field, Excel attr) {
         if (attr != null && (attr.type() == Type.ALL || attr.type() == type)) {
@@ -587,17 +587,17 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 创建一个工作簿
+     * Create a workbook
      */
     public void createWorkbook() {
         this.wb = new SXSSFWorkbook(500);
     }
 
     /**
-     * 创建工作表
+     * Create worksheet
      *
-     * @param sheetNo sheet数量
-     * @param index   序号
+     * @param sheetNo Number of sheets
+     * @param index   Serial number
      */
     public void createSheet(double sheetNo, int index) {
         this.sheet = wb.createSheet();
@@ -610,11 +610,11 @@ public class ExcelUtils<T> {
     }
 
     /**
-     * 获取单元格值
+     * Get cell value
      *
-     * @param row    获取的行
-     * @param column 获取单元格列号
-     * @return 单元格值
+     * @param row    Fetched row
+     * @param column Get the cell column number
+     * @return Cell value
      */
     public Object getCellValue(Row row, int column) {
         if (row == null) {

@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.function.Supplier;
 
 /**
- * Map工具类
+ * Map tools
  * http://minborgsjavapot.blogspot.com/2014/12/java-8-initializing-maps-in-smartest-way.html
  *
  * @author Per-Åke Minborg

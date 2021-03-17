@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * <p>Crowns</p>
- * <p>Crown项目配置工具类</p>
+ * <p>Crown project configuration tools</p>
  *
  * @author Caratacus
  */
@@ -22,9 +22,9 @@ import lombok.NoArgsConstructor;
 public abstract class Crowns {
 
     /**
-     * 根据文件名获取下载地址
+     * Get the download address according to the file name
      *
-     * @param filename 文件名
+     * @param filename file name
      * @return
      */
     public static String getDownloadPath(String filename) {
@@ -33,7 +33,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取头像上传路径
+     * Get the upload path of the avatar
      *
      * @return
      */
@@ -43,7 +43,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取头像上传路径
+     * Get the upload path of the avatar
      *
      * @return
      */
@@ -53,7 +53,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取头像上传路径
+     * Get the upload path of the avatar
      *
      * @return
      */
@@ -63,7 +63,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取头像上传路径
+     * Get the upload path of the avatar
      *
      * @return
      */
@@ -72,7 +72,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取用户密码最大输入错误次数
+     * Get the maximum number of incorrect input of user password
      *
      * @return
      */
@@ -81,7 +81,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取生成代码相关配置
+     * Get related configuration of generated code
      *
      * @return
      */
@@ -90,7 +90,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取Xss配置
+     * Get Xss configuration
      *
      * @return
      */
@@ -99,7 +99,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取告警Email配置
+     * Get email configuration
      *
      * @return
      */
@@ -108,7 +108,7 @@ public abstract class Crowns {
     }
 
     /**
-     * 获取CrownProperties
+     * Get Crown Properties
      *
      * @return
      */

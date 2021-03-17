@@ -56,7 +56,7 @@ import com.baomidou.mybatisplus.core.toolkit.ArrayUtils;
 public class AntiSQLFilter {
 
     /**
-     * 仅支持字母、数字、下划线、空格、逗号（支持多个字段排序）
+     * Only supports letters, numbers, underscores, spaces, commas (supports multiple field sorting)
      */
     private static final String SQL_PATTERN = "[a-zA-Z0-9_ ,.]+";
 
@@ -109,7 +109,7 @@ public class AntiSQLFilter {
     }
 
     /**
-     * 检查字符，防止注入绕过
+     * Check characters to prevent injection bypass
      */
     private static String escapeOrderBySql(String value) {
         if (StringUtils.isNotEmpty(value) && !isValidOrderBySql(value)) {
@@ -119,7 +119,7 @@ public class AntiSQLFilter {
     }
 
     /**
-     * 验证 order by 语法是否符合规范
+     * Verify that the order by syntax complies with the specification
      */
     private static boolean isValidOrderBySql(String value) {
         return value.matches(SQL_PATTERN);

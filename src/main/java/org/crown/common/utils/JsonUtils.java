@@ -34,7 +34,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 /**
- * Jackson 工具类
+ * Jackson tools
  *
  * @author Caratacus
  */
@@ -42,7 +42,7 @@ import lombok.NoArgsConstructor;
 public abstract class JsonUtils {
 
     /**
-     * 转换Json
+     * Convert Json
      *
      * @param object
      * @return
@@ -60,7 +60,7 @@ public abstract class JsonUtils {
 
     /**
      * <p>
-     * 是否为CharSequence类型
+     * Whether it is CharSequence type
      * </p>
      *
      * @param object
@@ -71,7 +71,7 @@ public abstract class JsonUtils {
     }
 
     /**
-     * Json转换为对象 转换失败返回null
+     * Json is converted to an object, the conversion fails and returns null
      *
      * @param json
      * @return

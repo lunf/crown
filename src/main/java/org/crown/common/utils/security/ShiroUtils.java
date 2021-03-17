@@ -13,7 +13,7 @@ import org.crown.framework.shiro.realm.UserRealm;
 import org.crown.project.system.user.domain.User;
 
 /**
- * shiro 工具类
+ * shiro Tools
  *
  * @author Crown
  */
@@ -46,7 +46,7 @@ public class ShiroUtils {
         PrincipalCollection principalCollection = subject.getPrincipals();
         String realmName = principalCollection.getRealmNames().iterator().next();
         PrincipalCollection newPrincipalCollection = new SimplePrincipalCollection(user, realmName);
-        // 重新加载Principal
+        // Reload Principal
         subject.runAs(newPrincipalCollection);
     }
 

@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 文件上传工具类
+ * File upload tools
  *
  * @author Crown
  */
@@ -28,30 +28,30 @@ import lombok.extern.slf4j.Slf4j;
 public class FileUploadUtils {
 
     /**
-     * 默认大小 50M
+     * Default size 50M
      */
     public static final long DEFAULT_MAX_SIZE = 50 * 1024 * 1024;
 
     /**
-     * 默认的文件名最大长度 100
+     * Default file name length 100
      */
     public static final int DEFAULT_FILE_NAME_LENGTH = 100;
 
     private static int counter = 0;
 
     /**
-     * 文件上传
+     * File Upload
      *
-     * @param baseDir          相对应用的基目录
-     * @param file             上传的文件
-     * @param allowedExtension 上传文件类型
-     * @return 返回上传成功的文件名
-     * @throws IOException 比如读写文件出错时
+     * @param baseDir          Relative application base directory
+     * @param file             Uploaded file
+     * @param allowedExtension Upload file type
+     * @return Return the name of the uploaded file
+     * @throws IOException For example, when reading and writing files are wrong
      */
     public static String upload(String baseDir, MultipartFile file, String[] allowedExtension) throws IOException {
         int fileNamelength = Objects.requireNonNull(file.getOriginalFilename()).length();
         if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
-            throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "文件名过长，文件名最大长度为：" + DEFAULT_FILE_NAME_LENGTH);
+            throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "The file name is too long. The maximum length of the file name is:" + DEFAULT_FILE_NAME_LENGTH);
         }
 
         assertAllowed(file, allowedExtension);
@@ -63,7 +63,7 @@ public class FileUploadUtils {
             stream = new BufferedOutputStream(new FileOutputStream(desc));
             stream.write(bytes);
         } catch (Exception e) {
-            throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "上传文件出现错误！", e);
+            throw new Crown2Exception(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "There was an error uploading the file!", e);
         } finally {
             IOUtils.closeQuietly(stream);
         }
@@ -71,7 +71,7 @@ public class FileUploadUtils {
     }
 
     /**
-     * 编码文件名
+     * Encoding file name
      */
     public static String extractFilename(MultipartFile file) {
         String filename = file.getOriginalFilename();
@@ -95,7 +95,7 @@ public class FileUploadUtils {
     }
 
     /**
-     * 编码文件名
+     * Encoding file name
      */
     private static String encodingFilename(String filename) {
         filename = filename.replace("_", " ");
@@ -104,26 +104,26 @@ public class FileUploadUtils {
     }
 
     /**
-     * 文件大小校验
+     * File size check
      *
-     * @param file 上传的文件
+     * @param file Uploaded file
      * @return
      */
     public static void assertAllowed(MultipartFile file, String[] allowedExtension) {
         long size = file.getSize();
         if (size > DEFAULT_MAX_SIZE) {
-            throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "上传的文件大小超出限制的文件大小！允许的文件最大大小是：" + DEFAULT_MAX_SIZE / 1024 / 1024 + "MB！");
+            throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "The uploaded file size exceeds the limit file size! The maximum allowed file size is:" + DEFAULT_MAX_SIZE / 1024 / 1024 + "MB！");
         }
 
         String extension = getExtension(file);
         if (allowedExtension != null && !isAllowedExtension(extension, allowedExtension)) {
-            throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "不支持该类型文件上传，当前文件类型为：[" + extension + "]！允许的文件类型为：" + Arrays.toString(allowedExtension));
+            throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "This type of file upload is not supported. The current file type is:[" + extension + "]！The allowed file types are:" + Arrays.toString(allowedExtension));
         }
 
     }
 
     /**
-     * 判断MIME类型是否是允许的MIME类型
+     * Determine whether the MIME type is an allowed MIME type
      *
      * @param extension
      * @param allowedExtension
@@ -139,10 +139,10 @@ public class FileUploadUtils {
     }
 
     /**
-     * 获取文件名的后缀
+     * Get the suffix of the file name
      *
-     * @param file 表单文件
-     * @return 后缀名
+     * @param file Form file
+     * @return Suffix
      */
     public static String getExtension(MultipartFile file) {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());

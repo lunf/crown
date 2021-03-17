@@ -26,7 +26,7 @@ import com.baomidou.mybatisplus.core.toolkit.ArrayUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 文件处理工具类
+ * File processing tools
  *
  * @author Crown
  */
@@ -36,10 +36,10 @@ public class FileUtils {
     public static final String FILENAME_PATTERN = "[a-zA-Z0-9_\\-|.\\u4e00-\\u9fa5]+";
 
     /**
-     * 输出指定文件的byte数组
+     * Output the byte array of the specified file
      *
-     * @param filePath 文件路径
-     * @param os       输出流
+     * @param filePath file path
+     * @param os       Output stream
      * @return
      */
     public static void writeBytes(String filePath, OutputStream os) throws IOException {
@@ -74,14 +74,14 @@ public class FileUtils {
     }
 
     /**
-     * 删除文件
+     * Delete Files
      *
-     * @param filePath 文件
+     * @param filePath file
      * @return
      */
     public static boolean deleteFile(String filePath) {
         File file = new File(filePath);
-        // 路径为文件且不为空则进行删除
+        // Delete if the path is a file and not empty
         if (file.isFile() && file.exists()) {
             return file.delete();
         }
@@ -89,44 +89,44 @@ public class FileUtils {
     }
 
     /**
-     * 文件名称验证
+     * File name verification
      *
-     * @param filename 文件名称
-     * @return true 正常 false 非法
+     * @param filename file name
+     * @return true normal false illegal
      */
     public static boolean isValidFilename(String filename) {
         return filename.matches(FILENAME_PATTERN);
     }
 
     /**
-     * 下载文件名重新编码
+     * Download file name re-encoding
      *
-     * @param request  请求对象
-     * @param fileName 文件名
-     * @return 编码后的文件名
+     * @param request  Request object
+     * @param fileName file name
+     * @return File name after encoding
      */
     public static String setFileDownloadHeader(HttpServletRequest request, String fileName) throws UnsupportedEncodingException {
         final String agent = request.getHeader("USER-AGENT");
         String filename = fileName;
         if (agent.contains("MSIE")) {
-            // IE浏览器
+            // IE browser
             filename = URLEncoder.encode(filename, "utf-8");
             filename = filename.replace("+", " ");
         } else if (agent.contains("Firefox")) {
-            // 火狐浏览器
+            // Firefox browser
             filename = new String(fileName.getBytes(), "ISO8859-1");
         } else if (agent.contains("Chrome")) {
-            // google浏览器
+            // google browser
             filename = URLEncoder.encode(filename, "utf-8");
         } else {
-            // 其它浏览器
+            //Other browsers
             filename = URLEncoder.encode(filename, "utf-8");
         }
         return filename;
     }
 
     /**
-     * 创建目录
+     * Create a directory
      *
      * @param dirPath
      * @return
@@ -136,7 +136,7 @@ public class FileUtils {
     }
 
     /**
-     * 创建目录
+     * Create a directory
      *
      * @param file
      * @return
@@ -150,7 +150,7 @@ public class FileUtils {
     }
 
     /**
-     * 获取当前项目路径
+     * Get the current project path
      *
      * @return
      */
@@ -159,7 +159,7 @@ public class FileUtils {
     }
 
     /**
-     * 获取项目文件流路径
+     * Get the project file stream path
      *
      * @return
      */
@@ -168,9 +168,9 @@ public class FileUtils {
     }
 
     /**
-     * 获取文件后缀名
+     * Get the file extension
      *
-     * @param fileName 文件名
+     * @param fileName file name
      * @return
      */
     public static String getFilePrefix(String fileName) {
@@ -181,9 +181,9 @@ public class FileUtils {
     }
 
     /**
-     * 获取文件上级目录
+     * Get the upper-level directory of the file
      *
-     * @param path 文件路径
+     * @param path file path
      * @return
      */
     public static String getFileParentPath(String path) {
@@ -195,7 +195,7 @@ public class FileUtils {
     }
 
     /**
-     * 删除文件的方法(只适用于删除文件)
+     * How to delete files (only applicable to delete files)
      *
      * @param files
      * @author Caratacus
@@ -213,7 +213,7 @@ public class FileUtils {
     }
 
     /**
-     * 删除目录下所有文件（包括目录和文件）
+     * Delete all files in the directory (including directories and files)
      *
      * @param dir
      */
@@ -246,17 +246,17 @@ public class FileUtils {
     }
 
     /**
-     * http下载文件
+     * http download file
      *
      * @param httpUrl
-     * @param dir      文件目录
-     * @param fileName 文件名称
+     * @param dir      File Directory
+     * @param fileName file name
      * @return
      */
     public static boolean httpDownload(String httpUrl, String dir, String fileName) {
         int byteRead;
         URL url;
-        log.info("文件正在下载中,PATH:" + httpUrl);
+        log.info("File is downloading,PATH:" + httpUrl);
         try {
             url = new URL(httpUrl);
         } catch (MalformedURLException e) {
@@ -267,9 +267,9 @@ public class FileUtils {
         URLConnection connection = null;
         try {
             connection = url.openConnection();
-            // 设置超时间为5秒
+            // Set the timeout to 5 seconds
             connection.setConnectTimeout(5 * 1000);
-            // 防止屏蔽程序抓取而返回403错误
+            // Prevent the blocking program from crawling and returning 403 errors
             connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
             InputStream inputStream = connection.getInputStream();
             makeDir(dir);
@@ -292,10 +292,10 @@ public class FileUtils {
     }
 
     /**
-     * 计算文件大小(适用于计算文件及文件夹大小)
+     * Calculate file size (applicable to calculate file and folder size)
      *
-     * @param file 文件
-     * @return 返回long类型字节(B)
+     * @param file file
+     * @return Return long type byte (B)
      */
     public static long size(File file) {
         if (file.exists()) {
@@ -305,10 +305,10 @@ public class FileUtils {
     }
 
     /**
-     * 计算文件大小
+     * Calculate file size
      *
-     * @param filePath 文件路径
-     * @return 返回long类型字节(B)
+     * @param filePath file path
+     * @return Return long type byte (B)
      */
     public static long size(String filePath) {
         return size(new File(filePath));
@@ -317,8 +317,8 @@ public class FileUtils {
     /**
      * 拷贝文件方法
      *
-     * @param oldPath String 原文件路径 如：c:/fqf.txt
-     * @param newPath String 复制后路径 如：f:/fqf.txt
+     * @param oldPath String Original file path such as：c:/fqf.txt
+     * @param newPath String Copy the path such as：f:/fqf.txt
      */
     public static void copyFile(String oldPath, String newPath) {
         InputStream inStream = null;
@@ -326,8 +326,8 @@ public class FileUtils {
         try {
             int byteread;
             File oldfile = new File(oldPath);
-            if (oldfile.exists()) { // 文件存在时
-                inStream = new FileInputStream(oldPath); // 读入原文件
+            if (oldfile.exists()) { // When the file exists
+                inStream = new FileInputStream(oldPath); // Read in the original file
                 outputStream = new FileOutputStream(newPath);
                 byte[] buffer = new byte[8192];
                 while ((byteread = inStream.read(buffer)) != -1) {
@@ -343,7 +343,7 @@ public class FileUtils {
     }
 
     /**
-     * 读取文本文件返回字符串
+     * Read a text file and return a string
      *
      * @param filePath
      * @return

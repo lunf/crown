@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
- * 获取IP地址类
+ * Get IP address class
  * </p>
  *
  * @author Caratacus
@@ -47,25 +47,25 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class IpUtils {
 
     /**
-     * 获取IP地址所在地址接口路径
+     * Get the address interface path of the IP address
      */
     public static final String IP_URL = "http://ip.taobao.com/service/getIpInfo.php";
 
     /**
      * <p>
-     * 获取客户端的IP地址的方法是：requestBody.getRemoteAddr()，这种方法在大部分情况下都是有效的。
-     * 但是在通过了Apache,Squid等反向代理软件就不能获取到客户端的真实IP地址了，如果通过了多级反向代理的话，
-     * X-Forwarded-For的值并不止一个，而是一串IP值， 究竟哪个才是真正的用户端的真实IP呢？
-     * 答案是取X-Forwarded-For中第一个非unknown的有效IP字符串。
-     * 例如：X-Forwarded-For：192.168.1.110, 192.168.1.120,
-     * 192.168.1.130, 192.168.1.100 用户真实IP为： 192.168.1.110
+     * The method to obtain the client's IP address is: requestBody.getRemoteAddr(), which is effective in most cases.
+     * But after passing Apache, Squid's reverse proxy software cannot obtain the real IP address of the client. If it passes the multi-level reverse proxy,
+     * X-Forwarded-For has more than one value, but a string of IP values. Which one is the real IP of the real client?
+     * The answer is to take the first non-unknown valid IP string in X-Forwarded-For。
+     * E.g.：X-Forwarded-For：192.168.1.110, 192.168.1.120,
+     * 192.168.1.130, 192.168.1.100 The user's real IP is： 192.168.1.110
      * </p>
      *
      * @param request
      * @return
      */
     public static String getIpAddr(HttpServletRequest request) {
-        // nginx代理获取的真实用户ip
+        // Real user ip obtained by nginx proxy
         String ip = request.getHeader("X-Real-IP");
         if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("X-Forwarded-For");
@@ -80,7 +80,7 @@ public abstract class IpUtils {
             ip = request.getRemoteAddr();
         }
         /*
-          对于通过多个代理的情况， 第一个IP为客户端真实IP,多个IP按照','分割 "***.***.***.***".length() =
+         In the case of multiple proxies, the first IP is the real IP of the client, and multiple IPs are divided according to',' "***.***.***.***".length() =
           15
          */
         if (ip != null && ip.length() > 15) {
@@ -104,7 +104,7 @@ public abstract class IpUtils {
             return InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException ignored) {
         }
-        return "未知";
+        return "unknown";
     }
 
     public static boolean internalIp(String ip) {
@@ -113,7 +113,7 @@ public abstract class IpUtils {
     }
 
     /**
-     * 是否为本地ip
+     * Whether it is a local ip
      *
      * @param ipAddr
      * @return
@@ -151,10 +151,10 @@ public abstract class IpUtils {
     }
 
     /**
-     * 将IPv4地址转换成字节
+     * Convert IPv4 address to bytes
      *
-     * @param text IPv4地址
-     * @return byte 字节
+     * @param text IPv4 address
+     * @return byte byte
      */
     public static byte[] textToNumericFormatV4(String text) {
         if (text.length() == 0) {
@@ -219,16 +219,16 @@ public abstract class IpUtils {
     }
 
     /**
-     * 获取IP地址所在地址
+     * Get the address of the IP address
      *
      * @param ip
      * @return
      */
     public static String getRealAddress(String ip) {
-        String address = "未获取地址";
-        // 内网不查询
+        String address = "Address not obtained";
+        // Intranet does not query
         if (IpUtils.internalIp(ip)) {
-            return "内网IP";
+            return "Intranet IP";
         }
         String repoStr = OkHttps.post(IP_URL,
                 Maps.<String, String>builder()
