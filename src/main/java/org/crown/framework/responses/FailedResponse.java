@@ -27,7 +27,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- * 失败返回
+ * Fail return
  *
  * @author Caratacus
  */
@@ -38,15 +38,15 @@ public class FailedResponse extends ApiResponses {
 
     private static final long serialVersionUID = 1L;
     /**
-     * 错误状态码
+     * Error status code
      */
     private String error;
     /**
-     * 异常信息
+     * Exception information
      */
     private String exception;
     /**
-     * 当前时间戳
+     * Current timestamp
      */
     private LocalDateTime time = LocalDateTime.now();
 

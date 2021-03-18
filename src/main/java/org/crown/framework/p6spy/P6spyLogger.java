@@ -28,7 +28,7 @@ import com.p6spy.engine.spy.appender.FormattedLogger;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * P6spy日志实现
+ * P6spy log implementation
  * <p>
  * https://blog.csdn.net/z69183787/article/details/43453581
  * <p/>

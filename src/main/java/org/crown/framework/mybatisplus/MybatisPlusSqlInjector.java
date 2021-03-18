@@ -39,7 +39,7 @@ import com.baomidou.mybatisplus.extension.injector.methods.additional.AlwaysUpda
 
 /**
  * <p>
- * MybatisPlusSql注入器
+ * MybatisPlusSql injector
  * </p>
  *
  * @author Caratacus

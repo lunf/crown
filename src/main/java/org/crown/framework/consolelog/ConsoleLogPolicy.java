@@ -9,7 +9,7 @@ import org.apache.logging.log4j.core.config.plugins.Plugin;
 import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 
 /**
- * 利用rewrite把日志推送到页面
+ * Use rewrite to push the log to the page
  *
  * @author Caratacus
  */

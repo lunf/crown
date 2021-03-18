@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * 业务异常类
+ * Business exception
  *
  * @author Caratacus
  */
@@ -41,15 +41,15 @@ import lombok.ToString;
 public class ErrorCode {
 
     /**
-     * 错误
+     * error
      */
     private String error;
     /**
-     * http状态码
+     * http status code
      */
     private int status;
     /**
-     * 错误消息
+     * wrong information
      */
     private String msg;
 

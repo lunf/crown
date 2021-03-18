@@ -28,7 +28,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * app请求日志详情
+ * App request log details
  *
  * @author Caratacus
  */
@@ -39,7 +39,7 @@ import lombok.ToString;
 public class Log {
 
     /**
-     * 参数
+     * parameter
      */
     private Map<String, String[]> parameterMap;
     /**
@@ -47,27 +47,27 @@ public class Log {
      */
     private Object requestBody;
     /**
-     * 请求路径
+     * Request path
      */
     private String url;
     /**
-     * 控制器方法
+     * Controller method
      */
     private String actionMethod;
     /**
-     * 请求方法
+     * Request method
      */
     private String method;
     /**
-     * 日志需要打印的json字符串
+     * The json string to be printed in the log
      */
     private Object result;
     /**
-     * 接口运行时间 单位:ms
+     * Interface running time unit: ms
      */
     private String runTime;
     /**
-     * IP地址
+     * IP address
      */
     private String ip;
     /**
@@ -75,7 +75,7 @@ public class Log {
      */
     private String uid;
     /**
-     * 登录用户名
+     * Login Username
      */
     private String loginName;
 

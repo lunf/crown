@@ -22,7 +22,7 @@ package org.crown.framework.enums;
 
 /**
  * <p>
- * 通用枚举
+ * General enum
  * </p>
  *
  * @author Caratacus
@@ -30,7 +30,7 @@ package org.crown.framework.enums;
 public interface IEnum {
 
     /**
-     * 获取枚举值
+     * Get enum value
      *
      * @return
      */

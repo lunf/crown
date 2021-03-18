@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 页面控制台日志实体
+ * Page console log entity
  *
  * @author Caratacus
  * @link https://cloud.tencent.com/developer/article/1096792
@@ -18,27 +18,27 @@ public class ConsoleLog {
     public static final String VIEW_PERM = "monitor:consolelog:view";
 
     /**
-     * 日志内容
+     * Log content
      */
     private String body;
     /**
-     * 时间戳
+     * Timestamp
      */
     private String timestamp;
     /**
-     * 类名
+     * File name
      */
     private String fileName;
     /**
-     * 行号
+     * Line number
      */
     private int lineNumber;
     /**
-     * 线程名
+     * Thread name
      */
     private String threadName;
     /**
-     * 日志等级
+     * Log level
      */
     private String level;
 }

@@ -29,7 +29,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 
 /**
- * BaseMapper 基于 MP 删减
+ * BaseMapper Based on MP cut
  *
  * @author Caratacus
  * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
@@ -38,93 +38,93 @@ public interface BaseMapper<T> {
 
     /**
      * <p>
-     * 插入一条记录
+     * Insert a record
      * </p>
      *
-     * @param entity 实体对象
+     * @param entity Entity object
      */
     int insert(T entity);
 
     /**
      * <p>
-     * 根据 ID 删除
+     * Delete based on ID
      * </p>
      *
-     * @param id 主键ID
+     * @param id Primary key ID
      */
     int deleteById(Serializable id);
 
     /**
      * <p>
-     * 根据 entity 条件，删除记录
+     * Delete the record according to the entity condition
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类（可以为 null）
+     * @param queryWrapper The entity object encapsulates the operation class (may be null)
      */
     int delete(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
 
     /**
      * <p>
-     * 根据 ID 修改
+     * Modify according to ID
      * </p>
      *
-     * @param entity 实体对象
+     * @param entity Entity object
      */
     int updateById(@Param(Constants.ENTITY) T entity);
 
     /**
      * <p>
-     * 根据 ID 修改
+     * Modify according to ID
      * </p>
      *
-     * @param entity 实体对象
+     * @param entity Entity object
      */
     int alwaysUpdateSomeColumnById(@Param(Constants.ENTITY) T entity);
 
     /**
      * <p>
-     * 根据 whereEntity 条件，更新记录
+     * Update the record according to the whereEntity condition
      * </p>
      *
-     * @param entity        实体对象 (set 条件值,不能为 null)
-     * @param updateWrapper 实体对象封装操作类（可以为 null,里面的 entity 用于生成 where 语句）
+     * @param entity        Entity object (set condition value, cannot be null)
+     * @param updateWrapper The entity object encapsulates the operation class (it can be null, and the entity inside is used to generate the where statement)
      */
     int update(@Param(Constants.ENTITY) T entity, @Param(Constants.WRAPPER) Wrapper<T> updateWrapper);
 
     /**
      * <p>
-     * 根据 ID 查询
+     * Query by ID
      * </p>
      *
-     * @param id 主键ID
+     * @param id Primary key ID
      */
     T selectById(Serializable id);
 
     /**
      * <p>
-     * 根据 Wrapper 条件，查询总记录数
+     * Query the total number of records according to Wrapper conditions
      * </p>
      *
-     * @param queryWrapper 实体对象
+     * @param queryWrapper Entity object
      */
     Integer selectCount(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
 
     /**
      * <p>
-     * 根据 entity 条件，查询全部记录
+     * Query all records according to entity condition
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类（可以为 null）
+     * @param queryWrapper The entity object encapsulates the operation class (may be null)
      */
     List<T> selectList(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
 
     /**
      * <p>
-     * 根据 Wrapper 条件，查询全部记录
-     * 注意： 只返回第一个字段的值
+     * Query all records according to Wrapper condition
+     * Note: Only return the value of the first field
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类（可以为 null）
+     * @param queryWrapper The entity object encapsulates the operation class (may be null)
      */
     List<Object> selectObjs(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
 

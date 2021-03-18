@@ -8,28 +8,28 @@ import org.crown.common.utils.Threads;
 import org.crown.framework.spring.ApplicationUtils;
 
 /**
- * 线程异步执行工具类
+ * Thread asynchronous execution tool class
  *
  * @author Caratacus
  */
 public abstract class ThreadExecutors {
 
     /**
-     * 操作延迟10毫秒
+     * Operation delay 10 milliseconds
      */
     private static final int OPERATE_DELAY_TIME = 10;
 
     /**
-     * 执行任务
+     * Perform task
      *
-     * @param task 任务
+     * @param task task
      */
     public static void execute(TimerTask task) {
         getExecutorService().schedule(task, OPERATE_DELAY_TIME, TimeUnit.MILLISECONDS);
     }
 
     /**
-     * 获取ScheduledExecutorService
+     * Obtain ScheduledExecutorService
      *
      * @return
      */
@@ -38,7 +38,7 @@ public abstract class ThreadExecutors {
     }
 
     /**
-     * 停止任务线程池
+     * Stop task thread pool
      */
     public static void shutdown() {
         Threads.shutdownAndAwaitTermination(getExecutorService());

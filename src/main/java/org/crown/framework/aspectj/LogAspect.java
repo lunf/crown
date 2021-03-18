@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 操作日志记录处理
+ * Operation log record processing
  *
  * @author Crown
  */
@@ -36,16 +36,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LogAspect {
 
-    // 配置织入点
+    // Configure weaving point
     @Pointcut("execution(public * org.crown.project..*.*Controller.*(..))")
     public void logPointCut() {
     }
 
     /**
-     * 处理完请求后执行
+     * Execute after processing the request
      *
-     * @param joinPoint 切点
-     * @param ret       返回值
+     * @param joinPoint Cut-off point
+     * @param ret       Return value
      */
     @AfterReturning(returning = "ret", pointcut = "logPointCut()")
     public void doAfterReturning(JoinPoint joinPoint, Object ret) {
@@ -55,8 +55,8 @@ public class LogAspect {
     /**
      * 拦截异常操作
      *
-     * @param joinPoint 切点
-     * @param e         异常
+     * @param joinPoint Cut-off point
+     * @param e         abnormal
      */
     @AfterThrowing(value = "logPointCut()", throwing = "e")
     public void doAfterThrowing(JoinPoint joinPoint, Exception e) {
@@ -65,27 +65,27 @@ public class LogAspect {
 
     protected void handleLog(final JoinPoint joinPoint, final Object ret, final Exception e) {
         try {
-            // 设置方法名称
+            // Setting method name
             String className = joinPoint.getTarget().getClass().getName();
             String methodName = joinPoint.getSignature().getName();
             String actionMethod = className + "." + methodName + "()";
             ApplicationUtils.getRequest().setAttribute(APICons.API_ACTION_METHOD, actionMethod);
             String requestURI = (String) ApplicationUtils.getRequest().getAttribute(APICons.API_REQURL);
             LogUtils.doAfterReturning(ret);
-            // 获得注解
+            // Get comments
             Method method = getMethod(joinPoint);
             Log controllerLog = getAnnotationLog(method);
             if (controllerLog == null) {
                 return;
             }
 
-            // 获取当前的用户
+            // Get current user
             User currentUser = ShiroUtils.getSysUser();
 
-            // *========数据库日志=========*//
+            // *========Database log=========*//
             OperLog operLog = new OperLog();
             operLog.setStatus(Constants.SUCCESS);
-            // 请求的地址
+            // Requested address
             String ip = ShiroUtils.getIp();
             operLog.setOperIp(ip);
             operLog.setOperUrl(requestURI);
@@ -103,40 +103,40 @@ public class LogAspect {
             }
 
             operLog.setMethod(actionMethod);
-            // 处理设置注解上的参数
+            // Process the parameters on the setting annotations
             getControllerMethodDescription(controllerLog, operLog);
-            // 保存数据库
+            // Save the database
             ThreadExecutors.execute(TimerTasks.recordOper(operLog));
         } catch (Exception exp) {
-            // 记录本地异常日志
-            log.error("==前置通知异常==");
-            log.error("异常信息:{}", exp.getMessage());
+            // Record local exception log
+            log.error("==Pre-notification exception==");
+            log.error("Exception information:{}", exp.getMessage());
             exp.printStackTrace();
         }
     }
 
     /**
-     * 获取注解中对方法的描述信息 用于Controller层注解
+     * Get the description of the method in the annotation for the Controller layer annotation
      *
      * @param log     日志
      * @param operLog 操作日志
      */
     public void getControllerMethodDescription(Log log, OperLog operLog) {
-        // 设置action动作
+        // Set action
         operLog.setBusinessType(log.businessType().ordinal());
-        // 设置标题
+        // Set title
         operLog.setTitle(log.title());
-        // 设置操作人类别
+        // Set operator category
         operLog.setOperatorType(log.operatorType().ordinal());
-        // 是否需要保存request，参数和值
+        // Do you need to save the request, parameters and values
         if (log.isSaveRequestData()) {
-            // 获取参数的信息，传入到数据库中。
+            // Get the parameter information and transfer it to the database.
             setRequestValue(operLog);
         }
     }
 
     /**
-     * 获取请求的参数，放到log中
+     * Get the requested parameters and put them in the log
      *
      * @param operLog
      */
@@ -147,7 +147,7 @@ public class LogAspect {
     }
 
     /**
-     * 是否存在注解，如果存在就获取
+     * Whether there is a comment, if it exists, get it
      */
     private Log getAnnotationLog(Method method) {
         if (method != null) {
@@ -157,7 +157,7 @@ public class LogAspect {
     }
 
     /**
-     * 获取Method
+     * Get Method
      *
      * @param joinPoint
      * @return

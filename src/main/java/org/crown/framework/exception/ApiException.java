@@ -25,7 +25,7 @@ import org.crown.framework.model.ErrorCode;
 
 /**
  * <p>
- * API 业务异常类
+ * API Business exception
  * </p>
  *
  * @author Caratacus
@@ -35,7 +35,7 @@ public class ApiException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 错误码
+     * Error code
      */
     private final ErrorCode errorCode;
 

@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * <p>
- * 自增主键父类
+ * Self-increasing primary key parent class
  * </p>
  *
  * @author Caratacus

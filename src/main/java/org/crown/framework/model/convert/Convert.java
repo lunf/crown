@@ -26,7 +26,7 @@ import org.crown.common.utils.converter.BeanConverter;
 
 /**
  * <p>
- * 普通实体父类
+ * Ordinary entity parent
  * </p>
  *
  * @author Caratacus
@@ -34,7 +34,7 @@ import org.crown.common.utils.converter.BeanConverter;
 public class Convert implements Serializable {
 
     /**
-     * 获取自动转换后的JavaBean对象
+     * Obtain the automatically converted JavaBean object
      *
      * @param clazz
      * @param <T>

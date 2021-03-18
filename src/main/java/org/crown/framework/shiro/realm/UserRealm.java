@@ -20,7 +20,7 @@ import org.crown.project.system.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * 自定义Realm 处理登录 权限
+ * Customize Realm to handle login permissions
  *
  * @author Crown
  */
@@ -36,33 +36,33 @@ public class UserRealm extends AuthorizingRealm {
     private LoginService loginService;
 
     /**
-     * 授权
+     * Authorization
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
         User user = ShiroUtils.getSysUser();
-        // 角色列表
+        // Role list
         Set<String> roles;
-        // 功能列表
+        // function list
         Set<String> menus;
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        // 管理员拥有所有权限
+        // Administrator has all permissions
         if (user.isAdmin()) {
             info.addRole("admin");
             info.addStringPermission("*:*:*");
         } else {
             roles = roleService.selectRoleKeys(user.getUserId());
             menus = menuService.selectPermsByUserId(user.getUserId());
-            // 角色加入AuthorizationInfo认证对象
+            // The role is added to the AuthorizationInfo authentication object
             info.setRoles(roles);
-            // 权限加入AuthorizationInfo认证对象
+            // Add authorization to AuthorizationInfo authentication object
             info.setStringPermissions(menus);
         }
         return info;
     }
 
     /**
-     * 登录认证
+     * Login authentication
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
@@ -77,7 +77,7 @@ public class UserRealm extends AuthorizingRealm {
     }
 
     /**
-     * 清理缓存权限
+     * Clear cache permissions
      */
     public void clearCachedAuthorizationInfo() {
         this.clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());

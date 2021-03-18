@@ -39,7 +39,7 @@ import lombok.experimental.Accessors;
  * PUT: 200 OK
  * PATCH: 200 OK
  * DELETE: 204 No Content
- * 接口返回(多态)
+ * Interface return (polymorphic)
  *
  * @author Caratacus
  */
@@ -51,16 +51,16 @@ public class ApiResponses<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * http 状态码
+     * http status code
      */
     private Integer status;
     /**
-     * 描述
+     * description
      */
-    private String msg = "操作成功";
+    private String msg = "Successful operation";
 
     /**
-     * 不需要返回结果
+     * No need to return results
      *
      * @param status
      */
@@ -73,7 +73,7 @@ public class ApiResponses<T> implements Serializable {
     }
 
     /**
-     * 成功返回
+     * Successfully returned
      *
      * @param object
      */
@@ -83,7 +83,7 @@ public class ApiResponses<T> implements Serializable {
     }
 
     /**
-     * 成功返回
+     * Successfully returned
      *
      * @param status
      * @param object
@@ -97,7 +97,7 @@ public class ApiResponses<T> implements Serializable {
     }
 
     /**
-     * 成功返回
+     * Successfully returned
      *
      * @param status
      * @param object
@@ -111,7 +111,7 @@ public class ApiResponses<T> implements Serializable {
     }
 
     /**
-     * 失败返回
+     * Fail return
      *
      * @param errorCode
      * @param exception
@@ -126,7 +126,7 @@ public class ApiResponses<T> implements Serializable {
     }
 
     /**
-     * 失败返回
+     * Fail return
      *
      * @param errorCode
      */

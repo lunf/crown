@@ -35,10 +35,10 @@ import org.springframework.web.util.HtmlUtils;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 
 /**
- * Request包装类
+ * Request packaging
  * <p>
- * 1.预防xss攻击
- * 2.拓展requestbody无限获取(HttpServletRequestWrapper只能获取一次)
+ * 1.Prevent xss attacks
+ * 2.Expand requestbody unlimited access (HttpServletRequestWrapper can only be obtained once)
  * </p>
  *
  * @author Caratacus
@@ -100,7 +100,7 @@ public class GlobalRequestWrapper extends HttpServletRequestWrapper {
     }
 
     /**
-     * 使用spring HtmlUtils 转义html标签达到预防xss攻击效果
+     * Use spring HtmlUtils to escape html tags to prevent xss attacks
      *
      * @param str
      * @see org.springframework.web.util.HtmlUtils#htmlEscape
@@ -125,7 +125,7 @@ public class GlobalRequestWrapper extends HttpServletRequestWrapper {
     }
 
     /**
-     * 使用spring HtmlUtils 转义html标签达到预防xss攻击效果
+     * Use spring HtmlUtils to escape html tags to prevent xss attacks
      *
      * @param field
      * @param str

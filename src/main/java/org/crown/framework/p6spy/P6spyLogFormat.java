@@ -25,7 +25,7 @@ import org.crown.common.utils.StringUtils;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
 
 /**
- * P6spy SQL 日志格式化
+ * P6spy SQL Log format
  *
  * @author Caratacus
  */

@@ -28,7 +28,7 @@ import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeReference;
 
 /**
- * 改写BaseTypeHandler
+ * Rewrite BaseTypeHandler
  *
  * @author Caratacusa
  * @see org.apache.ibatis.type.BaseTypeHandler

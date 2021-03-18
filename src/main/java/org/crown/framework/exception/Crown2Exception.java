@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
- * MSG 消息异常类
+ * MSG Message exception class
  * </p>
  *
  * @author Caratacus

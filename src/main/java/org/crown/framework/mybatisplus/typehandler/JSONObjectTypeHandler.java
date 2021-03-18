@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * fastjson JSONObject与mybatis数据转换
+ * fastjson JSONObject and mybatis data conversion
  *
  * @author Caratacus
  * @see JSONObject

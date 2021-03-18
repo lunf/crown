@@ -25,7 +25,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- * 成功返回
+ * Successfully returned
  *
  * @author Caratacus
  */
@@ -36,7 +36,7 @@ public class SuccessResponses<T> extends ApiResponses<T> {
 
     private static final long serialVersionUID = 1L;
     /**
-     * 结果集返回
+     * Result set return
      */
     private T result;
 

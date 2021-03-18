@@ -39,7 +39,7 @@ import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 
 /**
  * <p>
- * 基础Service 继承于Mybatis-plus
+ * The basic Service inherits from Mybatis-plus
  * </p>
  *
  * @author Caratacus
@@ -49,49 +49,49 @@ public interface BaseService<T> {
     Log logger = LogFactory.getLog(SqlHelper.class);
 
     /**
-     * 批量大小
+     * Batch size
      */
     int batchSize = 1024;
 
     /**
      * <p>
-     * 插入一条记录（选择字段，策略插入）
+     * Insert a record (select field, strategy insert)
      * </p>
      *
-     * @param entity 实体对象
+     * @param entity Entity object
      */
     boolean save(T entity);
 
     /**
      * <p>
-     * 插入（批量）
+     * Insert (bulk)
      * </p>
      *
-     * @param entityList 实体对象集合
+     * @param entityList Entity object collection
      */
     void saveBatch(Collection<T> entityList);
 
     /**
      * <p>
-     * 批量修改插入
+     * Batch edit and insert
      * </p>
      *
-     * @param entityList 实体对象集合
+     * @param entityList Entity object collection
      */
     boolean saveOrUpdateBatch(Collection<T> entityList);
 
     /**
      * <p>
-     * 根据 ID 删除
+     * Delete based on ID
      * </p>
      *
-     * @param id 主键ID
+     * @param id Primary key ID
      */
     boolean removeById(Serializable id);
 
     /**
      * <p>
-     * 删除所有记录
+     * Delete all records
      * </p>
      */
     default boolean remove() {
@@ -100,37 +100,37 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据 entity 条件，删除记录
+     * Delete the record based on the entity condition
      * </p>
      *
-     * @param queryWrapper 实体包装类 {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
+     * @param queryWrapper Physical packaging {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
      */
     boolean remove(Wrapper<T> queryWrapper);
 
     /**
      * <p>
-     * 根据 ID 选择修改
+     * Select edit based on ID
      * </p>
      *
-     * @param entity 实体对象
+     * @param entity Entity object
      */
     boolean updateById(T entity);
 
     /**
      * <p>
-     * 根据 ID 全部修改
+     * Edit all based on ID
      * </p>
      *
-     * @param entity 实体对象
+     * @param entity Entity object
      */
     boolean alwaysUpdateSomeColumnById(T entity);
 
     /**
      * <p>
-     * 根据 whereEntity 条件，更新记录
+     * update the record based on the whereEntity condition
      * </p>
      *
-     * @param updateWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper}
+     * @param updateWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper}
      */
     default boolean update(Wrapper<T> updateWrapper) {
         return update(null, updateWrapper);
@@ -138,20 +138,20 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据 whereEntity 条件，更新记录
+     * update the record based on the whereEntity condition
      * </p>
      *
-     * @param entity        实体对象
-     * @param updateWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper}
+     * @param entity        Entity object
+     * @param updateWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper}
      */
     boolean update(T entity, Wrapper<T> updateWrapper);
 
     /**
      * <p>
-     * 根据ID 批量更新
+     * Batch update based on ID
      * </p>
      *
-     * @param entityList 实体对象集合
+     * @param entityList Entity object collection
      */
     default boolean updateBatchById(Collection<T> entityList) {
         return updateBatchById(entityList, batchSize);
@@ -159,38 +159,38 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据ID 批量更新
+     * Batch update based on ID
      * </p>
      *
-     * @param entityList 实体对象集合
-     * @param batchSize  更新批次数量
+     * @param entityList Entity object collection
+     * @param batchSize  Update batch quantity
      */
     boolean updateBatchById(Collection<T> entityList, int batchSize);
 
     /**
      * <p>
-     * TableId 注解存在更新记录，否插入一条记录
+     * TableId An update record exists, whether to insert a record
      * </p>
      *
-     * @param entity 实体对象
+     * @param entity Entity object
      */
     boolean saveOrUpdate(T entity);
 
     /**
      * <p>
-     * 根据 ID 查询
+     * Query by ID
      * </p>
      *
-     * @param id 主键ID
+     * @param id Primary key ID
      */
     T getById(Serializable id);
 
     /**
      * <p>
-     * 根据 Wrapper，查询一条记录
+     * query a record based on Wrapper
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
+     * @param queryWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
      */
     default T getOne(Wrapper<T> queryWrapper) {
         return SqlHelper.getObject(logger, list(queryWrapper));
@@ -198,10 +198,10 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据 Wrapper，查询一条记录
+     * query a record based on Wrapper
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
+     * @param queryWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
      */
     default <R> R getObj(Wrapper<T> queryWrapper, Function<? super Object, R> mapper) {
         return SqlHelper.getObject(logger, listObjs(queryWrapper, mapper));
@@ -209,7 +209,7 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据 Wrapper 条件，查询总记录数
+     * query the total number of records based on Wrapper conditions
      * </p>
      */
     default int count() {
@@ -218,10 +218,10 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据 Wrapper 条件，查询记录是否存在
+     * query whether the record exists based on Wrapper conditions
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
+     * @param queryWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
      */
     default boolean exist(Wrapper<T> queryWrapper) {
         return count(queryWrapper) > 0;
@@ -229,10 +229,10 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据 Wrapper 条件，查询记录是否不存在
+     * query whether the record does not exist based on Wrapper conditions
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
+     * @param queryWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
      */
     default boolean nonExist(Wrapper<T> queryWrapper) {
         return !exist(queryWrapper);
@@ -240,16 +240,16 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据 Wrapper 条件，查询总记录数
+     * query the total number of records based on Wrapper conditions
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
+     * @param queryWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
      */
     int count(Wrapper<T> queryWrapper);
 
     /**
      * <p>
-     * 查询列表
+     * Query list
      * </p>
      */
     default List<T> list() {
@@ -258,16 +258,16 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 查询列表
+     * Query list
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
+     * @param queryWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
      */
     List<T> list(Wrapper<T> queryWrapper);
 
     /**
      * <p>
-     * 根据 Wrapper 条件，查询全部记录
+     * query all records based on Wrapper conditions
      * </p>
      */
     default <R> List<R> listObjs(Function<? super Object, R> mapper) {
@@ -276,17 +276,17 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 根据 Wrapper 条件，查询全部记录
+     * query all records based on Wrapper conditions
      * </p>
      *
-     * @param queryWrapper 实体对象封装操作类 {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
+     * @param queryWrapper Entity object package operation class {@link com.baomidou.mybatisplus.core.conditions.query.QueryWrapper}
      */
 
     <R> List<R> listObjs(Wrapper<T> queryWrapper, Function<? super Object, R> mapper);
 
     /**
      * <p>
-     * 根据 Wrapper，查询一条自定义对象记录
+     * query a custom object record based on Wrapper
      * </p>
      *
      * @param wrapper {@link Wrapper}
@@ -299,7 +299,7 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 查询自定义对象列表
+     * Query the list of custom objects
      * </p>
      *
      * @param mapper
@@ -311,7 +311,7 @@ public interface BaseService<T> {
 
     /**
      * <p>
-     * 查询自定义对象列表
+     * Query the list of custom objects
      * </p>
      *
      * @param wrapper {@link Wrapper}
@@ -321,10 +321,10 @@ public interface BaseService<T> {
     <R> List<R> entitys(Wrapper<T> wrapper, Function<? super T, R> mapper);
 
     /**
-     * 查询list,使用list中对象的某个属性做键值,转换成map
+     * Query the list, use an attribute of the object in the list as a key value, and convert it into a map
      * <p>
      *
-     * @param column list中对象的属性,作为键值
+     * @param column The attributes of the objects in the list, as the key value
      * @return 转换后的map
      */
     default <K> Map<K, T> list2Map(SFunction<T, K> column) {
@@ -332,11 +332,11 @@ public interface BaseService<T> {
     }
 
     /**
-     * 查询list,使用list中对象的某个属性做键值,转换成map
+     * Query the list, use an attribute of the object in the list as a key value, and convert it into a map
      * <p>
      *
-     * @param wrapper 条件
-     * @param column  list中对象的属性,作为键值
+     * @param wrapper condition
+     * @param column  The attributes of the objects in the list, as the key value
      * @return 转换后的map
      */
     <K> Map<K, T> list2Map(Wrapper<T> wrapper, SFunction<T, K> column);

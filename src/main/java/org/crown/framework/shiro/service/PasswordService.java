@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * 登录密码方法
+ * Login password method
  *
  * @author Crown
  */

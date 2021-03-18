@@ -57,7 +57,7 @@ import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 
 /**
  * <p>
- * 基础Service实现 继承于Mybatis-plus
+ * Basic Service implementation inherited from Mybatis-plus
  * </p>
  *
  * @author Caratacus
@@ -70,10 +70,10 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
 
     /**
      * <p>
-     * 判断数据库操作是否成功
+     * Determine whether the database operation is successful
      * </p>
      *
-     * @param result 数据库操作返回影响条数
+     * @param result Number of affected items returned by database operation
      * @return boolean
      */
     protected boolean retBool(Integer result) {
@@ -86,7 +86,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
 
     /**
      * <p>
-     * 批量操作 SqlSession
+     * Batch operation SqlSession
      * </p>
      */
     protected SqlSession sqlSessionBatch() {
@@ -94,7 +94,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
     }
 
     /**
-     * 释放sqlSession
+     * Release sqlSession
      *
      * @param sqlSession session
      */
@@ -103,7 +103,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
     }
 
     /**
-     * 获取SqlStatement
+     * Get SqlStatement
      *
      * @param sqlMethod
      * @return
@@ -121,7 +121,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveBatch(Collection<T> entityList) {
-        //批量对象插入 不存在直接返回true
+        //Bulk object insertion does not exist directly return true
         if (CollectionUtils.isEmpty(entityList)) {
             return;
         }
@@ -140,7 +140,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
                     return save(entity);
                 } else {
                     /*
-                     * 更新成功直接返回，失败执行插入逻辑
+                     * Return directly if the update is successful, and execute the insert logic if it fails
                      */
                     return Objects.nonNull(getById((Serializable) idVal)) ? updateById(entity) : save(entity);
                 }
@@ -154,7 +154,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean saveOrUpdateBatch(Collection<T> entityList) {
-        //批量对象插入 不存在直接返回true
+        //Bulk object insertion does not exist directly return true
         if (CollectionUtils.isEmpty(entityList)) {
             return true;
         }
@@ -172,7 +172,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
                         param.put(Constants.ENTITY, entity);
                         batchSqlSession.update(sqlStatement(SqlMethod.UPDATE_BY_ID), param);
                     }
-                    //不知道以后会不会有人说更新失败了还要执行插入 😂😂😂
+                    //I don’t know if anyone will say that the update fails and the insert will be executed.
                     if (i >= 1 && i % batchSize == 0) {
                         batchSqlSession.flushStatements();
                     }
@@ -219,7 +219,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateBatchById(Collection<T> entityList, int batchSize) {
-        //批量对象插入 不存在直接返回true
+        //Bulk object insertion does not exist directly return true
         if (CollectionUtils.isEmpty(entityList)) {
             return true;
         }

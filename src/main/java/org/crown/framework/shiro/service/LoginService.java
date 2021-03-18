@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
- * 登录校验方法
+ * Login verification method
  *
  * @author Crown
  */
@@ -33,34 +33,34 @@ public class LoginService {
     private IUserService userService;
 
     /**
-     * 登录
+     * log in
      */
     public User login(String username, String password) {
-        // 验证码校验
+        // Verification code verification
         if (!StringUtils.isEmpty(ApplicationUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA))) {
             ThreadExecutors.execute(TimerTasks.recordLogininfor(username, Constants.LOGIN_FAIL, "验证码错误"));
             throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "验证码错误");
         }
-        // 用户名或密码为空 错误
+        // Username or password is empty error
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
             ThreadExecutors.execute(TimerTasks.recordLogininfor(username, Constants.LOGIN_FAIL, "用户名或密码为空"));
             throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "用户名或密码为空");
         }
-        // 密码如果不在指定范围内 错误
+        // If the password is not in the specified range, error
         if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
                 || password.length() > UserConstants.PASSWORD_MAX_LENGTH) {
             ThreadExecutors.execute(TimerTasks.recordLogininfor(username, Constants.LOGIN_FAIL, "用户名或密码错误"));
             throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "用户名或密码错误");
         }
 
-        // 用户名不在指定范围内 错误
+        // Username is not in the specified range error
         if (username.length() < UserConstants.USERNAME_MIN_LENGTH
                 || username.length() > UserConstants.USERNAME_MAX_LENGTH) {
             ThreadExecutors.execute(TimerTasks.recordLogininfor(username, Constants.LOGIN_FAIL, "用户名或密码错误"));
             throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "用户名或密码错误");
         }
 
-        // 查询用户信息
+        // Query user information
         User user = userService.selectUserByLoginName(username);
 
         if (user == null && maybeMobilePhoneNumber(username)) {
@@ -102,7 +102,7 @@ public class LoginService {
     }
 
     /**
-     * 记录登录信息
+     * Log login information
      */
     public void recordLoginInfo(User user) {
         user.setLoginIp(ShiroUtils.getIp());

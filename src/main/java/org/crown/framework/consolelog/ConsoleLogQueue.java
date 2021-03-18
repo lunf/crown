@@ -6,7 +6,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 创建一个阻塞队列，作为日志系统输出的日志的一个临时载体
+ * Create a blocking queue as a temporary carrier for logs output by the logging system
  *
  * @author Caratacus
  * @link https://cloud.tencent.com/developer/article/1096792
@@ -15,13 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 public class ConsoleLogQueue {
 
     /**
-     * 队列大小
+     * Queue size
      */
     public static final int QUEUE_MAX_SIZE = 10000;
 
     private static final ConsoleLogQueue alarmMessageQueue = new ConsoleLogQueue();
     /**
-     * 阻塞队列
+     * Blocking queue
      */
     private final BlockingQueue blockingQueue = new LinkedBlockingQueue<>(QUEUE_MAX_SIZE);
 
@@ -33,7 +33,7 @@ public class ConsoleLogQueue {
     }
 
     /**
-     * 消息入队
+     * Message enqueue
      *
      * @param log
      * @return
@@ -43,7 +43,7 @@ public class ConsoleLogQueue {
     }
 
     /**
-     * 消息出队
+     * Message deque
      *
      * @return
      */
@@ -52,7 +52,7 @@ public class ConsoleLogQueue {
         try {
             result = (ConsoleLog) this.blockingQueue.take();
         } catch (InterruptedException e) {
-            log.warn("消息出列异常:{}", e.getMessage());
+            log.warn("Message dequeues abnormally:{}", e.getMessage());
         }
         return result;
     }

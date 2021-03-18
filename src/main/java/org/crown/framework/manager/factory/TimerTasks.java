@@ -26,7 +26,7 @@ import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * TimerTask异步 工具类
+ * TimerTask asynchronous tool class
  *
  * @author Caratacus
  */
@@ -34,10 +34,10 @@ import lombok.extern.slf4j.Slf4j;
 public class TimerTasks {
 
     /**
-     * 同步session到数据库
+     * Synchronize session to database
      *
-     * @param session 在线用户会话
-     * @return 任务task
+     * @param session Online user session
+     * @return task
      */
     public static TimerTask syncSession(final OnlineSession session) {
         return new TimerTask() {
@@ -63,11 +63,11 @@ public class TimerTasks {
     }
 
     /**
-     * 同步session到数据库
+     * Synchronize session to database
      *
-     * @param ip      IP地址
-     * @param exceLog 异常日志
-     * @return 任务task
+     * @param ip      IP address
+     * @param exceLog Exception log
+     * @return Task
      */
     public static TimerTask saveExceLog(final String ip, final int status, final ExceLog exceLog) {
         return new TimerTask() {
@@ -75,7 +75,7 @@ public class TimerTasks {
             public void run() {
                 Email email = Crowns.getEmail();
                 if (status >= HttpServletResponse.SC_INTERNAL_SERVER_ERROR && email.isEnabled()) {
-                    MailUtil.send(email.getSend(), "Crown2系统的异常告警", exceLog.getContent(), false);
+                    MailUtil.send(email.getSend(), "Crown2 system abnormal warning", exceLog.getContent(), false);
                 }
                 exceLog.setIpAddr(IpUtils.getRealAddress(ip));
                 ApplicationUtils.getBean(IExceLogService.class).save(exceLog);
@@ -84,16 +84,16 @@ public class TimerTasks {
     }
 
     /**
-     * 操作日志记录
+     * Operation log record
      *
-     * @param operLog 操作日志信息
-     * @return 任务task
+     * @param operLog Operation log information
+     * @return task
      */
     public static TimerTask recordOper(final OperLog operLog) {
         return new TimerTask() {
             @Override
             public void run() {
-                // 远程查询操作地点
+                // Remote query operation location
                 operLog.setOperLocation(IpUtils.getRealAddress(operLog.getOperIp()));
                 operLog.setOperTime(new Date());
                 ApplicationUtils.getBean(IOperLogService.class).save(operLog);
@@ -102,13 +102,13 @@ public class TimerTasks {
     }
 
     /**
-     * 记录登陆信息
+     * Log login information
      *
-     * @param username 用户名
-     * @param status   状态
-     * @param message  消息
-     * @param args     列表
-     * @return 任务task
+     * @param username username
+     * @param status   status
+     * @param message  news
+     * @param args     list
+     * @return task
      */
     public static TimerTask recordLogininfor(final String username, final String status, final String message, final Object... args) {
         final UserAgent userAgent = UserAgent.parseUserAgentString(ApplicationUtils.getRequest().getHeader("User-Agent"));
@@ -123,13 +123,13 @@ public class TimerTasks {
                 s.append(getBlock(username));
                 s.append(getBlock(status));
                 s.append(getBlock(message));
-                // 打印信息到日志
+                // Print information to log
                 log.info(s.toString(), args);
-                // 获取客户端操作系统
+                // Get the client operating system
                 String os = userAgent.getOperatingSystem().getName();
-                // 获取客户端浏览器
+                // Get the client browser
                 String browser = userAgent.getBrowser().getName();
-                // 封装对象
+                // Package object
                 Logininfor logininfor = new Logininfor();
                 logininfor.setLoginName(username);
                 logininfor.setIpaddr(ip);
@@ -137,14 +137,14 @@ public class TimerTasks {
                 logininfor.setBrowser(browser);
                 logininfor.setOs(os);
                 logininfor.setMsg(message);
-                // 日志状态
+                // Log status
                 if (Constants.LOGIN_SUCCESS.equals(status) || Constants.LOGOUT.equals(status)) {
                     logininfor.setStatus(Constants.SUCCESS);
                 } else if (Constants.LOGIN_FAIL.equals(status)) {
                     logininfor.setStatus(Constants.FAIL);
                 }
                 logininfor.setLoginTime(new Date());
-                // 插入数据
+                // Insert data
                 ApplicationUtils.getBean(ILogininforService.class).save(logininfor);
             }
         };

@@ -14,19 +14,19 @@ import org.crown.project.monitor.online.service.IUserOnlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * 针对自定义的ShiroSession的db操作
+ * db operation for custom ShiroSession
  *
  * @author Crown
  */
 public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
 
     /**
-     * 同步session到数据库的周期 单位为毫秒（默认1分钟）
+     * The period for synchronizing the session to the database, in milliseconds (default 1 minute)
      */
     private int dbSyncPeriod;
 
     /**
-     * 上次同步数据库的时间戳
+     * Timestamp of the last time the database was synchronized
      */
     private static final String LAST_SYNC_DB_TIMESTAMP = OnlineSessionDAO.class.getName() + "LAST_SYNC_DB_TIMESTAMP";
 
@@ -46,9 +46,9 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
     }
 
     /**
-     * 根据会话ID获取会话
+     * Get the session based on the session ID
      *
-     * @param sessionId 会话ID
+     * @param sessionId Session ID
      * @return ShiroSession
      */
     @Override
@@ -61,7 +61,7 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
     }
 
     /**
-     * 更新会话；如更新会话最后访问时间/停止会话/设置超时时间/设置移除属性等会调用
+     * Update the session; such as update the last access time of the session/stop the session/set the timeout time/set the removal property, etc. will be called
      */
     public void syncToDb(OnlineSession onlineSession) {
         Date lastSyncTimestamp = (Date) onlineSession.getAttribute(LAST_SYNC_DB_TIMESTAMP);
@@ -69,13 +69,13 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
             boolean needSync = true;
             long deltaTime = onlineSession.getLastAccessTime().getTime() - lastSyncTimestamp.getTime();
             if (deltaTime < dbSyncPeriod * 60 * 1000) {
-                // 时间差不足 无需同步
+                //Insufficient time difference, no need to synchronize
                 needSync = false;
             }
-            // isGuest = true 访客
+            // isGuest = true visitor
             boolean isGuest = onlineSession.getUserId() == null || onlineSession.getUserId() == 0L;
 
-            // session 数据变更了 同步
+            // session The data has changed sync
             if (!isGuest && onlineSession.isAttributeChanged()) {
                 needSync = true;
             }
@@ -84,9 +84,9 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
                 return;
             }
         }
-        // 更新上次同步数据库时间
+        // Update the last synchronization database time
         onlineSession.setAttribute(LAST_SYNC_DB_TIMESTAMP, onlineSession.getLastAccessTime());
-        // 更新完后 重置标识
+        // After the update, reset the logo
         if (onlineSession.isAttributeChanged()) {
             onlineSession.resetAttributeChanged();
         }
@@ -94,7 +94,7 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
     }
 
     /**
-     * 当会话过期/停止（如用户退出时）属性等会调用
+     * When the session expires/stops (such as when the user logs out) properties, etc. will be called
      */
     @Override
     protected void doDelete(Session session) {

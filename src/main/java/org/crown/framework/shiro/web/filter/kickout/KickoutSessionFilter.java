@@ -26,24 +26,24 @@ import org.crown.framework.utils.ResponseUtils;
 import org.crown.project.system.user.domain.User;
 
 /**
- * 登录帐号控制过滤器
+ * Login account control filter
  *
  * @author Crown
  */
 public class KickoutSessionFilter extends AccessControlFilter {
 
     /**
-     * 同一个用户最大会话数
+     * Maximum number of sessions for the same user
      **/
     private int maxSession = -1;
 
     /**
-     * 踢出之前登录的/之后登录的用户 默认false踢出之前登录的用户
+     * Kick out the user who was logged in before/when logged in. Default false Kick out the user who was logged in before
      **/
     private Boolean kickoutAfter = false;
 
     /**
-     * 踢出后到的地址
+     * Address after kicked out
      **/
     private String kickoutUrl;
 
@@ -59,60 +59,60 @@ public class KickoutSessionFilter extends AccessControlFilter {
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         Subject subject = getSubject(request, response);
         if (!subject.isAuthenticated() && !subject.isRemembered() || maxSession == -1) {
-            // 如果没有登录或用户最大会话数为-1，直接进行之后的流程
+            // If there is no login or the maximum number of user sessions is -1, proceed directly to the following process
             return true;
         }
         try {
             Session session = subject.getSession();
-            // 当前登录用户
+            // Currently logged in user
             User user = ShiroUtils.getSysUser();
             String loginName = user.getLoginName();
             Serializable sessionId = session.getId();
 
-            // 读取缓存用户 没有就存入
+            // Read the cache user and save it if not
             Deque<Serializable> deque = cache.get(loginName);
             if (deque == null) {
-                // 初始化队列
+                // Initialize the queue
                 deque = new ArrayDeque<>();
             }
 
-            // 如果队列里没有此sessionId，且用户没有被踢出；放入队列
+            // If there is no such sessionId in the queue and the user has not been kicked out; put it in the queue
             if (!deque.contains(sessionId) && session.getAttribute("kickout") == null) {
-                // 将sessionId存入队列
+                // Store the sessionId in the queue
                 deque.push(sessionId);
-                // 将用户的sessionId队列缓存
+                // Cache the user's sessionId queue
                 cache.put(loginName, deque);
             }
 
-            // 如果队列里的sessionId数超出最大会话数，开始踢人
+            // If the number of sessionIds in the queue exceeds the maximum number of sessions, the exceeding user(s) will be kicked out
             while (deque.size() > maxSession) {
                 Serializable kickoutSessionId;
-                // 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；
+                // Whether to kick out the users who log in later, the default is false; that is, the user who logs in after kicks out the user who logs in before;
                 if (kickoutAfter) {
-                    // 踢出后者
+                    // Kick out the latter
                     kickoutSessionId = deque.removeFirst();
                 } else {
-                    // 踢出前者
+                    // Kick out the former
                     kickoutSessionId = deque.removeLast();
                 }
-                // 踢出后再更新下缓存队列
+                // Update the cache queue after kicking out
                 cache.put(loginName, deque);
 
                 try {
-                    // 获取被踢出的sessionId的session对象
+                    // Get the session object of the kicked sessionId
                     Session kickoutSession = sessionManager.getSession(new DefaultSessionKey(kickoutSessionId));
                     if (null != kickoutSession) {
-                        // 设置会话的kickout属性表示踢出了
+                        // Set the kickout attribute of the session to indicate a kickout
                         kickoutSession.setAttribute("kickout", true);
                     }
                 } catch (Exception e) {
-                    // 面对异常，我们选择忽略
+                    // If listed as exception, the user will not be kicked out
                 }
             }
 
-            // 如果被踢出了，(前者或后者)直接退出，重定向到踢出后的地址
+            // If kicked out, (the former or the latter) exits and is redirected to the address afterwards
             if (session.getAttribute("kickout") != null && (Boolean) session.getAttribute("kickout")) {
-                // 退出登录
+                // sign out
                 subject.logout();
                 saveRequest(request);
                 sendLogOutResponse(request, response);
@@ -126,7 +126,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
     }
 
     /**
-     * 发送重新登陆响应
+     * Send re-login response
      *
      * @param request
      * @param response
@@ -158,9 +158,9 @@ public class KickoutSessionFilter extends AccessControlFilter {
         this.sessionManager = sessionManager;
     }
 
-    // 设置Cache的key的前缀
+    // Set the prefix of the Cache key
     public void setCacheManager(CacheManager cacheManager) {
-        // 必须和ehcache缓存配置中的缓存name一致
+        // Must be the same as the cache name in the ehcache cache configuration
         this.cache = cacheManager.getCache(ShiroConstants.SYS_USERCACHE);
     }
 }

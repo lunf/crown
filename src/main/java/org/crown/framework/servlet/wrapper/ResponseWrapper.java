@@ -41,7 +41,7 @@ import com.google.common.base.Throwables;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * response包装类
+ * response packaging class
  *
  * @author Caratacus
  */
@@ -60,7 +60,7 @@ public class ResponseWrapper extends HttpServletResponseWrapper {
     }
 
     /**
-     * 获取ErrorCode
+     * Get ErrorCode
      *
      * @return
      */
@@ -69,7 +69,7 @@ public class ResponseWrapper extends HttpServletResponseWrapper {
     }
 
     /**
-     * 设置ErrorCode
+     * Set ErrorCode
      *
      * @param errorCode
      */
@@ -84,7 +84,7 @@ public class ResponseWrapper extends HttpServletResponseWrapper {
     }
 
     /**
-     * 向外输出错误信息
+     * Output error information
      *
      * @param e
      * @throws IOException
@@ -98,14 +98,14 @@ public class ResponseWrapper extends HttpServletResponseWrapper {
     }
 
     /**
-     * 设置ApiErrorMsg
+     * Set ApiErrorMsg
      */
     public void writerErrorMsg() {
         writerErrorMsg(null);
     }
 
     /**
-     * 向外输出ApiResponses
+     * Output ApiResponses
      *
      * @param apiResponses
      */
@@ -114,7 +114,7 @@ public class ResponseWrapper extends HttpServletResponseWrapper {
     }
 
     /**
-     * 向外输出json对象
+     * Output json object
      *
      * @param obj
      */

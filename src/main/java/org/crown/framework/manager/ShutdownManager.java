@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 确保应用退出时能关闭后台线程
+ * Ensure that the background thread can be closed when the application exits
  *
  * @author cj
  */
@@ -27,14 +27,14 @@ public class ShutdownManager {
     }
 
     /**
-     * 停止Seesion会话检查
+     * Stop Session session check
      */
     private void shutdownSpringSessionValidationScheduler() {
         if (springSessionValidationScheduler != null && springSessionValidationScheduler.isEnabled()) {
             try {
-                log.info("Seesion会话检查 - 停止中");
+                log.info("Session session check-stopping");
                 springSessionValidationScheduler.disableSessionValidation();
-                log.info("Seesion会话检查 - 已停止");
+                log.info("Session session check-stopped");
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
@@ -42,11 +42,11 @@ public class ShutdownManager {
     }
 
     /**
-     * 停止异步执行任务
+     * Stop executing tasks asynchronously
      */
     private void shutdownAsyncManager() {
         try {
-            log.info("============关闭后台任务线程池============");
+            log.info("============Close the background task thread pool============");
             ThreadExecutors.shutdown();
         } catch (Exception e) {
             log.error(e.getMessage(), e);

@@ -17,7 +17,7 @@ import org.crown.project.system.user.domain.User;
 import org.springframework.stereotype.Component;
 
 /**
- * 数据过滤处理
+ * Data filtering processing
  *
  * @author Crown
  */
@@ -26,36 +26,36 @@ import org.springframework.stereotype.Component;
 public class DataScopeAspect {
 
     /**
-     * 全部数据权限
+     * All data permissions
      */
     public static final String DATA_SCOPE_ALL = "1";
 
     /**
-     * 自定数据权限
+     * Custom data permissions
      */
     public static final String DATA_SCOPE_CUSTOM = "2";
 
     /**
-     * 部门数据权限
+     * Departmental data permissions
      */
     public static final String DATA_SCOPE_DEPT = "3";
 
     /**
-     * 部门及以下数据权限
+     * Department and below data permissions
      */
     public static final String DATA_SCOPE_DEPT_AND_CHILD = "4";
 
     /**
-     * 仅本人数据权限
+     * Personal data access only
      */
     public static final String DATA_SCOPE_SELF = "5";
 
     /**
-     * 数据权限过滤关键字
+     * Data permission filtering keywords
      */
     public static final String DATA_SCOPE = "dataScope";
 
-    // 配置织入点
+    // Configure weaving point
     @Pointcut("@annotation(org.crown.common.annotation.DataScope)")
     public void dataScopePointCut() {
     }
@@ -66,15 +66,15 @@ public class DataScopeAspect {
     }
 
     protected void handleDataScope(final JoinPoint joinPoint) {
-        // 获得注解
+        // Get comments
         DataScope controllerDataScope = getAnnotationLog(joinPoint);
         if (controllerDataScope == null) {
             return;
         }
-        // 获取当前的用户
+        // Get current user
         User currentUser = ShiroUtils.getSysUser();
         if (currentUser != null) {
-            // 如果是超级管理员，则不过滤数据
+            // If you are a super administrator, do not filter data
             if (!currentUser.isAdmin()) {
                 dataScopeFilter(joinPoint, currentUser, controllerDataScope.deptAlias(),
                         controllerDataScope.userAlias());
@@ -83,12 +83,12 @@ public class DataScopeAspect {
     }
 
     /**
-     * 数据范围过滤
+     * Data range filtering
      *
-     * @param joinPoint 切点
-     * @param user      用户
-     * @param deptAlias 部门别名
-     * @param userAlias 用户别名
+     * @param joinPoint Cut-off point
+     * @param user      User
+     * @param deptAlias Department alias
+     * @param userAlias User alias
      */
     public static void dataScopeFilter(JoinPoint joinPoint, User user, String deptAlias, String userAlias) {
         StringBuilder sqlString = new StringBuilder();
@@ -124,7 +124,7 @@ public class DataScopeAspect {
     }
 
     /**
-     * 是否存在注解，如果存在就获取
+     * Whether there is a comment, if it exists, get it
      */
     private DataScope getAnnotationLog(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
