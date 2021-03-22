@@ -8,23 +8,23 @@ import lombok.Setter;
 public class Session {
 
     /**
-     * # Session超时时间，-1代表永不过期（默认30分钟）
+     * # Session timeout, -1 means never expire (default 30 minutes)
      */
     private int expireTime;
     /**
-     * 同步session到数据库的周期（分钟）
+     * Period of synchronizing session to database (minutes)
      */
     private int dbSyncPeriod;
     /**
-     * 相隔多久检查一次session的有效性，(分钟)
+     * How often to check the validity of the session, (minutes)
      */
     private int validationInterval;
     /**
-     * 同一个用户最大会话数，比如2的意思是同一个账号允许最多同时两个人登录（-1不限制）
+     * The maximum number of sessions for the same user, for example, 2 means that the same account allows up to two people to log in at the same time (-1 means unlimited)
      */
     private int maxSession;
     /**
-     * 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户
+     * Kick out the users who have logged in before/after login, by default the users who have logged in before are kicked out
      */
     private boolean kickoutAfter;
 }

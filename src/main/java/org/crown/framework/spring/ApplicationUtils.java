@@ -34,7 +34,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * Spring Application 工具类
+ * Spring Application Tools
  *
  * @author Caratacus
  */
@@ -42,7 +42,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public final class ApplicationUtils implements BeanFactoryPostProcessor, ApplicationContextAware {
 
     /**
-     * Spring应用上下文环境
+     * Spring application context
      */
     private static ConfigurableListableBeanFactory beanFactory;
     private static ApplicationContext applicationContext;
@@ -53,21 +53,21 @@ public final class ApplicationUtils implements BeanFactoryPostProcessor, Applica
     }
 
     /**
-     * 获取ApplicationContext
+     * Get ApplicationContext
      */
     public static ConfigurableListableBeanFactory getBeanFactory() {
         return beanFactory;
     }
 
     /**
-     * 获取ApplicationContext
+     * Get ApplicationContext
      */
     public static ApplicationContext getContext() {
         return applicationContext;
     }
 
     /**
-     * 获取springbean
+     * Get springbean
      *
      * @param beanName
      * @param requiredType
@@ -82,7 +82,7 @@ public final class ApplicationUtils implements BeanFactoryPostProcessor, Applica
     }
 
     /**
-     * 获取springbean
+     * Get springbean
      *
      * @param requiredType
      * @param <T>
@@ -93,7 +93,7 @@ public final class ApplicationUtils implements BeanFactoryPostProcessor, Applica
     }
 
     /**
-     * 获取springbean
+     * Get springbean
      *
      * @param beanName
      * @param <T>
@@ -108,7 +108,7 @@ public final class ApplicationUtils implements BeanFactoryPostProcessor, Applica
     }
 
     /**
-     * 依赖spring框架获取HttpServletRequest
+     * Rely on spring framework to get HttpServletRequest
      *
      * @return HttpServletRequest
      */
@@ -125,7 +125,7 @@ public final class ApplicationUtils implements BeanFactoryPostProcessor, Applica
     }
 
     /**
-     * ApplicationContext是否包含该Bean
+     * Does the ApplicationContext contain the Bean
      *
      * @param name
      * @return
@@ -135,7 +135,7 @@ public final class ApplicationUtils implements BeanFactoryPostProcessor, Applica
     }
 
     /**
-     * ApplicationContext该Bean是否为单例
+     * ApplicationContext whether the Bean is a singleton
      *
      * @param name
      * @return
@@ -145,7 +145,7 @@ public final class ApplicationUtils implements BeanFactoryPostProcessor, Applica
     }
 
     /**
-     * 获取该Bean的Class
+     * Get the Bean's Class
      *
      * @param name
      * @return

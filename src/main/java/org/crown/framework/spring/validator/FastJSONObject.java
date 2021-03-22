@@ -10,7 +10,7 @@ import javax.validation.Payload;
 
 /**
  * <p>
- * FastJson JSONObject校验注解
+ * FastJson JSONObject validation annotation
  * </p>
  *
  * @author Caratacus
@@ -21,9 +21,9 @@ import javax.validation.Payload;
 public @interface FastJSONObject {
 
     /**
-     * @Description: 错误提示
+     * @Description: Error message
      */
-    String message() default "请输入正确的JSONObject格式";
+    String message() default "Please enter the correct JSONObject format";
 
     Class<?>[] groups() default {};
 

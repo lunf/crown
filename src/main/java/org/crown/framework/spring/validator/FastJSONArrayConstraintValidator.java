@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSONArray;
 
 /**
  * <p>
- * FastJson JSONArray校验
+ * FastJson JSONArray verification
  * </p>
  *
  * @author Caratacus
@@ -21,7 +21,7 @@ public class FastJSONArrayConstraintValidator implements ConstraintValidator<Fas
     }
 
     /**
-     * @Description: 自定义校验逻辑
+     * @Description: Custom check logic
      */
     @Override
     public boolean isValid(JSONArray jsonArray, ConstraintValidatorContext constraintValidatorContext) {

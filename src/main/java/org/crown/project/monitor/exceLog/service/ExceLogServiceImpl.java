@@ -6,7 +6,7 @@ import org.crown.project.monitor.exceLog.mapper.ExceLogMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * 异常日志 服务层实现
+ * Exception log service layer implementation
  *
  * @author Caratacus
  */

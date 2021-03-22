@@ -5,7 +5,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.monitor.exceLog.domain.ExceLog;
 
 /**
- * 异常日志 数据层
+ * Exception log data layer
  *
  * @author Caratacus
  */

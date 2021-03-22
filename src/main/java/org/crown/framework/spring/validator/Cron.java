@@ -10,7 +10,7 @@ import javax.validation.Payload;
 
 /**
  * <p>
- * Cron校验注解
+ * Cron verification annotation
  * </p>
  *
  * @author Caratacus
@@ -21,9 +21,9 @@ import javax.validation.Payload;
 public @interface Cron {
 
     /**
-     * @Description: 错误提示
+     * @Description: Error message
      */
-    String message() default "请输入正确Cron表达式";
+    String message() default "Please enter the correct cron expression";
 
     Class<?>[] groups() default {};
 

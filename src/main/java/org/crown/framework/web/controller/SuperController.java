@@ -58,25 +58,25 @@ public class SuperController<Entity> implements PageCons {
     protected HttpServletResponse response;
 
     /**
-     * 将前台传递过来的日期格式的字符串，自动转化为Date类型
+     * The date format string passed from the front desk is automatically converted to Date type
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        // Date 类型转换
+        // Date Type conversion
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
                 setValue(DateUtils.parseDate(text));
             }
         });
-        // JSONObject 类型转换
+        // JSONObject Type conversion
         binder.registerCustomEditor(JSONObject.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
                 setValue(JSON.parseObject(text));
             }
         });
-        // JSONArray 类型转换
+        // JSONArray Type conversion
         binder.registerCustomEditor(JSONArray.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
@@ -86,7 +86,7 @@ public class SuperController<Entity> implements PageCons {
     }
 
     /**
-     * 成功返回
+     * Successfully returned
      *
      * @param object
      * @return
@@ -96,7 +96,7 @@ public class SuperController<Entity> implements PageCons {
     }
 
     /**
-     * 成功返回
+     * Successfully returned
      *
      * @return
      */
@@ -105,7 +105,7 @@ public class SuperController<Entity> implements PageCons {
     }
 
     /**
-     * 成功返回
+     * Successfully returned
      *
      * @param status
      * @param object
@@ -116,7 +116,7 @@ public class SuperController<Entity> implements PageCons {
     }
 
     /**
-     * 成功返回
+     * Successfully returned
      *
      * @param status
      * @return
@@ -126,20 +126,20 @@ public class SuperController<Entity> implements PageCons {
     }
 
     /**
-     * 获取排序的table
+     * Get the sorted table
      */
     protected String getAlias() {
         try {
             Class<Entity> entityClass = (Class<Entity>) ReflectionKit.getSuperClassGenericType(getClass(), 0);
             return TableInfoHelper.getTableInfo(entityClass).getTableName();
         } catch (Exception e) {
-            log.warn("获取排序别名出错:{}", e.getMessage());
+            log.warn("Error getting sort alias:{}", e.getMessage());
             return null;
         }
     }
 
     /**
-     * 获取安全参数(SQL ORDER BY 过滤)
+     * Get security parameters (SQL ORDER BY filtering)
      *
      * @param parameter
      * @return

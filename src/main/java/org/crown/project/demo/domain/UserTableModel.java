@@ -8,47 +8,47 @@ import org.crown.framework.web.domain.BaseEntity;
 public class UserTableModel extends BaseEntity {
 
     /**
-     * 用户ID
+     * User ID
      */
     private int userId;
 
     /**
-     * 用户编号
+     * User code
      */
     private String userCode;
 
     /**
-     * 用户姓名
+     * User name
      */
     private String userName;
 
     /**
-     * 用户性别
+     * User sex
      */
     private String userSex;
 
     /**
-     * 用户手机
+     * User phone number
      */
     private String userPhone;
 
     /**
-     * 用户邮箱
+     * User email address
      */
     private String userEmail;
 
     /**
-     * 用户余额
+     * User balance
      */
     private double userBalance;
 
     /**
-     * 用户状态（0正常 1停用）
+     * User status (0 normal 1 disabled)
      */
     private String status;
 
     /**
-     * 创建时间
+     * Time created
      */
     private Date createTime;
 

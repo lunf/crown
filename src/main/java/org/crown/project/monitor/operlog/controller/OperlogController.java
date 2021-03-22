@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 操作日志记录
+ * Operation log record
  *
  * @author Crown
  */
@@ -52,7 +52,7 @@ public class OperlogController extends WebController<OperLog> {
         return getTableData(list);
     }
 
-    @Log(title = "操作日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Operation log", businessType = BusinessType.EXPORT)
     @RequiresPermissions("monitor:operlog:export")
     @PostMapping("/export")
     @ResponseBody
@@ -77,7 +77,7 @@ public class OperlogController extends WebController<OperLog> {
         return prefix + "/detail";
     }
 
-    @Log(title = "操作日志", businessType = BusinessType.CLEAN)
+    @Log(title = "Operation log", businessType = BusinessType.CLEAN)
     @RequiresPermissions("monitor:operlog:remove")
     @PostMapping("/clean")
     @ResponseBody

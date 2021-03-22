@@ -8,11 +8,11 @@ import lombok.Setter;
 public class Email {
 
     /**
-     * 开关
+     * switch
      */
     private boolean enabled = false;
     /**
-     * 告警邮箱地址
+     * Email address
      */
     private String send;
 }

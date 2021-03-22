@@ -8,7 +8,7 @@ import org.crown.project.monitor.quartz.common.CronUtils;
 
 /**
  * <p>
- * Cron校验
+ * Cron check
  * </p>
  *
  * @author Caratacus
@@ -20,7 +20,7 @@ public class CronConstraintValidator implements ConstraintValidator<Cron, String
     }
 
     /**
-     * @Description: 自定义校验逻辑
+     * @Description: Custom check logic
      */
     @Override
     public boolean isValid(String cron, ConstraintValidatorContext constraintValidatorContext) {

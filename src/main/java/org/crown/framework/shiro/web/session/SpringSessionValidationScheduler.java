@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 自定义任务调度器完成
+ * Custom task scheduler completed
  *
  * @author Crown
  */
@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SpringSessionValidationScheduler implements SessionValidationScheduler {
 
     /**
-     * 定时器，用于处理超时的挂起请求，也用于连接断开时的重连。
+     * The timer is used to handle the timeout suspension request, and is also used to reconnect when the connection is disconnected.
      */
     @Autowired
     @Qualifier("scheduledExecutorService")
@@ -33,7 +33,7 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
     private volatile boolean enabled = false;
 
     /**
-     * 会话验证管理器
+     * Session authentication manager
      */
     @Autowired
     @Qualifier("sessionManager")

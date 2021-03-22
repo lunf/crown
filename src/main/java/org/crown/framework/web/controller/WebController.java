@@ -13,21 +13,21 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 /**
- * web层通用数据处理
+ * Web layer general data processing
  *
  * @author Crown
  */
 public class WebController<Entity> extends SuperController<Entity> {
 
     /**
-     * 封装分页对象
+     * Encapsulate the paging object
      */
     protected PageDomain getPageDomain() {
-        // 页数
+        // Number of pages
         Integer pageNum = TypeUtils.castToInt(request.getParameter(PAGE_NUM), 1);
-        // 分页大小
+        // Paging Size
         Integer pageSize = TypeUtils.castToInt(request.getParameter(PAGE_SIZE), DEFAULT_PAGE_SIZE);
-        // 是否查询分页
+        // Whether to query paging
         Boolean searchCount = TypeUtils.castToBoolean(request.getParameter(SEARCH_COUNT), true);
         pageSize = pageSize > MAX_PAGE_SIZE ? MAX_PAGE_SIZE : pageSize;
         PageDomain pageDomain = new PageDomain();
@@ -41,7 +41,7 @@ public class WebController<Entity> extends SuperController<Entity> {
     }
 
     /**
-     * 设置请求分页数据
+     * Set request paging data
      */
     protected void startPage() {
         PageDomain pageDomain = getPageDomain();
@@ -54,7 +54,7 @@ public class WebController<Entity> extends SuperController<Entity> {
     }
 
     /**
-     * 响应请求分页数据
+     * Paging data in response to requests
      */
     protected <T> TableData<T> getTableData(List<T> list) {
         TableData rspData = new TableData();
@@ -64,7 +64,7 @@ public class WebController<Entity> extends SuperController<Entity> {
     }
 
     /**
-     * 页面跳转
+     * Page jump
      */
     public String redirect(String url) {
         return StringUtils.format("redirect:{}", url);

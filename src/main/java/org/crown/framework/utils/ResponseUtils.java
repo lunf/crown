@@ -52,7 +52,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * response输出工具类
+ * Response output tools
  *
  * @author Caratacus
  */
@@ -61,10 +61,10 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class ResponseUtils {
 
     /**
-     * Portal输出json字符串
+     * Portal output json string
      *
      * @param response
-     * @param obj      需要转换JSON的对象
+     * @param obj      Objects that need to convert JSON
      */
     public static void writeValAsJson(HttpServletRequest request, ResponseWrapper response, Object obj) {
         String userId = null;
@@ -98,7 +98,7 @@ public abstract class ResponseUtils {
     }
 
     /**
-     * 打印日志信息但是不输出到浏览器
+     * Print log information but not output to the browser
      *
      * @param request
      * @param obj
@@ -108,45 +108,45 @@ public abstract class ResponseUtils {
     }
 
     /**
-     * 获取异常信息
+     * Get exception information
      *
      * @param exception
      * @return
      */
     public static FailedResponse exceptionMsg(FailedResponse failedResponse, Exception exception) {
         if (exception instanceof MethodArgumentNotValidException) {
-            StringBuilder builder = new StringBuilder("校验失败:");
+            StringBuilder builder = new StringBuilder("Verification failed:");
             List<ObjectError> allErrors = ((MethodArgumentNotValidException) exception).getBindingResult().getAllErrors();
             allErrors.stream().findFirst().ifPresent(error -> {
-                builder.append(((FieldError) error).getField()).append("字段规则为").append(error.getDefaultMessage());
+                builder.append(((FieldError) error).getField()).append("The field rule is").append(error.getDefaultMessage());
                 failedResponse.setMsg(error.getDefaultMessage());
             });
             failedResponse.setException(builder.toString());
             return failedResponse;
         } else if (exception instanceof MissingServletRequestParameterException) {
-            StringBuilder builder = new StringBuilder("参数字段");
+            StringBuilder builder = new StringBuilder("Parameter field");
             MissingServletRequestParameterException ex = (MissingServletRequestParameterException) exception;
             builder.append(ex.getParameterName());
-            builder.append("校验不通过");
+            builder.append("Check failed");
             failedResponse.setException(builder.toString());
             failedResponse.setMsg(ex.getMessage());
             return failedResponse;
         } else if (exception instanceof MissingPathVariableException) {
-            StringBuilder builder = new StringBuilder("路径字段");
+            StringBuilder builder = new StringBuilder("Path field");
             MissingPathVariableException ex = (MissingPathVariableException) exception;
             builder.append(ex.getVariableName());
-            builder.append("校验不通过");
+            builder.append("Check failed");
             failedResponse.setException(builder.toString());
             failedResponse.setMsg(ex.getMessage());
             return failedResponse;
         } else if (exception instanceof ConstraintViolationException) {
-            StringBuilder builder = new StringBuilder("方法.参数字段");
+            StringBuilder builder = new StringBuilder("Method. Parameter field");
             ConstraintViolationException ex = (ConstraintViolationException) exception;
             Optional<ConstraintViolation<?>> first = ex.getConstraintViolations().stream().findFirst();
             if (first.isPresent()) {
                 ConstraintViolation<?> constraintViolation = first.get();
                 builder.append(constraintViolation.getPropertyPath().toString());
-                builder.append("校验不通过");
+                builder.append("Check failed");
                 failedResponse.setException(builder.toString());
                 failedResponse.setMsg(ex.getMessage());
             }
@@ -157,7 +157,7 @@ public abstract class ResponseUtils {
     }
 
     /**
-     * 发送错误信息
+     * Send error message
      *
      * @param request
      * @param response
@@ -176,7 +176,7 @@ public abstract class ResponseUtils {
     }
 
     /**
-     * 发送错误信息
+     * Send error message
      *
      * @param request
      * @param response
@@ -187,7 +187,7 @@ public abstract class ResponseUtils {
     }
 
     /**
-     * 发送错误信息
+     * Send error message
      *
      * @param request
      * @param response
@@ -198,7 +198,7 @@ public abstract class ResponseUtils {
     }
 
     /**
-     * 发送错误信息
+     * Send error message
      *
      * @param request
      * @param response
@@ -211,7 +211,7 @@ public abstract class ResponseUtils {
     }
 
     /**
-     * 获取Response
+     * Get Response
      *
      * @return
      */

@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 操作日志记录表 oper_log
+ * Operation log record table oper_log
  *
  * @author Crown
  */
@@ -24,94 +24,94 @@ public class OperLog extends BaseQueryParams {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 日志主键
+     * Log primary key
      */
-    @Excel(name = "操作序号")
+    @Excel(name = "Operation number")
     @TableId
     private Long operId;
 
     /**
-     * 操作模块
+     * Operation module
      */
-    @Excel(name = "操作模块")
+    @Excel(name = "Operation module")
     private String title;
 
     /**
-     * 业务类型
+     * Business type
      */
-    @Excel(name = "业务类型", readConverterExp = "0=其它,1=新增,2=修改,3=删除,4=授权,5=导出,6=导入,7=强退,8=生成代码,9=清空数据")
+    @Excel(name = "Business type", readConverterExp = "0=others, 1=new, 2=modify, 3=delete, 4=authorize, 5=export, 6=import, 7=retire, 8=generate code, 9=clear data")
     private Integer businessType;
 
     /**
-     * 业务类型数组
+     * Business type array
      */
     @TableField(exist = false)
     private List<Integer> businessTypes;
 
     /**
-     * 请求方法
+     * Request method
      */
-    @Excel(name = "请求方法")
+    @Excel(name = "Request method")
     private String method;
 
     /**
-     * 操作人类别
+     * Operator category
      */
-    @Excel(name = "操作类别", readConverterExp = "0=其它,1=后台用户,2=手机端用户")
+    @Excel(name = "Operation category", readConverterExp = "0=others, 1=background user, 2=mobile terminal user")
     private Integer operatorType;
 
     /**
-     * 操作人员
+     * operator
      */
-    @Excel(name = "操作人员")
+    @Excel(name = "operator")
     private String operName;
 
     /**
-     * 部门名称
+     * Department name
      */
-    @Excel(name = "部门名称")
+    @Excel(name = "Department name")
     private String deptName;
 
     /**
-     * 请求url
+     * Request url
      */
-    @Excel(name = "请求地址")
+    @Excel(name = "Request address")
     private String operUrl;
 
     /**
-     * 操作地址
+     * Operation address
      */
-    @Excel(name = "操作地址")
+    @Excel(name = "Operation address")
     private String operIp;
 
     /**
-     * 操作地点
+     * Operating location
      */
-    @Excel(name = "操作地点")
+    @Excel(name = "Operating location")
     private String operLocation;
 
     /**
-     * 请求参数
+     * Request parameter
      */
-    @Excel(name = "请求参数")
+    @Excel(name = "Request parameter")
     private String operParam;
 
     /**
-     * 状态0正常 1异常
+     * State 0 normal 1 abnormal
      */
-    @Excel(name = "状态", readConverterExp = "1=正常,0=异常")
+    @Excel(name = "status", readConverterExp = "1=normal, 0=abnormal")
     private Integer status;
 
     /**
-     * 错误消息
+     * wrong information
      */
-    @Excel(name = "错误消息")
+    @Excel(name = "wrong information")
     private String errorMsg;
 
     /**
-     * 操作时间
+     * Operating time
      */
-    @Excel(name = "操作时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "Operating time", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private Date operTime;
 
 }

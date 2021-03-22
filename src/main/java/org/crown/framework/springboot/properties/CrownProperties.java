@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Crown项目相关配置
+ * Crown project related configuration
  *
  * @author Caratacus
  */
@@ -19,39 +19,39 @@ public class CrownProperties {
     public static final String CROWN_PREFIX = "crown";
 
     /**
-     * 实例演示开关
+     * Example demo switch
      */
     @NestedConfigurationProperty
     private Demo demo;
 
     /**
-     * 路径
+     * path
      */
     @NestedConfigurationProperty
     private Path path;
 
     /**
-     * 获取地址开关
+     * Get address switch
      */
     @NestedConfigurationProperty
     private Address address;
     /**
-     * 用户密码配置
+     * User password configuration
      */
     @NestedConfigurationProperty
     private Password password;
     /**
-     * 生成代码配置
+     * Generate code configuration
      */
     @NestedConfigurationProperty
     private Generator generator;
     /**
-     * Xss配置
+     * Xss configuration
      */
     @NestedConfigurationProperty
     private Xss xss;
     /**
-     * 告警通知Email配置
+     * Email notification configuration
      */
     @NestedConfigurationProperty
     private Email email;

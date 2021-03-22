@@ -5,7 +5,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.monitor.logininfor.domain.Logininfor;
 
 /**
- * 系统访问日志情况信息 数据层
+ * System access log situation information Data layer
  *
  * @author Crown
  */

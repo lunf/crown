@@ -8,15 +8,15 @@ import lombok.Setter;
 public class Prefix {
 
     /**
-     * 头像上传路径前缀
+     * Avatar upload path prefix
      */
     private String avatar = "avatar/";
     /**
-     * 下载路径前缀
+     * Download path prefix
      */
     private String download = "download/";
     /**
-     * 上传路径前缀
+     * Upload path prefix
      */
     private String upload = "upload/";
 }

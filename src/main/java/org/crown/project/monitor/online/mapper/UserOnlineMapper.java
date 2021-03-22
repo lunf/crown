@@ -7,7 +7,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.monitor.online.domain.UserOnline;
 
 /**
- * 在线用户 数据层
+ * Online users Data layer
  *
  * @author Crown
  */
@@ -15,26 +15,26 @@ import org.crown.project.monitor.online.domain.UserOnline;
 public interface UserOnlineMapper extends BaseMapper<UserOnline> {
 
     /**
-     * 通过会话序号查询信息
+     * Query information by session number
      *
-     * @param sessionId 会话ID
-     * @return 在线用户信息
+     * @param sessionId Session id
+     * @return Online user information
      */
     UserOnline selectOnlineById(String sessionId);
 
     /**
-     * 查询会话集合
+     * Query session collection
      *
-     * @param userOnline 会话参数
-     * @return 会话集合
+     * @param userOnline Session parameters
+     * @return Conversation collection
      */
     List<UserOnline> selectUserOnlineList(UserOnline userOnline);
 
     /**
-     * 查询过期会话集合
+     * Query the collection of expired sessions
      *
-     * @param lastAccessTime 过期时间
-     * @return 会话集合
+     * @param lastAccessTime expire date
+     * @return Conversation collection
      */
     List<UserOnline> selectOnlineByExpired(String lastAccessTime);
 }

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 系统访问记录
+ * System access record
  *
  * @author Crown
  */
@@ -50,19 +50,19 @@ public class LogininforController extends WebController<Logininfor> {
         return getTableData(list);
     }
 
-    @Log(title = "登陆日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Login log", businessType = BusinessType.EXPORT)
     @RequiresPermissions("monitor:logininfor:export")
     @PostMapping("/export")
     @ResponseBody
     public ExcelDTO export(Logininfor logininfor) {
         List<Logininfor> list = logininforService.selectLogininforList(logininfor);
         ExcelUtils<Logininfor> util = new ExcelUtils<>(Logininfor.class);
-        return new ExcelDTO(util.exportExcel(list, "登陆日志"));
+        return new ExcelDTO(util.exportExcel(list, "Login log"));
 
     }
 
     @RequiresPermissions("monitor:logininfor:remove")
-    @Log(title = "登陆日志", businessType = BusinessType.DELETE)
+    @Log(title = "Login log", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public void remove(String ids) {
@@ -70,7 +70,7 @@ public class LogininforController extends WebController<Logininfor> {
     }
 
     @RequiresPermissions("monitor:logininfor:remove")
-    @Log(title = "登陆日志", businessType = BusinessType.CLEAN)
+    @Log(title = "Login log", businessType = BusinessType.CLEAN)
     @PostMapping("/clean")
     @ResponseBody
     public void clean() {

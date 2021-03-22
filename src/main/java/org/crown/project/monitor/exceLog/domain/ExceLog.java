@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 异常日志表 sys_exce_log
+ * Exception log table sys_exce_log
  *
  * @author Caratacus
  */
@@ -26,31 +26,31 @@ public class ExceLog extends BaseQueryParams {
      */
     private Long id;
     /**
-     * 当前操作人
+     * Current operator
      */
     private String operName;
     /**
-     * 请求路径
+     * Request path
      */
     private String url;
     /**
-     * 控制器方法
+     * Controller method
      */
     private String actionMethod;
     /**
-     * 接口运行时间 单位:ms
+     * Interface running time unit: ms
      */
     private String runTime;
     /**
-     * IP地址
+     * IP address
      */
     private String ipAddr;
     /**
-     * 日志详情
+     * Log details
      */
     private String content;
     /**
-     * 创建时间
+     * Time created
      */
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;

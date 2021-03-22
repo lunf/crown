@@ -21,7 +21,7 @@ import com.mchange.lang.ThrowableUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 通用请求处理
+ * General request processing
  *
  * @author Crown
  */
@@ -30,10 +30,10 @@ import lombok.extern.slf4j.Slf4j;
 public class CommonController extends WebController {
 
     /**
-     * 通用下载请求
+     * Universal download request
      *
-     * @param fileName 文件名称
-     * @param delete   是否删除
+     * @param fileName file name
+     * @param delete   delete or not
      */
     @GetMapping("common/download")
     @ResponseBody
@@ -59,18 +59,18 @@ public class CommonController extends WebController {
     }
 
     /**
-     * 通用上传请求
+     * Universal upload request
      */
     @PostMapping("/common/upload")
     @ResponseBody
     public UploadDTO uploadFile(MultipartFile file) {
         try {
-            // 上传并返回新文件名称
+            // Upload and return the new file name
             String fileName = FileUploadUtils.upload(Crowns.getUploadPath(), file, MimeTypes.DEFAULT_ALLOWED_EXTENSION);
             String url = Crowns.getUploadUrl(request, fileName);
             return new UploadDTO(url, fileName);
         } catch (Exception e) {
-            log.error("上传文件异常 {}", ThrowableUtils.extractStackTrace(e));
+            log.error("Upload file abnormal {}", ThrowableUtils.extractStackTrace(e));
             ApiAssert.failure(ErrorCodeEnum.FILE_UPLOAD_FAIL);
         }
         return null;

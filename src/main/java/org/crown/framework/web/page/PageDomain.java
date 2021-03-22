@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 分页数据
+ * Paging data
  *
  * @author Crown
  */
@@ -16,27 +16,27 @@ import lombok.Setter;
 public class PageDomain {
 
     /**
-     * 当前记录起始索引
+     * Current record start index
      */
     private Integer pageNum;
     /**
-     * 每页显示记录数
+     * Display the number of records per page
      */
     private Integer pageSize;
     /**
-     * 排序列
+     * Sort column
      */
     private String sort;
     /**
-     * 排序的方向 "desc" 或者 "asc".
+     * Sorting direction "desc" or "asc".
      */
     private String order;
     /**
-     * 排序表别名
+     * Sort table alias
      */
     private String tableAlias;
     /**
-     * 查询Count
+     * Query Count
      */
     private boolean searchCount;
 

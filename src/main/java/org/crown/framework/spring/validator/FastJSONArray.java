@@ -10,7 +10,7 @@ import javax.validation.Payload;
 
 /**
  * <p>
- * FastJson JSONArray校验注解
+ * FastJson JSONArray validation annotation
  * </p>
  *
  * @author Caratacus
@@ -21,9 +21,9 @@ import javax.validation.Payload;
 public @interface FastJSONArray {
 
     /**
-     * @Description: 错误提示
+     * @Description: Error message
      */
-    String message() default "请输入正确的JSONArray格式";
+    String message() default "Please enter the correct JSONArray format";
 
     Class<?>[] groups() default {};
 

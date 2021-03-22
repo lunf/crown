@@ -10,19 +10,19 @@ import lombok.Setter;
 public class Path {
 
     /**
-     * 上传路径
+     * Upload path
      */
     private String filePath;
     /**
-     * 资源Handler
+     * Resource Handler
      */
     private String resourceHandler;
     /**
-     * 资源路径
+     * Resource path
      */
     private String resourcePath;
     /**
-     * 前缀对象
+     * Prefix object
      */
     @NestedConfigurationProperty
     private Prefix prefix;

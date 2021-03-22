@@ -7,40 +7,40 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.monitor.online.domain.UserOnline;
 
 /**
- * 在线用户 服务层
+ * Online user service layer
  *
  * @author Crown
  */
 public interface IUserOnlineService extends BaseService<UserOnline> {
 
     /**
-     * 通过会话序号查询信息
+     * Query information by session number
      *
-     * @param sessionId 会话ID
-     * @return 在线用户信息
+     * @param sessionId Session id
+     * @return Online user information
      */
     UserOnline selectOnlineById(String sessionId);
 
     /**
-     * 查询会话集合
+     * Query session collection
      *
-     * @param userOnline 分页参数
-     * @return 会话集合
+     * @param userOnline Paging parameters
+     * @return Conversation collection
      */
     List<UserOnline> selectUserOnlineList(UserOnline userOnline);
 
     /**
-     * 强退用户
+     * Forcibly log out users
      *
-     * @param sessionId 会话ID
+     * @param sessionId Session id
      */
     void forceLogout(String sessionId);
 
     /**
-     * 查询会话集合
+     * Query session collection
      *
-     * @param expiredDate 有效期
-     * @return 会话集合
+     * @param expiredDate Valid period
+     * @return Conversation collection
      */
     List<UserOnline> selectOnlineByExpired(Date expiredDate);
 }

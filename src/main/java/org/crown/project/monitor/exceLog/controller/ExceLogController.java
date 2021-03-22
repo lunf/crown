@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 异常日志信息操作处理
+ * Operation processing of abnormal log information
  *
  * @author Caratacus
  */
@@ -42,7 +42,7 @@ public class ExceLogController extends WebController<ExceLog> {
     }
 
     /**
-     * 查询异常日志列表
+     * Query exception log list
      */
     @RequiresPermissions("monitor:exceLog:list")
     @PostMapping("/list")
@@ -61,10 +61,10 @@ public class ExceLogController extends WebController<ExceLog> {
     }
 
     /**
-     * 删除异常日志
+     * Delete exception log
      */
     @RequiresPermissions("monitor:exceLog:remove")
-    @Log(title = "异常日志", businessType = BusinessType.DELETE)
+    @Log(title = "Exception log", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public void remove(String ids) {

@@ -6,17 +6,17 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.monitor.operlog.domain.OperLog;
 
 /**
- * 操作日志 服务层
+ * Operation log service layer
  *
  * @author Crown
  */
 public interface IOperLogService extends BaseService<OperLog> {
 
     /**
-     * 查询系统操作日志集合
+     * Query system operation log collection
      *
-     * @param operLog 操作日志对象
-     * @return 操作日志集合
+     * @param operLog Operation log object
+     * @return Operation log collection
      */
     List<OperLog> selectOperLogList(OperLog operLog);
 

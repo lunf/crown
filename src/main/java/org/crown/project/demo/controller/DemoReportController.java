@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 报表
+ * Report
  *
  * @author Crown
  */
@@ -16,7 +16,7 @@ public class DemoReportController {
     private final String prefix = "demo/report";
 
     /**
-     * 百度ECharts
+     * Baidu ECharts
      */
     @GetMapping("/echarts")
     public String echarts() {
@@ -24,7 +24,7 @@ public class DemoReportController {
     }
 
     /**
-     * 图表插件
+     * Chart plugin
      */
     @GetMapping("/peity")
     public String peity() {
@@ -32,7 +32,7 @@ public class DemoReportController {
     }
 
     /**
-     * 线状图插件
+     * Line chart plugin
      */
     @GetMapping("/sparkline")
     public String sparkline() {
@@ -40,7 +40,7 @@ public class DemoReportController {
     }
 
     /**
-     * 图表组合
+     * Chart combination
      */
     @GetMapping("/metrics")
     public String metrics() {

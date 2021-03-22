@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * html调用 thymeleaf 实现参数管理
+ * html calls thymeleaf to implement parameter management
  *
  * @author Crown
  */
@@ -22,20 +22,20 @@ public class ConfigService {
     private IConfigService configService;
 
     /**
-     * 根据键名查询参数配置信息
+     * Query parameter configuration information based on key name
      *
-     * @param configKey 参数名称
-     * @return 参数键值
+     * @param configKey parameter name
+     * @return Parameter key value
      */
     public String getKey(String configKey) {
         return configService.getConfigValueByKey(configKey);
     }
 
     /**
-     * 根据键名查询后台皮肤
+     * Query the background skin based on the key name
      *
-     * @param skinConfigKey 皮肤参数名称
-     * @return 参数键值
+     * @param skinConfigKey Skin parameter name
+     * @return Parameter key value
      */
     public String getSkinKey(String skinConfigKey) {
         String configValue = getKey(skinConfigKey);

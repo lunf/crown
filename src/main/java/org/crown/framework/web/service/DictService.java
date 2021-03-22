@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * html调用 thymeleaf 实现字典读取
+ * html calls thymeleaf to implement dictionary reading
  *
  * @author Crown
  */
@@ -19,21 +19,21 @@ public class DictService {
     private IDictDataService dictDataService;
 
     /**
-     * 根据字典类型查询字典数据信息
+     * Query dictionary data information according to dictionary type
      *
-     * @param dictType 字典类型
-     * @return 参数键值
+     * @param dictType Dictionary type
+     * @return Parameter key value
      */
     public List<DictData> getType(String dictType) {
         return dictDataService.selectDictDataByType(dictType);
     }
 
     /**
-     * 根据字典类型和字典键值查询字典数据信息
+     * Query dictionary data information according to dictionary type and dictionary key value
      *
-     * @param dictType  字典类型
-     * @param dictValue 字典键值
-     * @return 字典标签
+     * @param dictType  Dictionary type
+     * @param dictValue Dictionary key
+     * @return Dictionary tag
      */
     public String getLabel(String dictType, String dictValue) {
         return dictDataService.selectDictLabel(dictType, dictValue);

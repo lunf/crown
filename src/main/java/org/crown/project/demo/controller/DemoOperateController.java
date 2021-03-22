@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 
 /**
- * 操作控制
+ * Operational control
  *
  * @author Crown
  */
@@ -71,7 +71,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 表格
+     * table
      */
     @GetMapping("/table")
     public String table() {
@@ -79,7 +79,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 其他
+     * other
      */
     @GetMapping("/other")
     public String other() {
@@ -87,14 +87,14 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 查询数据
+     * Query data
      */
     @PostMapping("/list")
     @ResponseBody
     public TableData<UserOperateModel> list(UserOperateModel userModel) {
         TableData rspData = new TableData();
         List<UserOperateModel> userList = new ArrayList<>(users.values());
-        // 查询条件过滤
+        // Query filter
         if (StringUtils.isNotEmpty(userModel.getSearchValue())) {
             userList.clear();
             for (Map.Entry<Integer, UserOperateModel> entry : users.entrySet()) {
@@ -120,7 +120,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 新增用户
+     * New users
      */
     @GetMapping("/add")
     public String add() {
@@ -128,7 +128,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 新增保存用户
+     * Add saved user
      */
     @PostMapping("/add")
     @ResponseBody
@@ -139,7 +139,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 修改用户
+     * Modify user
      */
     @GetMapping("/edit/{userId}")
     public String edit(@PathVariable("userId") Integer userId, ModelMap mmap) {
@@ -148,7 +148,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 修改保存用户
+     * Modify saved user
      */
     @PostMapping("/edit")
     @ResponseBody
@@ -157,7 +157,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 导出
+     * Export
      */
     @PostMapping("/export")
     @ResponseBody
@@ -168,7 +168,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 下载模板
+     * Download template
      */
     @GetMapping("/importTemplate")
     @ResponseBody
@@ -178,7 +178,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 导入数据
+     * Import Data
      */
     @PostMapping("/importData")
     @ResponseBody
@@ -190,7 +190,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 删除用户
+     * delete users
      */
     @PostMapping("/remove")
     @ResponseBody
@@ -202,7 +202,7 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 查看详细
+     * View details
      */
     @GetMapping("/detail/{userId}")
     public String detail(@PathVariable("userId") Integer userId, ModelMap mmap) {
@@ -217,11 +217,11 @@ public class DemoOperateController extends WebController {
     }
 
     /**
-     * 导入用户数据
+     * Import user data
      *
-     * @param userList        用户数据列表
-     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
-     * @return 结果
+     * @param userList        User data list
+     * @param isUpdateSupport Whether to update support, if it already exists, update the data
+     * @return result
      */
     public String importUser(List<UserOperateModel> userList, Boolean isUpdateSupport) {
         if (CollectionUtils.isNotEmpty(userList)) {
@@ -233,7 +233,7 @@ public class DemoOperateController extends WebController {
         StringBuilder failureMsg = new StringBuilder();
         for (UserOperateModel user : userList) {
             try {
-                // 验证是否存在这个用户
+                // Verify if this user exists
                 boolean userFlag = false;
                 for (Map.Entry<Integer, UserOperateModel> entry : users.entrySet()) {
                     if (entry.getValue().getUserName().equals(user.getUserName())) {
@@ -246,26 +246,26 @@ public class DemoOperateController extends WebController {
                     user.setUserId(userId);
                     users.put(userId, user);
                     successNum++;
-                    successMsg.append("<br/>").append(successNum).append("、用户 ").append(user.getUserName()).append(" 导入成功");
+                    successMsg.append("<br/>").append(successNum).append("、user ").append(user.getUserName()).append(" Imported successfully");
                 } else if (isUpdateSupport) {
                     users.put(user.getUserId(), user);
                     successNum++;
-                    successMsg.append("<br/>").append(successNum).append("、用户 ").append(user.getUserName()).append(" 更新成功");
+                    successMsg.append("<br/>").append(successNum).append("、user ").append(user.getUserName()).append(" update completed");
                 } else {
                     failureNum++;
-                    failureMsg.append("<br/>").append(failureNum).append("、用户 ").append(user.getUserName()).append(" 已存在");
+                    failureMsg.append("<br/>").append(failureNum).append("、user ").append(user.getUserName()).append(" already exists");
                 }
             } catch (Exception e) {
                 failureNum++;
-                String msg = "<br/>" + failureNum + "、账号 " + user.getUserName() + " 导入失败：";
+                String msg = "<br/>" + failureNum + "、account number " + user.getUserName() + "Import failed：";
                 failureMsg.append(msg).append(e.getMessage());
             }
         }
         if (failureNum > 0) {
-            failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据格式不正确，错误如下：");
+            failureMsg.insert(0, "Sorry, the import failed! Total" + failureNum + " The data format is incorrect, the error is as follows：");
             throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, failureMsg.toString());
         } else {
-            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+            successMsg.insert(0, "Congratulations, all the data has been imported successfully! Total" + successNum + " Article, the data is as follows：");
         }
         return successMsg.toString();
     }

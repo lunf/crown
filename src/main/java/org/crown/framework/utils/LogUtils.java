@@ -34,7 +34,7 @@ import org.crown.project.monitor.exceLog.domain.ExceLog;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 请求日志工具类
+ * Request log tools
  *
  * @author Caratacus
  */
@@ -42,7 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class LogUtils {
 
     /**
-     * 获取日志对象
+     * Get log object
      *
      * @param status
      * @param beiginTime
@@ -58,17 +58,17 @@ public abstract class LogUtils {
     public static void printLog(Integer status, Long beiginTime, String uid, String loginName, Map<String, String[]> parameterMap, Object requestBody, String url, String actionMethod, String method, String ip, Object object) {
         String runTime = (beiginTime != null ? System.currentTimeMillis() - beiginTime : 0) + "ms";
         Log logInfo = Log.builder()
-                //查询参数
+                //Query parameter
                 .parameterMap(parameterMap)
                 .uid(uid)
                 .loginName(loginName)
-                //请求体r
+                //Request body r
                 .requestBody(requestBody)
-                //请求路径
+                //Request path
                 .url(url)
-                //控制器方法
+                //Controller method
                 .actionMethod(actionMethod)
-                //请求方法
+                //Request method
                 .method(method)
                 .runTime(runTime)
                 .result(object)

@@ -3,22 +3,22 @@ package org.crown.project.demo.domain;
 public class UserFormModel {
 
     /**
-     * 用户ID
+     * User ID
      */
     private int userId;
 
     /**
-     * 用户编号
+     * User code
      */
     private String userCode;
 
     /**
-     * 用户姓名
+     * User name
      */
     private String userName;
 
     /**
-     * 用户手机
+     * User phone number
      */
     private String userPhone;
 

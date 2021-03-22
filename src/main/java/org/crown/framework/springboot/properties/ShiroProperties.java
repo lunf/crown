@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Shiro相关配置
+ * Shiro related configuration
  *
  * @author Caratacus
  */
@@ -19,24 +19,24 @@ public class ShiroProperties {
     public static final String SHIRO_PREFIX = "shiro";
 
     /**
-     * 登录地址
+     * Login address
      */
     private String loginUrl;
     /**
-     * 权限认证失败地址
+     * Permission authentication failed address
      */
     private String unauthUrl;
     /**
-     * 首页地址
+     * Home address
      */
     private String indexUrl;
     /**
-     * 记住我
+     * remember me
      */
     @NestedConfigurationProperty
     private RememberMeCookie rememberMeCookie;
     /**
-     * Session配置
+     * Session configuration
      */
     @NestedConfigurationProperty
     private Session session;

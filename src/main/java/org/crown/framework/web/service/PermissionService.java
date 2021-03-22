@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
- * js调用 thymeleaf 实现按钮权限可见性
+ * js calls thymeleaf to realize button permission visibility
  *
  * @author Crown
  */
@@ -29,30 +29,30 @@ public class PermissionService {
     }
 
     /**
-     * 判断用户是否拥有某个权限
+     * Determine whether the user has a certain permission
      *
-     * @param permission 权限字符串
-     * @return 结果
+     * @param permission Permission string
+     * @return result
      */
     private boolean isPermittedOperator(String permission) {
         return SecurityUtils.getSubject().isPermitted(permission);
     }
 
     /**
-     * 判断用户是否拥有某个角色
+     * Determine whether the user has a certain role
      *
-     * @param role 角色字符串
-     * @return 结果
+     * @param role Role string
+     * @return result
      */
     private boolean hasRoleOperator(String role) {
         return SecurityUtils.getSubject().hasRole(role);
     }
 
     /**
-     * 返回用户属性值
+     * Return user attribute value
      *
-     * @param property 属性名称
-     * @return 用户属性值
+     * @param property Attribute name
+     * @return User attribute value
      */
     public Object getPrincipalProperty(String property) {
         Subject subject = SecurityUtils.getSubject();

@@ -8,19 +8,19 @@ import lombok.Setter;
 public class RememberMeCookie {
 
     /**
-     * 设置Cookie的域名 默认空，即当前访问的域名
+     * Set the cookie domain name. The default is empty, that is, the domain name you are currently visiting
      */
     private String domain;
     /**
-     * 设置cookie的有效访问路径
+     * Set the effective access path of the cookie
      */
     private String path;
     /**
-     * 设置HttpOnly属性
+     * Set the HttpOnly attribute
      */
     private boolean httpOnly;
     /**
-     * 设置Cookie的过期时间，天为单位
+     * Set the expiration time of the cookie, in days
      */
     private int maxAge;
 }

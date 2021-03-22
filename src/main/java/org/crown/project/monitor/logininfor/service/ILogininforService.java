@@ -6,17 +6,17 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.monitor.logininfor.domain.Logininfor;
 
 /**
- * 系统访问日志情况信息 服务层
+ * System access log information service layer
  *
  * @author Crown
  */
 public interface ILogininforService extends BaseService<Logininfor> {
 
     /**
-     * 查询系统登录日志集合
+     * Query system login log collection
      *
-     * @param logininfor 访问日志对象
-     * @return 登录记录集合
+     * @param logininfor Access log object
+     * @return Login record collection
      */
     List<Logininfor> selectLogininforList(Logininfor logininfor);
 

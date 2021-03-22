@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 表格分页数据对象
+ * Table paging data object
  *
  * @author Crown
  */
@@ -17,25 +17,25 @@ public class TableData<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
-     * 总记录数
+     * total
      */
     private long total;
     /**
-     * 列表数据
+     * List data
      */
     private List<T> rows;
 
     /**
-     * 表格数据对象
+     * Tabular data object
      */
     public TableData() {
     }
 
     /**
-     * 分页
+     * Pagination
      *
-     * @param list  列表数据
-     * @param total 总记录数
+     * @param list  List data
+     * @param total total
      */
     public TableData(List<T> list, int total) {
         this.rows = list;

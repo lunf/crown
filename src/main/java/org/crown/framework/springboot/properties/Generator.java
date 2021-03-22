@@ -8,11 +8,11 @@ import lombok.Setter;
 public class Generator {
 
     /**
-     * 作者
+     * Author
      */
     private String author;
     /**
-     * 默认生成包路径
+     * Default generated package path
      */
     private String packagePath;
 }

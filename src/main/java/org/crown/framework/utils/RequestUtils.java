@@ -42,7 +42,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Request 请求工具类
+ * Request Request tools
  *
  * @author Caratacus
  */
@@ -52,7 +52,7 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class RequestUtils {
 
     /**
-     * 判断请求方式GET
+     * Determine the request method GET
      *
      * @param request
      * @return
@@ -62,7 +62,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 判断请求方式POST
+     * Determine the request method POST
      *
      * @param request
      * @return
@@ -72,7 +72,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 判断请求方式PUT
+     * Determine the request method PUT
      *
      * @param request
      * @return
@@ -82,7 +82,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 判断请求方式DELETE
+     * Determine the request method DELETE
      *
      * @param request
      * @return
@@ -92,7 +92,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 判断请求方式PATCH
+     * Determine the request method PATCH
      *
      * @param request
      * @return
@@ -102,7 +102,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 判断请求方式TRACE
+     * Determine the request method TRACE
      *
      * @param request
      * @return
@@ -112,7 +112,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 判断请求方式HEAD
+     * Determine the request method HEAD
      *
      * @param request
      * @return
@@ -122,7 +122,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 判断请求方式OPTIONS
+     * Determine the request method OPTIONS
      *
      * @param request
      * @return
@@ -132,7 +132,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 获取请求
+     * Get request
      *
      * @param request
      * @return
@@ -160,7 +160,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 获取请求
+     * Get request
      *
      * @param request
      * @return
@@ -176,7 +176,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 是否包含请求体
+     * Whether to include the request body
      *
      * @param request
      * @return
@@ -186,7 +186,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 是否是Ajax异步请求
+     * Is it an Ajax asynchronous request
      *
      * @param request
      */
@@ -215,7 +215,7 @@ public abstract class RequestUtils {
     }
 
     /**
-     * 获取http请求的Domain
+     * Get the domain of the http request
      *
      * @param request
      * @return

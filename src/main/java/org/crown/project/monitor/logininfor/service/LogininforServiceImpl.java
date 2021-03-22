@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 
 /**
- * 系统访问日志情况信息 服务层处理
+ *System access log situation information Service layer processing
  *
  * @author Crown
  */

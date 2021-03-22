@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 表单相关
+ * Form related
  *
  * @author Crown
  */
@@ -34,7 +34,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 按钮页
+     * Button page
      */
     @GetMapping("/button")
     public String button() {
@@ -42,7 +42,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 下拉框
+     * Drop down box
      */
     @GetMapping("/select")
     public String select() {
@@ -50,7 +50,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 表单校验
+     * Form validation
      */
     @GetMapping("/validate")
     public String validate() {
@@ -58,7 +58,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 功能扩展（包含文件上传）
+     * Function extension (including file upload)
      */
     @GetMapping("/jasny")
     public String jasny() {
@@ -66,7 +66,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 拖动排序
+     * Drag sort
      */
     @GetMapping("/sortable")
     public String sortable() {
@@ -74,7 +74,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 选项卡 & 面板
+     * Tabs & Panels
      */
     @GetMapping("/tabs_panels")
     public String tabs_panels() {
@@ -82,7 +82,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 栅格
+     * Grid
      */
     @GetMapping("/grid")
     public String grid() {
@@ -90,7 +90,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 表单向导
+     * Form wizard
      */
     @GetMapping("/wizard")
     public String wizard() {
@@ -98,7 +98,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 文件上传
+     * File Upload
      */
     @GetMapping("/upload")
     public String upload() {
@@ -106,7 +106,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 日期和时间页
+     * Date and time page
      */
     @GetMapping("/datetime")
     public String datetime() {
@@ -114,7 +114,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 左右互选组件
+     * Mutual selection of components
      */
     @GetMapping("/duallistbox")
     public String duallistbox() {
@@ -122,7 +122,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 基本表单
+     * Basic form
      */
     @GetMapping("/basic")
     public String basic() {
@@ -130,7 +130,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 卡片列表
+     * Card list
      */
     @GetMapping("/cards")
     public String cards() {
@@ -138,7 +138,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * summernote 富文本编辑器
+     * summernote rich text editor
      */
     @GetMapping("/summernote")
     public String summernote() {
@@ -146,7 +146,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 搜索自动补全
+     * Search auto-completion
      */
     @GetMapping("/autocomplete")
     public String autocomplete() {
@@ -154,7 +154,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 获取用户数据
+     * Get user data
      */
     @GetMapping("/userModel")
     @ResponseBody
@@ -163,7 +163,7 @@ public class DemoFormController extends WebController {
     }
 
     /**
-     * 获取数据集合
+     * Get data collection
      */
     @GetMapping("/collection")
     @ResponseBody

@@ -8,7 +8,7 @@ import lombok.Setter;
 public class Address {
 
     /**
-     * 开关
+     * switch
      */
     private boolean enabled = true;
 }

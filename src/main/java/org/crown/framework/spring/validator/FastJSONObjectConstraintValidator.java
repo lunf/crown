@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * <p>
- * FastJson JSONObject校验
+ * FastJson JSONObject verification
  * </p>
  *
  * @author Caratacus
@@ -21,7 +21,7 @@ public class FastJSONObjectConstraintValidator implements ConstraintValidator<Fa
     }
 
     /**
-     * @Description: 自定义校验逻辑
+     * @Description: Custom check logic
      */
     @Override
     public boolean isValid(JSONObject jsonObject, ConstraintValidatorContext constraintValidatorContext) {

@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Entity基类
+ * Entity base class
  *
  * @author Crown
  */
@@ -20,25 +20,25 @@ public class BaseEntity extends BaseQueryParams {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 创建者
+     * creator
      */
     @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
     /**
-     * 创建时间
+     * time created
      */
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
     /**
-     * 更新者
+     * modifier
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
 
     /**
-     * 更新时间
+     * time modified
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;

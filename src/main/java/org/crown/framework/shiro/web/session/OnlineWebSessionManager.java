@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 主要是在此如果会话的属性修改了 就标识下其修改了 然后方便 OnlineSessionDao同步
+ * The main reason is that if the properties of the session are modified, mark the modification and then facilitate the synchronization of OnlineSessionDao
  *
  * @author Crown
  */
@@ -45,7 +45,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
             return false;
         }
         String attributeKeyStr = attributeKey.toString();
-        // 优化 flash属性没必要持久化
+        // Optimized flash properties do not need to persist
         if (attributeKeyStr.startsWith("org.springframework")) {
             return false;
         }
@@ -67,7 +67,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
     }
 
     /**
-     * 验证session是否有效 用于删除过期session
+     * Verify that the session is valid to delete expired sessions
      */
     @Override
     public void validateSessions() {
@@ -81,7 +81,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
         Date expiredDate = DateUtils.addMilliseconds(new Date(), 0 - timeout);
         UserOnlineServiceImpl userOnlineService = ApplicationUtils.getBean(UserOnlineServiceImpl.class);
         List<UserOnline> userOnlineList = userOnlineService.selectOnlineByExpired(expiredDate);
-        // 批量过期删除
+        // Batch expiration delete
         List<String> needOfflineIdList = new ArrayList<>();
         for (UserOnline userOnline : userOnlineList) {
             try {

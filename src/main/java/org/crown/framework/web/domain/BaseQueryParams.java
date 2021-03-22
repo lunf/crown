@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Entity基类
+ * Entity base class
  *
  * @author Crown
  */
@@ -25,13 +25,13 @@ public class BaseQueryParams implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 搜索值
+     * Search value
      */
     @TableField(exist = false)
     private String searchValue;
 
     /**
-     * 请求参数
+     * Request parameter
      */
     @TableField(exist = false)
     private Map<String, Object> params;

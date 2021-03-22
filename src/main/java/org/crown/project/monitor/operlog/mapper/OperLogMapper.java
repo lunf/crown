@@ -5,7 +5,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.monitor.operlog.domain.OperLog;
 
 /**
- * 操作日志 数据层
+ * Operation log Data layer
  *
  * @author Crown
  */

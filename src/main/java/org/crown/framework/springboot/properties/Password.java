@@ -8,7 +8,7 @@ import lombok.Setter;
 public class Password {
 
     /**
-     * 密码最大输入错误次数
+     * Maximum number of incorrect password entries
      */
     private int maxRetryCount = 10;
 }

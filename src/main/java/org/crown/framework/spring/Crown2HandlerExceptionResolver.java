@@ -61,7 +61,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 全程异常处理
+ * Whole process exception handling
  * {@link org.springframework.web.servlet.HandlerExceptionResolver
  * {@link org.springframework.web.servlet.DispatcherServlet}.
  *

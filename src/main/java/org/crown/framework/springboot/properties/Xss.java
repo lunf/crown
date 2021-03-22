@@ -10,16 +10,16 @@ import lombok.Setter;
 public class Xss {
 
     /**
-     * Xss开关
+     * Xss switch
      */
     private Boolean enabled;
 
     /**
-     * 排除字段
+     * Exclude fields
      */
     private List<String> excludeFields;
     /**
-     * 排除路径
+     * Exclude path
      */
     private List<String> excludeUrls;
 

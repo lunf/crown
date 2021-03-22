@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * <p>
- * API 断言
+ * API assertion
  * </p>
  *
  * @author Caratacus
@@ -84,10 +84,10 @@ public class ApiAssert {
 
     /**
      * <p>
-     * 失败结果
+     * Failed result
      * </p>
      *
-     * @param errorCodeEnum 异常错误码
+     * @param errorCodeEnum Exception error code
      */
     public static void failure(ErrorCodeEnum errorCodeEnum) {
         throw new ApiException(errorCodeEnum);
@@ -232,10 +232,10 @@ public class ApiAssert {
 
     /**
      * <p>
-     * 失败结果
+     * Failed result
      * </p>
      *
-     * @param errorCode 异常错误码
+     * @param errorCode Exception error code
      */
     public static void failure(ErrorCode errorCode) {
         throw new ApiException(errorCode);

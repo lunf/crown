@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 在线用户监控
+ * Online user monitoring
  *
  * @author Crown
  */
@@ -56,7 +56,7 @@ public class UserOnlineController extends WebController<UserOnline> {
     }
 
     @RequiresPermissions("monitor:online:batchForceLogout")
-    @Log(title = "在线用户", businessType = BusinessType.FORCE)
+    @Log(title = "online user", businessType = BusinessType.FORCE)
     @PostMapping("/batchForceLogout")
     @ResponseBody
     public void batchForceLogout(@RequestParam("ids[]") String[] ids) {
@@ -78,7 +78,7 @@ public class UserOnlineController extends WebController<UserOnline> {
     }
 
     @RequiresPermissions("monitor:online:forceLogout")
-    @Log(title = "在线用户", businessType = BusinessType.FORCE)
+    @Log(title = "online user", businessType = BusinessType.FORCE)
     @PostMapping("/forceLogout")
     @ResponseBody
     public void forceLogout(String sessionId) {
