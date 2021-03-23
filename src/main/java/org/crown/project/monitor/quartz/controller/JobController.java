@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
- * 定时任务 前端控制器
+ * Timing task front controller
  * </p>
  *
  * @author Caratacus
@@ -56,7 +56,7 @@ public class JobController extends WebController<Job> {
         return getTableData(list);
     }
 
-    @Log(title = "定时任务", businessType = BusinessType.EXPORT)
+    @Log(title = "Timed task", businessType = BusinessType.EXPORT)
     @RequiresPermissions("monitor:job:export")
     @PostMapping("/export")
     @ResponseBody
@@ -66,7 +66,7 @@ public class JobController extends WebController<Job> {
         return new ExcelDTO(util.exportExcel(list, "定时任务"));
     }
 
-    @Log(title = "定时任务", businessType = BusinessType.DELETE)
+    @Log(title = "Timed task", businessType = BusinessType.DELETE)
     @RequiresPermissions("monitor:job:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -74,7 +74,7 @@ public class JobController extends WebController<Job> {
         List<String> idVals = StringUtils.split2List(ids);
         idVals.forEach(id -> {
             Job job = jobService.getById(id);
-            ApiAssert.notNull(ErrorCodeEnum.JOB_NOT_FOUND.overrideMsg("未找到ID为[" + id + "]的定时任务"), job);
+            ApiAssert.notNull(ErrorCodeEnum.JOB_NOT_FOUND.overrideMsg("ID is not found[" + id + "]Timed tasks"), job);
             jobService.delete(job);
         });
     }
@@ -88,33 +88,33 @@ public class JobController extends WebController<Job> {
     }
 
     /**
-     * 任务调度状态修改
+     * Task scheduling status modification
      */
-    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
+    @Log(title = "Timed task", businessType = BusinessType.UPDATE)
     @RequiresPermissions("monitor:job:changeStatus")
     @PostMapping("/changeStatus")
     @ResponseBody
     public void changeStatus(Job job) {
         Job newJob = jobService.getById(job.getJobId());
-        ApiAssert.notNull(ErrorCodeEnum.JOB_NOT_FOUND.overrideMsg("未找到ID为[" + job.getJobId() + "]的定时任务"), job);
+        ApiAssert.notNull(ErrorCodeEnum.JOB_NOT_FOUND.overrideMsg("ID not found[" + job.getJobId() + "]Timed tasks"), job);
         jobService.updatePaused(newJob);
     }
 
     /**
-     * 任务调度立即执行一次
+     * Task scheduling is executed once immediately
      */
-    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
+    @Log(title = "Timed task", businessType = BusinessType.UPDATE)
     @RequiresPermissions("monitor:job:changeStatus")
     @PostMapping("/run")
     @ResponseBody
     public void run(Job job) {
         Job newJob = jobService.getById(job.getJobId());
-        ApiAssert.notNull(ErrorCodeEnum.JOB_NOT_FOUND.overrideMsg("未找到ID为[" + job.getJobId() + "]的定时任务"), job);
+        ApiAssert.notNull(ErrorCodeEnum.JOB_NOT_FOUND.overrideMsg("ID not found[" + job.getJobId() + "]Timed tasks"), job);
         jobService.execute(newJob);
     }
 
     /**
-     * 新增调度
+     * New schedule
      */
     @GetMapping("/add")
     public String add() {
@@ -122,9 +122,9 @@ public class JobController extends WebController<Job> {
     }
 
     /**
-     * 新增保存调度
+     * Add save schedule
      */
-    @Log(title = "定时任务", businessType = BusinessType.INSERT)
+    @Log(title = "Timed task", businessType = BusinessType.INSERT)
     @RequiresPermissions("monitor:job:add")
     @PostMapping("/add")
     @ResponseBody
@@ -133,7 +133,7 @@ public class JobController extends WebController<Job> {
     }
 
     /**
-     * 修改调度
+     * Modify schedule
      */
     @GetMapping("/edit/{jobId}")
     public String edit(@PathVariable("jobId") Long jobId, ModelMap mmap) {
@@ -142,9 +142,9 @@ public class JobController extends WebController<Job> {
     }
 
     /**
-     * 修改保存调度
+     * Modify save schedule
      */
-    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
+    @Log(title = "Timed task", businessType = BusinessType.UPDATE)
     @RequiresPermissions("monitor:job:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -153,7 +153,7 @@ public class JobController extends WebController<Job> {
     }
 
     /**
-     * 校验cron表达式是否有效
+     * Verify that the cron expression is valid
      */
     @PostMapping("/checkCronExpressionIsValid")
     @ResponseBody

@@ -8,7 +8,7 @@ import java.util.Objects;
 import org.quartz.CronExpression;
 
 /**
- * cron表达式工具类
+ * cron expression tool class
  *
  * @author Caratacus
  */
@@ -17,7 +17,7 @@ public class CronUtils {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("ss mm HH dd MM ? yyyy");
 
     /***
-     *  功能描述：日期转换cron表达式
+     *  Function description: date conversion cron expression
      * @param date
      * @return
      */
@@ -31,7 +31,7 @@ public class CronUtils {
 
     /***
      * convert Date to cron, eg "0 07 10 15 1 ? 2016"
-     * @param date  : 时间点
+     * @param date  : Point in time
      * @return
      */
     public static String getCron(Date date) {
@@ -39,20 +39,20 @@ public class CronUtils {
     }
 
     /**
-     * 返回一个布尔值代表一个给定的Cron表达式的有效性
+     * Returns a boolean value representing the validity of a given cron expression
      *
-     * @param cronExpression Cron表达式
-     * @return boolean 表达式是否有效
+     * @param cronExpression Cron expression
+     * @return boolean Is the expression valid
      */
     public static boolean isValid(String cronExpression) {
         return CronExpression.isValidExpression(cronExpression);
     }
 
     /**
-     * 返回一个字符串值,表示该消息无效Cron表达式给出有效性
+     * Return a string value, indicating that the message is invalid Cron expression gives validity
      *
-     * @param cronExpression Cron表达式
-     * @return String 无效时返回表达式错误描述,如果有效返回null
+     * @param cronExpression Cron expression
+     * @return String Return expression error description when invalid, or null if valid
      */
     public static String getInvalidMessage(String cronExpression) {
         try {
@@ -64,10 +64,10 @@ public class CronUtils {
     }
 
     /**
-     * 返回下一个执行时间根据给定的Cron表达式
+     * Return the next execution time according to the given cron expression
      *
-     * @param cronExpression Cron表达式
-     * @return Date 下次Cron表达式执行时间
+     * @param cronExpression Cron expression
+     * @return Date Next Cron expression execution time
      */
     public static Date getNextExecution(String cronExpression) {
         try {

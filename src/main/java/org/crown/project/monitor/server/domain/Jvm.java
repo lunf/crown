@@ -6,34 +6,34 @@ import org.crown.common.utils.Arith;
 import org.crown.common.utils.DateUtils;
 
 /**
- * JVM相关信息
+ * JVM related information
  *
  * @author Crown
  */
 public class Jvm {
 
     /**
-     * 当前JVM占用的内存总数(M)
+     * The total memory occupied by the current JVM (M)
      */
     private double total;
 
     /**
-     * JVM最大可用内存总数(M)
+     * JVM maximum available memory total (M)
      */
     private double max;
 
     /**
-     * JVM空闲内存(M)
+     * JVM free memory (M)
      */
     private double free;
 
     /**
-     * JDK版本
+     * JDK version
      */
     private String version;
 
     /**
-     * JDK路径
+     * JDK path
      */
     private String home;
 
@@ -70,7 +70,7 @@ public class Jvm {
     }
 
     /**
-     * 获取JDK名称
+     * Get the JDK name
      */
     public String getName() {
         return ManagementFactory.getRuntimeMXBean().getVmName();
@@ -93,14 +93,14 @@ public class Jvm {
     }
 
     /**
-     * JDK启动时间
+     * JDK startup time
      */
     public String getStartTime() {
         return DateUtils.parseDateToStr(DateUtils.YYYY_MM_DD_HH_MM_SS, DateUtils.getServerStartDate());
     }
 
     /**
-     * JDK运行时间
+     * JDK runtime
      */
     public String getRunTime() {
         return DateUtils.getDatePoor(DateUtils.getNowDate(), DateUtils.getServerStartDate());

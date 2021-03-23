@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * <p>
- * 定时任务执行接口
+ * Timing task execution interface
  * </p>
  *
  * @author Caratacus
@@ -12,7 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 public interface IExecuteQuartzJob {
 
     /**
-     * 立即执行
+     * Execute immediately
      *
      * @param jobId
      * @param params

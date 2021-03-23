@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Quartz管理工具类
+ * Quartz management tools
  *
  * @author Caratacus
  */
@@ -39,11 +39,11 @@ public class QuartzManage {
 
     public void addJob(Job quartzJob) {
         try {
-            // 构建job信息
+            // Build job information
             JobDetail jobDetail = JobBuilder.newJob(QuartzExecutionJob.class).
                     withIdentity(QuartzCons.JOB_NAME_PREFIX + quartzJob.getJobId()).build();
 
-            //通过触发器名和cron 表达式创建 Trigger
+            //Create Trigger by trigger name and cron expression
             Trigger cronTrigger = newTrigger()
                     .withIdentity(QuartzCons.JOB_NAME_PREFIX + quartzJob.getJobId())
                     .startNow()
@@ -52,13 +52,13 @@ public class QuartzManage {
 
             cronTrigger.getJobDataMap().put(QuartzCons.JOB_KEY_PREFIX, quartzJob);
 
-            //重置启动时间
+            //Reset start time
             ((CronTriggerImpl) cronTrigger).setStartTime(new Date());
 
-            //执行定时任务
+            //Perform scheduled tasks
             scheduler.scheduleJob(jobDetail, cronTrigger);
 
-            // 暂停任务
+            // Pause task
             if (quartzJob.getPaused()) {
                 pauseJob(quartzJob);
             }
@@ -68,7 +68,7 @@ public class QuartzManage {
     }
 
     /**
-     * 更新job cron表达式
+     * Update job cron expression
      *
      * @param quartzJob
      * @throws SchedulerException
@@ -77,19 +77,19 @@ public class QuartzManage {
         try {
             TriggerKey triggerKey = TriggerKey.triggerKey(QuartzCons.JOB_NAME_PREFIX + quartzJob.getJobId());
             CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
-            // 如果不存在则创建一个定时任务
+            // If it does not exist, create a scheduled task
             if (trigger == null) {
                 addJob(quartzJob);
                 trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
             }
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(quartzJob.getCron());
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
-            //重置启动时间
+            //Reset start time
             ((CronTriggerImpl) trigger).setStartTime(new Date());
             trigger.getJobDataMap().put(QuartzCons.JOB_KEY_PREFIX, quartzJob);
 
             scheduler.rescheduleJob(triggerKey, trigger);
-            // 暂停任务
+            // Pause task
             if (quartzJob.getPaused()) {
                 pauseJob(quartzJob);
             }

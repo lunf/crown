@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * 定时任务 服务实现类
+ * Timing task service implementation class
  * </p>
  *
  * @author Caratacus

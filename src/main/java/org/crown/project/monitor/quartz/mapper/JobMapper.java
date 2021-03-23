@@ -6,7 +6,7 @@ import org.crown.project.monitor.quartz.domain.Job;
 
 /**
  * <p>
- * 定时任务 Mapper 接口
+ * Scheduled task Mapper interface
  * </p>
  *
  * @author Caratacus

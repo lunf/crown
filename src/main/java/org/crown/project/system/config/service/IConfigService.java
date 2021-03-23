@@ -6,41 +6,41 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.system.config.domain.Config;
 
 /**
- * 参数配置 服务层
+ * Parameter configuration service layer
  *
  * @author Crown
  */
 public interface IConfigService extends BaseService<Config> {
 
     /**
-     * 根据键名查询参数配置信息
+     * Query parameter configuration information based on key name
      *
-     * @param configKey 参数键名
-     * @return 参数键值
+     * @param configKey Parameter key name
+     * @return Parameter key value
      */
     Config selectConfigByKey(String configKey);
 
     /**
-     * 查询参数配置列表
+     * Query parameter configuration list
      *
-     * @param config 参数配置信息
-     * @return 参数配置集合
+     * @param config Parameter configuration information
+     * @return Parameter configuration collection
      */
     List<Config> selectConfigList(Config config);
 
     /**
-     * 校验参数键名是否唯一
+     * Verify that the parameter key name is unique
      *
-     * @param config 参数信息
-     * @return 结果
+     * @param config Parameter information
+     * @return result
      */
     boolean checkConfigKeyUnique(Config config);
 
     /**
-     * 根据config key 获取 value
+     * Get value according to config key
      *
      * @param configkey
-     * @return 结果
+     * @return result
      */
     String getConfigValueByKey(String configkey);
 }

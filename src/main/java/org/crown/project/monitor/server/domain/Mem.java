@@ -3,24 +3,24 @@ package org.crown.project.monitor.server.domain;
 import org.crown.common.utils.Arith;
 
 /**
- * 內存相关信息
+ * Memory related information
  *
  * @author Crown
  */
 public class Mem {
 
     /**
-     * 内存总量
+     * Total memory
      */
     private double total;
 
     /**
-     * 已用内存
+     * Used memory
      */
     private double used;
 
     /**
-     * 剩余内存
+     * Remaining memory
      */
     private double free;
 

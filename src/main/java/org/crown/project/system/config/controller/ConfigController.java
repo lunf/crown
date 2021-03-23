@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 参数配置 信息操作处理
+ * Parameter configuration information operation processing
  *
  * @author Crown
  */
@@ -47,7 +47,7 @@ public class ConfigController extends WebController<Config> {
     }
 
     /**
-     * 查询参数配置列表
+     * Query parameter configuration list
      */
     @RequiresPermissions("system:config:list")
     @PostMapping("/list")
@@ -58,7 +58,7 @@ public class ConfigController extends WebController<Config> {
         return getTableData(list);
     }
 
-    @Log(title = "参数管理", businessType = BusinessType.EXPORT)
+    @Log(title = "Parameter management", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:config:export")
     @PostMapping("/export")
     @ResponseBody
@@ -69,7 +69,7 @@ public class ConfigController extends WebController<Config> {
     }
 
     /**
-     * 新增参数配置
+     * New parameter configuration
      */
     @GetMapping("/add")
     public String add() {
@@ -77,19 +77,19 @@ public class ConfigController extends WebController<Config> {
     }
 
     /**
-     * 新增保存参数配置
+     * Added save parameter configuration
      */
     @RequiresPermissions("system:config:add")
-    @Log(title = "参数管理", businessType = BusinessType.INSERT)
+    @Log(title = "Parameter management", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public void addSave(@Validated Config config) {
-        ApiAssert.isTrue(ErrorCodeEnum.CONFIG_KEY_EXIST.overrideMsg("参数键名" + config.getConfigName() + "已存在"), configService.checkConfigKeyUnique(config));
+        ApiAssert.isTrue(ErrorCodeEnum.CONFIG_KEY_EXIST.overrideMsg("Parameter key name" + config.getConfigName() + "existed"), configService.checkConfigKeyUnique(config));
         configService.save(config);
     }
 
     /**
-     * 修改参数配置
+     * Modify parameter configuration
      */
     @GetMapping("/edit/{configId}")
     public String edit(@PathVariable("configId") Long configId, ModelMap mmap) {
@@ -98,10 +98,10 @@ public class ConfigController extends WebController<Config> {
     }
 
     /**
-     * 修改保存参数配置
+     * Modify and save the parameter configuration
      */
     @RequiresPermissions("system:config:edit")
-    @Log(title = "参数管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Parameter management", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated Config config) {
@@ -110,10 +110,10 @@ public class ConfigController extends WebController<Config> {
     }
 
     /**
-     * 删除参数配置
+     * Delete parameter configuration
      */
     @RequiresPermissions("system:config:remove")
-    @Log(title = "参数管理", businessType = BusinessType.DELETE)
+    @Log(title = "Parameter management", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public void remove(String ids) {
@@ -125,7 +125,7 @@ public class ConfigController extends WebController<Config> {
     }
 
     /**
-     * 校验参数键名
+     * Validation parameter key name
      */
     @PostMapping("/checkConfigKeyUnique")
     @ResponseBody

@@ -8,7 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 定时任务 Demo
+ * Timing task Demo
  *
  * @author Caratacus
  */

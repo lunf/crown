@@ -5,7 +5,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.config.domain.Config;
 
 /**
- * 参数配置 数据层
+ * Parameter configuration data layer
  *
  * @author Crown
  */

@@ -3,39 +3,39 @@ package org.crown.project.monitor.server.domain;
 import org.crown.common.utils.Arith;
 
 /**
- * CPU相关信息
+ * CPU related information
  *
  * @author Crown
  */
 public class Cpu {
 
     /**
-     * 核心数
+     * Number of cores
      */
     private int cpuNum;
 
     /**
-     * CPU总的使用率
+     * Total CPU usage
      */
     private double total;
 
     /**
-     * CPU系统使用率
+     * CPU system usage
      */
     private double sys;
 
     /**
-     * CPU用户使用率
+     * CPU user usage
      */
     private double used;
 
     /**
-     * CPU当前等待率
+     * CPU current waiting rate
      */
     private double wait;
 
     /**
-     * CPU当前空闲率
+     * CPU current idle rate
      */
     private double free;
 

@@ -8,25 +8,25 @@ import org.crown.project.system.dept.domain.Dept;
 import org.crown.project.system.role.domain.Role;
 
 /**
- * 部门管理 服务层
+ * Department management service layer
  *
  * @author Crown
  */
 public interface IDeptService extends BaseService<Dept> {
 
     /**
-     * 查询部门管理数据
+     * Query department management data
      *
-     * @param dept 部门信息
-     * @return 部门信息集合
+     * @param dept Department Information
+     * @return Departmental Information Collection
      */
     List<Dept> selectDeptList(Dept dept);
 
     /**
-     * 查询部门管理树
+     * Query department management tree
      *
-     * @param dept 部门信息
-     * @return 所有部门信息
+     * @param dept Department Information
+     * @return All department information
      */
     List<Ztree> selectDeptTree(Dept dept);
 
@@ -39,42 +39,42 @@ public interface IDeptService extends BaseService<Dept> {
     List<Ztree> roleDeptTreeData(Role role);
 
     /**
-     * 查询部门是否存在用户
+     * Query whether there are users in the department
      *
-     * @param deptId 部门ID
-     * @return 结果 true 存在 false 不存在
+     * @param deptId Department ID
+     * @return Result true exists false does not exist
      */
     boolean checkDeptExistUser(Long deptId);
 
     /**
-     * 新增保存部门信息
+     * Add and save department information
      *
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept Department Information
+     * @return result
      */
     boolean insertDept(Dept dept);
 
     /**
-     * 修改保存部门信息
+     * Modify and save department information
      *
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept Department Information
+     * @return result
      */
     boolean updateDept(Dept dept);
 
     /**
-     * 根据部门ID查询信息
+     * Query information based on department ID
      *
-     * @param deptId 部门ID
-     * @return 部门信息
+     * @param deptId Department ID
+     * @return Department Information
      */
     Dept selectDeptById(Long deptId);
 
     /**
-     * 校验部门名称是否唯一
+     * Verify that the department name is unique
      *
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept Department Information
+     * @return result
      */
     boolean checkDeptNameUnique(Dept dept);
 }

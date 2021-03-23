@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 部门信息
+ * Department Information
  *
  * @author Crown
  */
@@ -53,7 +53,7 @@ public class DeptController extends WebController<Dept> {
     }
 
     /**
-     * 新增部门
+     * New department
      */
     @GetMapping("/add/{parentId}")
     public String add(@PathVariable("parentId") Long parentId, ModelMap mmap) {
@@ -62,19 +62,19 @@ public class DeptController extends WebController<Dept> {
     }
 
     /**
-     * 新增保存部门
+     * Add saving department
      */
-    @Log(title = "部门管理", businessType = BusinessType.INSERT)
+    @Log(title = "Department management", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dept:add")
     @PostMapping("/add")
     @ResponseBody
     public void addSave(@Validated Dept dept) {
-        ApiAssert.isTrue(ErrorCodeEnum.DEPT_NAME_EXIST.overrideMsg("部门名称[" + dept.getDeptName() + "]已经存在"), deptService.checkDeptNameUnique(dept));
+        ApiAssert.isTrue(ErrorCodeEnum.DEPT_NAME_EXIST.overrideMsg("Department name[" + dept.getDeptName() + "]already exists"), deptService.checkDeptNameUnique(dept));
         deptService.insertDept(dept);
     }
 
     /**
-     * 修改
+     * Modify
      */
     @GetMapping("/edit/{deptId}")
     public String edit(@PathVariable("deptId") Long deptId, ModelMap mmap) {
@@ -87,22 +87,22 @@ public class DeptController extends WebController<Dept> {
     }
 
     /**
-     * 保存
+     * Save
      */
     @Log(title = "部门管理", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dept:edit")
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated Dept dept) {
-        ApiAssert.isTrue(ErrorCodeEnum.DEPT_NAME_EXIST.overrideMsg("部门名称[" + dept.getDeptName() + "]已经存在"), deptService.checkDeptNameUnique(dept));
+        ApiAssert.isTrue(ErrorCodeEnum.DEPT_NAME_EXIST.overrideMsg("Department name[" + dept.getDeptName() + "]already exists"), deptService.checkDeptNameUnique(dept));
         ApiAssert.isFalse(ErrorCodeEnum.DEPT_PARENT_DEPT_CANNOT_MYSELF, dept.getParentId().equals(dept.getDeptId()));
         deptService.updateDept(dept);
     }
 
     /**
-     * 删除
+     * Delete
      */
-    @Log(title = "部门管理", businessType = BusinessType.DELETE)
+    @Log(title = "Department management", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dept:remove")
     @GetMapping("/remove/{deptId}")
     @ResponseBody
@@ -112,7 +112,7 @@ public class DeptController extends WebController<Dept> {
     }
 
     /**
-     * 校验部门名称
+     * Name of verification department
      */
     @PostMapping("/checkDeptNameUnique")
     @ResponseBody
@@ -121,7 +121,7 @@ public class DeptController extends WebController<Dept> {
     }
 
     /**
-     * 选择部门树
+     * Select department tree
      */
     @GetMapping("/selectDeptTree/{deptId}")
     public String selectDeptTree(@PathVariable("deptId") Long deptId, ModelMap mmap) {
@@ -130,7 +130,7 @@ public class DeptController extends WebController<Dept> {
     }
 
     /**
-     * 加载部门列表树
+     * Load department list tree
      */
     @GetMapping("/treeData")
     @ResponseBody
@@ -139,7 +139,7 @@ public class DeptController extends WebController<Dept> {
     }
 
     /**
-     * 加载角色部门（数据权限）列表树
+     * Load the list tree of role departments (data permissions)
      */
     @GetMapping("/roleDeptTreeData")
     @ResponseBody

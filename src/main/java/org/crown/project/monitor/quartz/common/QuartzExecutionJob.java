@@ -21,7 +21,7 @@ import com.google.common.base.Throwables;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Quartz执行定时任务
+ * Quartz performs timing tasks
  *
  * @author Caratacus
  */
@@ -34,7 +34,7 @@ public class QuartzExecutionJob extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context) {
         Job quartzJob = (Job) context.getMergedJobDataMap().get(QuartzCons.JOB_KEY_PREFIX);
-        /* 获取spring bean */
+        /* Get spring bean */
         IJobService jobService = ApplicationUtils.getBean(IJobService.class);
         IJobLogService jobLogService = ApplicationUtils.getBean(IJobLogService.class);
         QuartzManage quartzManage = ApplicationUtils.getBean(QuartzManage.class);
@@ -47,26 +47,26 @@ public class QuartzExecutionJob extends QuartzJobBean {
         long startTime = System.currentTimeMillis();
         jobLog.setCron(quartzJob.getCron());
         try {
-            // 执行任务
-            log.info("任务准备执行，任务名称：{}", quartzJob.getJobName());
+            // Perform task
+            log.info("Task is ready to be executed, task name：{}", quartzJob.getJobName());
             QuartzRunnable task = new QuartzRunnable(quartzJob.getClassName(), quartzJob.getJobId(),
                     jobParams);
             Future<?> future = executorService.submit(task);
             future.get();
             String runTime = System.currentTimeMillis() - startTime + "ms";
             jobLog.setRunTime(runTime);
-            // 任务状态
+            // Task status
             jobLog.setStatus(Constants.SUCCESS);
-            log.info("任务执行完毕，任务名称：{} 总共耗时：{} 毫秒", quartzJob.getJobName(), runTime);
+            log.info("Task completed, task name: {} Total time-consuming：{} millisecond", quartzJob.getJobName(), runTime);
         } catch (Exception e) {
-            log.error("任务执行失败，任务名称：{}" + quartzJob.getJobName(), e);
+            log.error("Task execution failed, task name：{}" + quartzJob.getJobName(), e);
             jobLog.setRunTime(System.currentTimeMillis() - startTime + "ms");
-            // 任务状态 0：成功 1：失败
+            // Task status 0: successful 1: failed
             jobLog.setStatus(Constants.FAIL);
             jobLog.setException(Throwables.getStackTraceAsString(e));
-            //出错就暂停任务
+            //Pause the task on error
             quartzManage.pauseJob(quartzJob);
-            //更新状态
+            //update status
             jobService.updatePaused(quartzJob);
         } finally {
             jobLogService.save(jobLog);

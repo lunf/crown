@@ -7,7 +7,7 @@ import org.crown.project.monitor.quartz.domain.JobLog;
 
 /**
  * <p>
- * 定时任务日志 服务类
+ * Scheduled task log service class
  * </p>
  *
  * @author Caratacus
@@ -15,7 +15,7 @@ import org.crown.project.monitor.quartz.domain.JobLog;
 public interface IJobLogService extends BaseService<JobLog> {
 
     /**
-     * 查询定时任务日志列表
+     * Query the log list of scheduled tasks
      *
      * @param jobLog
      * @return

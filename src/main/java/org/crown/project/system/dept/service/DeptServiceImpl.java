@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 部门管理 服务实现
+ * Department management service realization
  *
  * @author Crown
  */
@@ -54,21 +54,21 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implement
     }
 
     /**
-     * 对象转部门树
+     * Object to department tree
      *
-     * @param deptList 部门列表
-     * @return 树结构列表
+     * @param deptList Department list
+     * @return Tree structure list
      */
     public List<Ztree> initZtree(List<Dept> deptList) {
         return initZtree(deptList, null);
     }
 
     /**
-     * 对象转部门树
+     * Object to department tree
      *
-     * @param deptList     部门列表
-     * @param roleDeptList 角色已存在菜单列表
-     * @return 树结构列表
+     * @param deptList     Department list
+     * @param roleDeptList Role already exists in the menu list
+     * @return Tree structure list
      */
     public List<Ztree> initZtree(List<Dept> deptList, List<String> roleDeptList) {
         List<Ztree> ztrees = new ArrayList<>();
@@ -97,9 +97,9 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implement
     @Override
     public boolean insertDept(Dept dept) {
         Dept info = baseMapper.selectDeptById(dept.getParentId());
-        // 如果父节点不为"正常"状态,则不允许新增子节点
+        // If the parent node is not in the "normal" state, no new child nodes are allowed
         if (!UserConstants.DEPT_NORMAL.equals(info.getStatus())) {
-            throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "部门停用，不允许新增");
+            throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "Department is disabled, adding is not allowed");
         }
         dept.setAncestors(info.getAncestors() + "," + dept.getParentId());
         return save(dept);
@@ -118,16 +118,16 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implement
         }
         boolean result = updateById(dept);
         if (UserConstants.DEPT_NORMAL.equals(dept.getStatus())) {
-            // 如果该部门是启用状态，则启用该部门的所有上级部门
+            // If the department is enabled, then all the higher-level departments of the department are enabled
             updateParentDeptStatus(dept);
         }
         return result;
     }
 
     /**
-     * 修改该部门的父级部门状态
+     * Modify the status of the parent department of the department
      *
-     * @param dept 当前部门
+     * @param dept Current department
      */
     private void updateParentDeptStatus(Dept dept) {
         String updateBy = dept.getUpdateBy();
@@ -137,11 +137,11 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implement
     }
 
     /**
-     * 修改子元素关系
+     * Modify the child element relationship
      *
-     * @param deptId       被修改的部门ID
-     * @param newAncestors 新的父ID集合
-     * @param oldAncestors 旧的父ID集合
+     * @param deptId       Department ID being modified
+     * @param newAncestors New parent ID collection
+     * @param oldAncestors Old parent ID collection
      */
     public void updateDeptChildren(Long deptId, String newAncestors, String oldAncestors) {
         List<Dept> children = baseMapper.selectChildrenDeptById(deptId);
@@ -154,10 +154,10 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implement
     }
 
     /**
-     * 修改子元素关系
+     * Modify the child element relationship
      *
-     * @param deptId    部门ID
-     * @param ancestors 元素列表
+     * @param deptId    Department ID
+     * @param ancestors Element list
      */
     public void updateDeptChildren(Long deptId, String ancestors) {
         Dept dept = new Dept();

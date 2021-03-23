@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 定时任务日志 服务实现类
+ * Scheduled task log Service implementation class
  * </p>
  *
  * @author Caratacus

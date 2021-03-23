@@ -7,7 +7,7 @@ import org.crown.project.monitor.quartz.domain.Job;
 
 /**
  * <p>
- * 定时任务 服务类
+ * Timed task service class
  * </p>
  *
  * @author Caratacus
@@ -38,21 +38,21 @@ public interface IJobService extends BaseService<Job> {
     void delete(Job quartzJob);
 
     /**
-     * 更改定时任务状态
+     * Change the status of a scheduled task
      *
      * @param quartzJob
      */
     void updatePaused(Job quartzJob);
 
     /**
-     * 立即执行定时任务
+     * Execute scheduled tasks immediately
      *
      * @param quartzJob
      */
     void execute(Job quartzJob);
 
     /**
-     * 查询定时任务列表
+     * Query the list of scheduled tasks
      *
      * @param job
      * @return

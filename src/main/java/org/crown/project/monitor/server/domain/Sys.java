@@ -1,34 +1,34 @@
 package org.crown.project.monitor.server.domain;
 
 /**
- * 系统相关信息
+ * System related information
  *
  * @author Crown
  */
 public class Sys {
 
     /**
-     * 服务器名称
+     * Server name
      */
     private String computerName;
 
     /**
-     * 服务器Ip
+     * Server IP
      */
     private String computerIp;
 
     /**
-     * 项目路径
+     * Project path
      */
     private String userDir;
 
     /**
-     * 操作系统
+     * Operating system
      */
     private String osName;
 
     /**
-     * 系统架构
+     * System structure
      */
     private String osArch;
 

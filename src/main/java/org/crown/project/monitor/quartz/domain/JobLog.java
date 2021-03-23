@@ -16,7 +16,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 定时任务日志
+ * Scheduled task log
  * </p>
  *
  * @author Caratacus
@@ -30,53 +30,53 @@ public class JobLog extends BaseQueryParams {
     /**
      * ID
      */
-    @Excel(name = "日志序号")
+    @Excel(name = "Log sequence number")
     @TableId
     private Long jobLogId;
     /**
-     * 执行类名
+     * Execution class name
      */
-    @Excel(name = "执行类名")
-    @ApiModelProperty(notes = "执行类名")
+    @Excel(name = "Execution class name")
+    @ApiModelProperty(notes = "Execution class name")
     private String className;
-    @ApiModelProperty(notes = "创建时间")
+    @ApiModelProperty(notes = "Time created")
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
     /**
-     * Cron表达式
+     * Cron expression
      */
-    @Excel(name = "Cron表达式")
-    @ApiModelProperty(notes = "Cron表达式")
+    @Excel(name = "Cron expression")
+    @ApiModelProperty(notes = "Cron expression")
     private String cron;
     /**
-     * 异常信息
+     * Exception information
      */
-    @Excel(name = "异常信息")
-    @ApiModelProperty(notes = "异常信息")
+    @Excel(name = "Exception information")
+    @ApiModelProperty(notes = "Exception information")
     private String exception;
     /**
-     * 执行状态（1成功 0失败）
+     * Execution status (1 success 0 failure)
      */
-    @Excel(name = "执行状态", readConverterExp = "1=成功,0=失败")
-    @ApiModelProperty(notes = "执行状态")
+    @Excel(name = "Execution status", readConverterExp = "1=success, 0=failure")
+    @ApiModelProperty(notes = "Execution status")
     private Integer status;
     /**
-     * 任务名称
+     * job name
      */
-    @Excel(name = "任务名称")
-    @ApiModelProperty(notes = "任务名称")
+    @Excel(name = "job name")
+    @ApiModelProperty(notes = "job name")
     private String jobName;
     /**
-     * 参数
+     * parameter
      */
-    @Excel(name = "参数")
-    @ApiModelProperty(notes = "参数")
+    @Excel(name = "parameter")
+    @ApiModelProperty(notes = "parameter")
     private JSONObject jobParams;
     /**
-     * 运行时长
+     * Running time
      */
-    @Excel(name = "运行时长")
-    @ApiModelProperty(notes = "运行时长")
+    @Excel(name = "Running time")
+    @ApiModelProperty(notes = "Running time")
     private String runTime;
 
 }

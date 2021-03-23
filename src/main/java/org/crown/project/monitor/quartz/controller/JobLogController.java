@@ -25,7 +25,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
  * <p>
- * 定时任务日志 前端控制器
+ * Scheduled task log Front controllerScheduled task log Front controller
  * </p>
  *
  * @author Caratacus
@@ -54,17 +54,17 @@ public class JobLogController extends WebController<JobLog> {
         return getTableData(list);
     }
 
-    @Log(title = "调度日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Scheduling log", businessType = BusinessType.EXPORT)
     @RequiresPermissions("monitor:job:export")
     @PostMapping("/export")
     @ResponseBody
     public ExcelDTO export(JobLog jobLog) {
         List<JobLog> list = jobLogService.selectJobLogList(jobLog);
         ExcelUtils<JobLog> util = new ExcelUtils<>(JobLog.class);
-        return new ExcelDTO(util.exportExcel(list, "调度日志"));
+        return new ExcelDTO(util.exportExcel(list, "Scheduling log"));
     }
 
-    @Log(title = "调度日志", businessType = BusinessType.DELETE)
+    @Log(title = "Scheduling log", businessType = BusinessType.DELETE)
     @RequiresPermissions("monitor:job:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -80,7 +80,7 @@ public class JobLogController extends WebController<JobLog> {
         return prefix + "/detail";
     }
 
-    @Log(title = "调度日志", businessType = BusinessType.CLEAN)
+    @Log(title = "Scheduling log", businessType = BusinessType.CLEAN)
     @RequiresPermissions("monitor:job:remove")
     @PostMapping("/clean")
     @ResponseBody

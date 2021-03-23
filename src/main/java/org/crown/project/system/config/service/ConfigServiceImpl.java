@@ -11,7 +11,7 @@ import org.crown.project.system.config.mapper.ConfigMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * 参数配置 服务层实现
+ * Parameter configuration service layer implementation
  *
  * @author Crown
  */

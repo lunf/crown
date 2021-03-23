@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 参数配置表 sys_config
+ * Parameter configuration table sys_config
  *
  * @author Crown
  */
@@ -23,44 +23,44 @@ public class Config extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 参数主键
+     * Parameter primary key
      */
-    @Excel(name = "参数主键")
+    @Excel(name = "Parameter primary key")
     @TableId
     private Long configId;
 
     /**
-     * 参数名称
+     * Parameter name
      */
-    @Excel(name = "参数名称")
-    @NotBlank(message = "参数名称不能为空")
-    @Size(max = 100, message = "参数名称不能超过100个字符")
+    @Excel(name = "parameter name")
+    @NotBlank(message = "The parameter name cannot be empty")
+    @Size(max = 100, message = "The parameter name cannot exceed 100 characters")
     private String configName;
 
     /**
-     * 参数键名
+     * Parameter key name
      */
-    @Excel(name = "参数键名")
-    @NotBlank(message = "参数键名长度不能为空")
-    @Size(max = 100, message = "参数键名长度不能超过100个字符")
+    @Excel(name = "Parameter key name")
+    @NotBlank(message = "The length of the parameter key name cannot be empty")
+    @Size(max = 100, message = "The length of the parameter key name cannot exceed 100 characters")
     private String configKey;
 
     /**
-     * 参数键值
+     * Parameter key value
      */
-    @Excel(name = "参数键值")
-    @NotBlank(message = "参数键值不能为空")
-    @Size(max = 500, message = "参数键值长度不能超过500个字符")
+    @Excel(name = "Parameter key value")
+    @NotBlank(message = "The parameter key value cannot be empty")
+    @Size(max = 500, message = "The length of the parameter key value cannot exceed 500 characters")
     private String configValue;
 
     /**
-     * 系统内置（Y是 N否）
+     * Built-in system (Y Yes, N No)
      */
-    @Excel(name = "系统内置", readConverterExp = "Y=是,N=否")
+    @Excel(name = "Built-in system", readConverterExp = "Y=Yes, N=No")
     private String configType;
 
     /**
-     * 备注
+     * Remarks
      */
     private String remark;
 }

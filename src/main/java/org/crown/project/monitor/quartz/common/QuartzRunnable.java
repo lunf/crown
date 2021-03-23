@@ -14,7 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 执行定时任务
+ * Perform scheduled tasks
  *
  * @author Caratacus
  */

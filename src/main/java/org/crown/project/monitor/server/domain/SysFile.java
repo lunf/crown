@@ -1,44 +1,44 @@
 package org.crown.project.monitor.server.domain;
 
 /**
- * 系统文件相关信息
+ * System file related information
  *
  * @author Crown
  */
 public class SysFile {
 
     /**
-     * 盘符路径
+     * Drive letter path
      */
     private String dirName;
 
     /**
-     * 盘符类型
+     * Drive letter type
      */
     private String sysTypeName;
 
     /**
-     * 文件类型
+     * File type
      */
     private String typeName;
 
     /**
-     * 总大小
+     * Total size
      */
     private String total;
 
     /**
-     * 剩余大小
+     * Remaining size
      */
     private String free;
 
     /**
-     * 已经使用量
+     * Already used
      */
     private String used;
 
     /**
-     * 资源的使用率
+     * Resource utilization
      */
     private double usage;
 

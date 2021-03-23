@@ -8,7 +8,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.dept.domain.Dept;
 
 /**
- * 部门管理 数据层
+ * Department Management Data Layer
  *
  * @author Crown
  */
@@ -16,49 +16,49 @@ import org.crown.project.system.dept.domain.Dept;
 public interface DeptMapper extends BaseMapper<Dept> {
 
     /**
-     * 查询部门管理数据
+     * Query department management data
      *
-     * @param dept 部门信息
-     * @return 部门信息集合
+     * @param dept Department Information
+     * @return Departmental Information Collection
      */
     List<Dept> selectDeptList(Dept dept);
 
     /**
-     * 修改子元素关系
+     * Modify the child element relationship
      *
-     * @param depts 子元素
-     * @return 结果
+     * @param depts Child element
+     * @return Result
      */
     int updateDeptChildren(@Param("depts") List<Dept> depts);
 
     /**
-     * 根据部门ID查询信息
+     * Query information based on department ID
      *
-     * @param deptId 部门ID
-     * @return 部门信息
+     * @param deptId Department ID
+     * @return Department Information
      */
     Dept selectDeptById(Long deptId);
 
     /**
-     * 根据角色ID查询部门
+     * Query department based on role ID
      *
-     * @param roleId 角色ID
-     * @return 部门列表
+     * @param roleId Role ID
+     * @return Department list
      */
     List<String> selectRoleDeptTree(Long roleId);
 
     /**
-     * 修改所在部门的父级部门状态
+     * Modify the status of the parent department of the department
      *
-     * @param dept 部门
+     * @param dept Department
      */
     void updateDeptStatus(Dept dept);
 
     /**
-     * 根据ID查询所有子部门
+     * Query all sub-departments based on ID
      *
-     * @param deptId 部门ID
-     * @return 部门列表
+     * @param deptId Department ID
+     * @return Department list
      */
     List<Dept> selectChildrenDeptById(Long deptId);
 }
