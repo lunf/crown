@@ -6,17 +6,17 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.system.notice.domain.Notice;
 
 /**
- * 公告 服务层
+ * Announcement Service Layer
  *
  * @author Crown
  */
 public interface INoticeService extends BaseService<Notice> {
 
     /**
-     * 查询公告列表
+     * Query the announcement list
      *
-     * @param notice 公告信息
-     * @return 公告集合
+     * @param notice official news
+     * @return Announcement collection
      */
     List<Notice> selectNoticeList(Notice notice);
 }

@@ -7,50 +7,50 @@ import org.crown.framework.web.domain.Ztree;
 import org.crown.project.system.dict.domain.DictType;
 
 /**
- * 字典 业务层
+ * Dictionary Business layer
  *
  * @author Crown
  */
 public interface IDictTypeService extends BaseService<DictType> {
 
     /**
-     * 根据条件分页查询字典类型
+     * Query dictionary type by condition
      *
-     * @param dictType 字典类型信息
-     * @return 字典类型集合信息
+     * @param dictType Dictionary type information
+     * @return Dictionary type collection information
      */
     List<DictType> selectDictTypeList(DictType dictType);
 
     /**
-     * 批量删除字典类型
+     * Batch delete dictionary types
      *
-     * @param ids 需要删除的数据
-     * @return 结果
-     * @throws Exception 异常
+     * @param ids Data to be deleted
+     * @return result
+     * @throws Exception abnormal
      */
     boolean deleteDictTypeByIds(String ids);
 
     /**
-     * 修改保存字典类型信息
+     * Modify and save dictionary type information
      *
-     * @param dictType 字典类型信息
-     * @return 结果
+     * @param dictType Dictionary type information
+     * @return result
      */
     boolean updateDictType(DictType dictType);
 
     /**
-     * 校验字典类型称是否唯一
+     * Check whether the dictionary type is unique
      *
-     * @param dictType 字典类型
-     * @return 结果
+     * @param dictType Dictionary type
+     * @return result
      */
     boolean checkDictTypeUnique(DictType dictType);
 
     /**
-     * 查询字典类型树
+     * Query dictionary type tree
      *
-     * @param dictType 字典类型
-     * @return 所有字典类型
+     * @param dictType Dictionary type
+     * @return All dictionary types
      */
     List<Ztree> selectDictTree(DictType dictType);
 

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 岗位信息操作处理
+ * Post information operation processing
  *
  * @author Crown
  */
@@ -64,7 +64,7 @@ public class PostController extends WebController<Post> {
     }
 
     @RequiresPermissions("system:post:remove")
-    @Log(title = "岗位管理", businessType = BusinessType.DELETE)
+    @Log(title = "Job management", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public void remove(String ids) {
@@ -72,7 +72,7 @@ public class PostController extends WebController<Post> {
     }
 
     /**
-     * 新增岗位
+     * New job
      */
     @GetMapping("/add")
     public String add() {
@@ -80,20 +80,20 @@ public class PostController extends WebController<Post> {
     }
 
     /**
-     * 新增保存岗位
+     * Add save job
      */
     @RequiresPermissions("system:post:add")
-    @Log(title = "岗位管理", businessType = BusinessType.INSERT)
+    @Log(title = "Job management", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public void addSave(@Validated Post post) {
-        ApiAssert.isTrue(ErrorCodeEnum.POST_NAME_EXIST.overrideMsg("岗位名称[" + post.getPostName() + "]已存在"), postService.checkPostNameUnique(post));
-        ApiAssert.isTrue(ErrorCodeEnum.POST_CODE_EXIST.overrideMsg("岗位编码[" + post.getPostCode() + "]已存在"), postService.checkPostCodeUnique(post));
+        ApiAssert.isTrue(ErrorCodeEnum.POST_NAME_EXIST.overrideMsg("Position Title[" + post.getPostName() + "]exists"), postService.checkPostNameUnique(post));
+        ApiAssert.isTrue(ErrorCodeEnum.POST_CODE_EXIST.overrideMsg("Post code[" + post.getPostCode() + "]exists"), postService.checkPostCodeUnique(post));
         postService.save(post);
     }
 
     /**
-     * 修改岗位
+     * Modify position
      */
     @GetMapping("/edit/{postId}")
     public String edit(@PathVariable("postId") Long postId, ModelMap mmap) {
@@ -102,20 +102,20 @@ public class PostController extends WebController<Post> {
     }
 
     /**
-     * 修改保存岗位
+     * Modify save post
      */
     @RequiresPermissions("system:post:edit")
-    @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Job management", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated Post post) {
-        ApiAssert.isTrue(ErrorCodeEnum.POST_NAME_EXIST.overrideMsg("岗位名称[" + post.getPostName() + "]已存在"), postService.checkPostNameUnique(post));
-        ApiAssert.isTrue(ErrorCodeEnum.POST_CODE_EXIST.overrideMsg("岗位编码[" + post.getPostCode() + "]已存在"), postService.checkPostCodeUnique(post));
+        ApiAssert.isTrue(ErrorCodeEnum.POST_NAME_EXIST.overrideMsg("Position Title[" + post.getPostName() + "]exists"), postService.checkPostNameUnique(post));
+        ApiAssert.isTrue(ErrorCodeEnum.POST_CODE_EXIST.overrideMsg("Post code[" + post.getPostCode() + "]exists"), postService.checkPostCodeUnique(post));
         postService.updateById(post);
     }
 
     /**
-     * 校验岗位名称
+     * Check post name
      */
     @PostMapping("/checkPostNameUnique")
     @ResponseBody
@@ -124,7 +124,7 @@ public class PostController extends WebController<Post> {
     }
 
     /**
-     * 校验岗位编码
+     * Check post code
      */
     @PostMapping("/checkPostCodeUnique")
     @ResponseBody

@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 字典数据表 sys_dict_data
+ * Dictionary data table sys_dict_data
  *
  * @author Crown
  */
@@ -24,68 +24,68 @@ public class DictData extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 字典编码
+     * Dictionary encoding
      */
-    @Excel(name = "字典编码")
+    @Excel(name = "Dictionary encoding")
     @TableId
     private Long dictCode;
 
     /**
-     * 字典排序
+     * Dictionary sort
      */
-    @Excel(name = "字典排序")
+    @Excel(name = "Dictionary sort")
     private Long dictSort;
 
     /**
-     * 字典标签
+     * Dictionary tag
      */
-    @Excel(name = "字典标签")
-    @NotBlank(message = "字典标签不能为空")
-    @Size(max = 100, message = "字典标签长度不能超过100个字符")
+    @Excel(name = "Dictionary tag")
+    @NotBlank(message = "Dictionary tag cannot be empty")
+    @Size(max = 100, message = "The length of the dictionary tag cannot exceed 100 characters")
     private String dictLabel;
 
     /**
-     * 字典键值
+     * Dictionary key
      */
-    @Excel(name = "字典键值")
-    @NotBlank(message = "字典键值不能为空")
-    @Size(max = 100, message = "字典键值长度不能超过100个字符")
+    @Excel(name = "Dictionary key")
+    @NotBlank(message = "Dictionary key value cannot be empty")
+    @Size(max = 100, message = "The length of dictionary keys cannot exceed 100 characters")
     private String dictValue;
 
     /**
-     * 字典类型
+     * Dictionary type
      */
-    @Excel(name = "字典类型")
-    @NotBlank(message = "字典类型不能为空")
-    @Size(max = 100, message = "字典类型长度不能超过100个字符")
+    @Excel(name = "Dictionary type")
+    @NotBlank(message = "The dictionary type cannot be empty")
+    @Size(max = 100, message = "The length of the dictionary type cannot exceed 100 characters")
     private String dictType;
 
     /**
-     * 字典样式
+     * Dictionary style
      */
-    @Excel(name = "字典样式")
-    @Size(max = 100, message = "样式属性长度不能超过100个字符")
+    @Excel(name = "Dictionary style")
+    @Size(max = 100, message = "The style attribute length cannot exceed 100 characters")
     private String cssClass;
 
     /**
-     * 表格字典样式
+     * Table dictionary style
      */
     private String listClass;
 
     /**
-     * 是否默认（Y是 N否）
+     * Whether the default (Y yes, N no)
      */
-    @Excel(name = "是否默认", readConverterExp = "Y=是,N=否")
+    @Excel(name = "Default", readConverterExp = "Y=Yes, N=No")
     private String isDefault;
 
     /**
-     * 状态（0正常 1停用）
+     * Status (0 normal, 1 disabled)
      */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
+    @Excel(name = "status", readConverterExp = "0=normal, 1=disabled")
     private String status;
 
     /**
-     * 备注
+     * Remarks
      */
     private String remark;
 

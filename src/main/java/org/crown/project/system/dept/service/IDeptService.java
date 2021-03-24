@@ -31,10 +31,10 @@ public interface IDeptService extends BaseService<Dept> {
     List<Ztree> selectDeptTree(Dept dept);
 
     /**
-     * 根据角色ID查询菜单
+     * Query menu based on role ID
      *
-     * @param role 角色对象
-     * @return 菜单列表
+     * @param role Role object
+     * @return Menu list
      */
     List<Ztree> roleDeptTreeData(Role role);
 

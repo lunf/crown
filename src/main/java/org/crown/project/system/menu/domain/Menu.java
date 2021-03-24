@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 菜单权限表 sys_menu
+ * Menu permission table sys_menu
  *
  * @author Crown
  */
@@ -26,75 +26,75 @@ public class Menu extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 菜单ID
+     * Menu ID
      */
     @TableId
     private Long menuId;
 
     /**
-     * 菜单名称
+     * Menu name
      */
-    @NotBlank(message = "菜单名称不能为空")
-    @Size(max = 50, message = "菜单名称长度不能超过50个字符")
+    @NotBlank(message = "Menu name cannot be empty")
+    @Size(max = 50, message = "The length of the menu name cannot exceed 50 characters")
     private String menuName;
 
     /**
-     * 父菜单名称
+     * Parent menu name
      */
     @TableField(exist = false)
     private String parentName;
 
     /**
-     * 父菜单ID
+     * Parent menu ID
      */
     private Long parentId;
 
     /**
-     * 显示顺序
+     * display order
      */
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "Display order cannot be empty")
     private String orderNum;
 
     /**
-     * 菜单URL
+     * Menu URL
      */
-    @Size(max = 200, message = "请求地址不能超过200个字符")
+    @Size(max = 200, message = "The requested address cannot exceed 200 characters")
     private String url;
 
     /**
-     * 打开方式：menuItem页签 menuBlank新窗口
+     * Open method: menuItem tab menu Blank new window
      */
     private String target;
 
     /**
-     * 类型:0目录,1菜单,2按钮
+     * Type: 0 directory, 1 menu, 2 buttons
      */
-    @NotBlank(message = "菜单类型不能为空")
+    @NotBlank(message = "Menu type cannot be empty")
     private String menuType;
 
     /**
-     * 菜单状态:0显示,1隐藏
+     * Menu status: 0 display, 1 hide
      */
     private String visible;
 
     /**
-     * 权限字符串
+     * Permission string
      */
-    @Size(max = 100, message = "权限标识长度不能超过100个字符")
+    @Size(max = 100, message = "The length of the authorization ID cannot exceed 100 characters")
     private String perms;
 
     /**
-     * 菜单图标
+     * Menu icon
      */
     private String icon;
 
     /**
-     * 备注
+     * Remarks
      */
     private String remark;
 
     /**
-     * 子菜单
+     * Submenu
      */
     @TableField(exist = false)
     private List<Menu> children = new ArrayList<>();

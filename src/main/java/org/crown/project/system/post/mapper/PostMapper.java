@@ -7,7 +7,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.post.domain.Post;
 
 /**
- * 岗位信息 数据层
+ * Position information Data layer
  *
  * @author Crown
  */
@@ -15,10 +15,10 @@ import org.crown.project.system.post.domain.Post;
 public interface PostMapper extends BaseMapper<Post> {
 
     /**
-     * 根据用户ID查询岗位
+     * Query position based on user ID
      *
-     * @param userId 用户ID
-     * @return 岗位列表
+     * @param userId User ID
+     * @return Job list
      */
     List<Post> selectPostsByUserId(Long userId);
 

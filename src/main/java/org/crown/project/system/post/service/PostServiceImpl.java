@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 岗位信息 服务层处理
+ * Job information service layer processing
  *
  * @author Crown
  */
@@ -61,7 +61,7 @@ public class PostServiceImpl extends BaseServiceImpl<PostMapper, Post> implement
         for (Long postId : postIds) {
             Post post = getById(postId);
             if (userPostService.query().eq(UserPost::getPostId, postId).exist()) {
-                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, post.getPostName() + "已分配，不能删除");
+                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, post.getPostName() + "Allocated and cannot be deleted");
             }
         }
         return delete().in(Post::getPostId, postIds).execute();

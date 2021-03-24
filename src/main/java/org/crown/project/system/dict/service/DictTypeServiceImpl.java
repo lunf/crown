@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 字典 业务层处理
+ * Dictionary Business layer processing
  *
  * @author Crown
  */

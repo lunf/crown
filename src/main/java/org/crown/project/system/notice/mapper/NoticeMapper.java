@@ -5,7 +5,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.notice.domain.Notice;
 
 /**
- * 公告 数据层
+ * Announcement data layer
  *
  * @author Crown
  */

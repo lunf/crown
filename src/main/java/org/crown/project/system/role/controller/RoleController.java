@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 角色信息
+ * Role information
  *
  * @author Crown
  */
@@ -58,19 +58,19 @@ public class RoleController extends WebController {
         return getTableData(list);
     }
 
-    @Log(title = "角色管理", businessType = BusinessType.EXPORT)
+    @Log(title = "Role management", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:role:export")
     @PostMapping("/export")
     @ResponseBody
     public ExcelDTO export(Role role) {
         List<Role> list = roleService.selectRoleList(role);
         ExcelUtils<Role> util = new ExcelUtils<>(Role.class);
-        return new ExcelDTO(util.exportExcel(list, "角色数据"));
+        return new ExcelDTO(util.exportExcel(list, "Role data"));
 
     }
 
     /**
-     * 新增角色
+     * New role
      */
     @GetMapping("/add")
     public String add() {
@@ -78,20 +78,20 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 新增保存角色
+     * Add save role
      */
     @RequiresPermissions("system:role:add")
-    @Log(title = "角色管理", businessType = BusinessType.INSERT)
+    @Log(title = "Role management", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public void addSave(@Validated Role role) {
-        ApiAssert.isTrue(ErrorCodeEnum.ROLE_NAME_EXIST.overrideMsg("角色名称[" + role.getRoleName() + "]已存在"), roleService.checkRoleNameUnique(role));
-        ApiAssert.isTrue(ErrorCodeEnum.ROLE_KEY_EXIST.overrideMsg("角色权限[" + role.getRoleKey() + "]已存在"), roleService.checkRoleKeyUnique(role));
+        ApiAssert.isTrue(ErrorCodeEnum.ROLE_NAME_EXIST.overrideMsg("Role Name[" + role.getRoleName() + "]exists"), roleService.checkRoleNameUnique(role));
+        ApiAssert.isTrue(ErrorCodeEnum.ROLE_KEY_EXIST.overrideMsg("Role Permissions[" + role.getRoleKey() + "]exists"), roleService.checkRoleKeyUnique(role));
         roleService.insertRole(role);
     }
 
     /**
-     * 修改角色
+     * Modify role
      */
     @GetMapping("/edit/{roleId}")
     public String edit(@PathVariable("roleId") Long roleId, ModelMap mmap) {
@@ -100,20 +100,20 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 修改保存角色
+     * Modify save role
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Role management", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated Role role) {
-        ApiAssert.isTrue(ErrorCodeEnum.ROLE_NAME_EXIST.overrideMsg("角色名称[" + role.getRoleName() + "]已存在"), roleService.checkRoleNameUnique(role));
-        ApiAssert.isTrue(ErrorCodeEnum.ROLE_KEY_EXIST.overrideMsg("角色权限[" + role.getRoleKey() + "]已存在"), roleService.checkRoleKeyUnique(role));
+        ApiAssert.isTrue(ErrorCodeEnum.ROLE_NAME_EXIST.overrideMsg("Role Name[" + role.getRoleName() + "]exists"), roleService.checkRoleNameUnique(role));
+        ApiAssert.isTrue(ErrorCodeEnum.ROLE_KEY_EXIST.overrideMsg("Role Permissions[" + role.getRoleKey() + "]exists"), roleService.checkRoleKeyUnique(role));
         roleService.updateRole(role);
     }
 
     /**
-     * 角色分配数据权限
+     * Role assignment data permissions
      */
     @GetMapping("/authDataScope/{roleId}")
     public String authDataScope(@PathVariable("roleId") Long roleId, ModelMap mmap) {
@@ -122,10 +122,10 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 保存角色分配数据权限
+     * Save role assignment data permissions
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Role management", businessType = BusinessType.UPDATE)
     @PostMapping("/authDataScope")
     @ResponseBody
     public void authDataScopeSave(Role role) {
@@ -134,7 +134,7 @@ public class RoleController extends WebController {
     }
 
     @RequiresPermissions("system:role:remove")
-    @Log(title = "角色管理", businessType = BusinessType.DELETE)
+    @Log(title = "Role management", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public void remove(String ids) {
@@ -142,7 +142,7 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 校验角色名称
+     * Verify role name
      */
     @PostMapping("/checkRoleNameUnique")
     @ResponseBody
@@ -151,7 +151,7 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 校验角色权限
+     * Verify role permissions
      */
     @PostMapping("/checkRoleKeyUnique")
     @ResponseBody
@@ -160,7 +160,7 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 选择菜单树
+     * Select menu tree
      */
     @GetMapping("/selectMenuTree")
     public String selectMenuTree() {
@@ -168,9 +168,9 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 角色状态修改
+     * Role status modification
      */
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Role management", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:role:edit")
     @PostMapping("/changeStatus")
     @ResponseBody
@@ -179,7 +179,7 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 分配用户
+     * Assign users
      */
     @RequiresPermissions("system:role:edit")
     @GetMapping("/authUser/{roleId}")
@@ -189,7 +189,7 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 查询已分配用户角色列表
+     * Query the list of assigned user roles
      */
     @RequiresPermissions("system:role:list")
     @PostMapping("/authUser/allocatedList")
@@ -201,9 +201,9 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 取消授权
+     * Cancel authorization
      */
-    @Log(title = "角色管理", businessType = BusinessType.GRANT)
+    @Log(title = "Role management", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/cancel")
     @ResponseBody
     public void cancelAuthUser(UserRole userRole) {
@@ -211,9 +211,9 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 批量取消授权
+     * Cancel authorization in bulk
      */
-    @Log(title = "角色管理", businessType = BusinessType.GRANT)
+    @Log(title = "Role management", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/cancelAll")
     @ResponseBody
     public void cancelAuthUserAll(Long roleId, String userIds) {
@@ -221,7 +221,7 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 选择用户
+     * Select user
      */
     @GetMapping("/authUser/selectUser/{roleId}")
     public String selectUser(@PathVariable("roleId") Long roleId, ModelMap mmap) {
@@ -230,7 +230,7 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 查询未分配用户角色列表
+     * Query the list of unassigned user roles
      */
     @RequiresPermissions("system:role:list")
     @PostMapping("/authUser/unallocatedList")
@@ -242,9 +242,9 @@ public class RoleController extends WebController {
     }
 
     /**
-     * 批量选择用户授权
+     * Batch selection of user authorization
      */
-    @Log(title = "角色管理", businessType = BusinessType.GRANT)
+    @Log(title = "Role management", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/selectAll")
     @ResponseBody
     public void selectAuthUserAll(Long roleId, String userIds) {

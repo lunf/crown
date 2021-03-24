@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 菜单信息
+ * Menu information
  *
  * @author Crown
  */
@@ -56,9 +56,9 @@ public class MenuController extends WebController<Menu> {
     }
 
     /**
-     * 删除菜单
+     * Delete menu
      */
-    @Log(title = "菜单管理", businessType = BusinessType.DELETE)
+    @Log(title = "Menu management", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:menu:remove")
     @GetMapping("/remove/{menuId}")
     @ResponseBody
@@ -69,7 +69,7 @@ public class MenuController extends WebController<Menu> {
     }
 
     /**
-     * 新增
+     * Add
      */
     @GetMapping("/add/{parentId}")
     public String add(@PathVariable("parentId") Long parentId, ModelMap mmap) {
@@ -79,26 +79,26 @@ public class MenuController extends WebController<Menu> {
         } else {
             menu = new Menu();
             menu.setMenuId(0L);
-            menu.setMenuName("主目录");
+            menu.setMenuName("Main directory");
         }
         mmap.put("menu", menu);
         return prefix + "/add";
     }
 
     /**
-     * 新增保存菜单
+     * New save menu
      */
-    @Log(title = "菜单管理", businessType = BusinessType.INSERT)
+    @Log(title = "Menu management", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:menu:add")
     @PostMapping("/add")
     @ResponseBody
     public void addSave(@Validated Menu menu) {
-        ApiAssert.isTrue(ErrorCodeEnum.MENU_NAME_EXIST.overrideMsg("菜单名称[" + menu.getMenuName() + "]已存在"), menuService.checkMenuNameUnique(menu));
+        ApiAssert.isTrue(ErrorCodeEnum.MENU_NAME_EXIST.overrideMsg("Menu name[" + menu.getMenuName() + "]exists"), menuService.checkMenuNameUnique(menu));
         menuService.insertMenu(menu);
     }
 
     /**
-     * 修改菜单
+     * Modify menu
      */
     @GetMapping("/edit/{menuId}")
     public String edit(@PathVariable("menuId") Long menuId, ModelMap mmap) {
@@ -107,19 +107,19 @@ public class MenuController extends WebController<Menu> {
     }
 
     /**
-     * 修改保存菜单
+     * Modify save menu
      */
-    @Log(title = "菜单管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Menu management", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:menu:edit")
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated Menu menu) {
-        ApiAssert.isTrue(ErrorCodeEnum.MENU_NAME_EXIST.overrideMsg("菜单名称[" + menu.getMenuName() + "]已存在"), menuService.checkMenuNameUnique(menu));
+        ApiAssert.isTrue(ErrorCodeEnum.MENU_NAME_EXIST.overrideMsg("Menu name[" + menu.getMenuName() + "]exists"), menuService.checkMenuNameUnique(menu));
         menuService.updateMenu(menu);
     }
 
     /**
-     * 选择菜单图标
+     * Select menu icon
      */
     @GetMapping("/icon")
     public String icon() {
@@ -127,7 +127,7 @@ public class MenuController extends WebController<Menu> {
     }
 
     /**
-     * 校验菜单名称
+     * Verify menu name
      */
     @PostMapping("/checkMenuNameUnique")
     @ResponseBody
@@ -136,7 +136,7 @@ public class MenuController extends WebController<Menu> {
     }
 
     /**
-     * 加载角色菜单列表树
+     * Load the role menu list tree
      */
     @GetMapping("/roleMenuTreeData")
     @ResponseBody
@@ -145,7 +145,7 @@ public class MenuController extends WebController<Menu> {
     }
 
     /**
-     * 加载所有菜单列表树
+     * Load all menu list trees
      */
     @GetMapping("/menuTreeData")
     @ResponseBody
@@ -154,7 +154,7 @@ public class MenuController extends WebController<Menu> {
     }
 
     /**
-     * 选择菜单树
+     * Select menu tree
      */
     @GetMapping("/selectMenuTree/{menuId}")
     public String selectMenuTree(@PathVariable("menuId") Long menuId, ModelMap mmap) {

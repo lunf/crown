@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 岗位表 sys_post
+ * Job list sys_post
  *
  * @author Crown
  */
@@ -24,48 +24,48 @@ public class Post extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 岗位序号
+     * Position number
      */
-    @Excel(name = "岗位序号")
+    @Excel(name = "Position number")
     @TableId
     private Long postId;
 
     /**
-     * 岗位编码
+     * Post code
      */
-    @Excel(name = "岗位编码")
-    @NotBlank(message = "岗位编码不能为空")
-    @Size(max = 64, message = "岗位编码长度不能超过64个字符")
+    @Excel(name = "Post code")
+    @NotBlank(message = "Post code cannot be empty")
+    @Size(max = 64, message = "The length of the post code cannot exceed 64 characters")
     private String postCode;
 
     /**
-     * 岗位名称
+     * Position Title
      */
-    @Excel(name = "岗位名称")
-    @NotBlank(message = "岗位名称不能为空")
-    @Size(max = 50, message = "岗位名称长度不能超过50个字符")
+    @Excel(name = "Position Title")
+    @NotBlank(message = "The post name cannot be empty")
+    @Size(max = 50, message = "The length of the post name cannot exceed 50 characters")
     private String postName;
 
     /**
-     * 岗位排序
+     * Job sorting
      */
-    @Excel(name = "岗位排序")
-    @NotBlank(message = "显示顺序不能为空")
+    @Excel(name = "Job sorting")
+    @NotBlank(message = "Display order cannot be empty")
     private String postSort;
 
     /**
-     * 状态（0正常 1停用）
+     * Status (0 normal, 1 disabled)
      */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
+    @Excel(name = "status", readConverterExp = "0=normal, 1=disabled")
     private String status;
 
     /**
-     * 备注
+     * Remarks
      */
     private String remark;
 
     /**
-     * 用户是否存在此岗位标识 默认不存在
+     * Does the user exist? This post ID does not exist by default
      */
     @TableField(exist = false)
     private boolean flag = false;

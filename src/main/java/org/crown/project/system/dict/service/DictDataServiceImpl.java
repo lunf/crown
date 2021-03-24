@@ -10,7 +10,7 @@ import org.crown.project.system.dict.mapper.DictDataMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * 字典 业务层处理
+ * Dictionary Business layer processing
  *
  * @author Crown
  */

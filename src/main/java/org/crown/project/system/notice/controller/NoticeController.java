@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 公告 信息操作处理
+ * Announcement Information Operation Processing
  *
  * @author Crown
  */
@@ -43,7 +43,7 @@ public class NoticeController extends WebController<Notice> {
     }
 
     /**
-     * 查询公告列表
+     * Query the announcement list
      */
     @RequiresPermissions("system:notice:list")
     @PostMapping("/list")
@@ -55,7 +55,7 @@ public class NoticeController extends WebController<Notice> {
     }
 
     /**
-     * 新增公告
+     * New announcement
      */
     @GetMapping("/add")
     public String add() {
@@ -63,10 +63,10 @@ public class NoticeController extends WebController<Notice> {
     }
 
     /**
-     * 新增保存公告
+     * Add save announcement
      */
     @RequiresPermissions("system:notice:add")
-    @Log(title = "通知公告", businessType = BusinessType.INSERT)
+    @Log(title = "announcement", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public void addSave(@Validated Notice notice) {
@@ -74,7 +74,7 @@ public class NoticeController extends WebController<Notice> {
     }
 
     /**
-     * 修改公告
+     * Modification announcement
      */
     @GetMapping("/edit/{noticeId}")
     public String edit(@PathVariable("noticeId") Long noticeId, ModelMap mmap) {
@@ -83,10 +83,10 @@ public class NoticeController extends WebController<Notice> {
     }
 
     /**
-     * 修改保存公告
+     * Modify save announcement
      */
     @RequiresPermissions("system:notice:edit")
-    @Log(title = "通知公告", businessType = BusinessType.UPDATE)
+    @Log(title = "announcement", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated Notice notice) {
@@ -94,10 +94,10 @@ public class NoticeController extends WebController<Notice> {
     }
 
     /**
-     * 删除公告
+     * Delete announcement
      */
     @RequiresPermissions("system:notice:remove")
-    @Log(title = "通知公告", businessType = BusinessType.DELETE)
+    @Log(title = "announcement", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public void remove(String ids) {

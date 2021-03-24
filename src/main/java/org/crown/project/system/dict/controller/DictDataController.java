@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 数据字典信息
+ * Data dictionary information
  *
  * @author Crown
  */
@@ -53,19 +53,19 @@ public class DictDataController extends WebController<DictData> {
         return getTableData(list);
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.EXPORT)
+    @Log(title = "Dictionary data", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
     public ExcelDTO export(DictData dictData) {
         List<DictData> list = dictDataService.selectDictDataList(dictData);
         ExcelUtils<DictData> util = new ExcelUtils<>(DictData.class);
-        return new ExcelDTO(util.exportExcel(list, "字典数据"));
+        return new ExcelDTO(util.exportExcel(list, "Dictionary data"));
 
     }
 
     /**
-     * 新增字典类型
+     * New dictionary type
      */
     @GetMapping("/add/{dictType}")
     public String add(@PathVariable("dictType") String dictType, ModelMap mmap) {
@@ -74,9 +74,9 @@ public class DictDataController extends WebController<DictData> {
     }
 
     /**
-     * 新增保存字典类型
+     * Added save dictionary type
      */
-    @Log(title = "字典数据", businessType = BusinessType.INSERT)
+    @Log(title = "Dictionary data", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
@@ -85,7 +85,7 @@ public class DictDataController extends WebController<DictData> {
     }
 
     /**
-     * 修改字典类型
+     * Modify dictionary type
      */
     @GetMapping("/edit/{dictCode}")
     public String edit(@PathVariable("dictCode") Long dictCode, ModelMap mmap) {
@@ -94,9 +94,9 @@ public class DictDataController extends WebController<DictData> {
     }
 
     /**
-     * 修改保存字典类型
+     * Modify the saved dictionary type
      */
-    @Log(title = "字典数据", businessType = BusinessType.UPDATE)
+    @Log(title = "Dictionary data", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -104,7 +104,7 @@ public class DictDataController extends WebController<DictData> {
         dictDataService.updateById(dict);
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.DELETE)
+    @Log(title = "Dictionary data", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody

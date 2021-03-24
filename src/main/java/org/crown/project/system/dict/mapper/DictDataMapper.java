@@ -5,7 +5,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.dict.domain.DictData;
 
 /**
- * 字典表 数据层
+ * Dictionary table data layer
  *
  * @author Crown
  */

@@ -20,7 +20,7 @@ import org.crown.project.system.user.domain.User;
 import org.springframework.stereotype.Service;
 
 /**
- * 菜单 业务层处理
+ * Menu business layer processing
  *
  * @author Crown
  */
@@ -117,22 +117,22 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
     }
 
     /**
-     * 对象转菜单树
+     * Object to menu tree
      *
-     * @param menuList 菜单列表
-     * @return 树结构列表
+     * @param menuList Menu list
+     * @return Tree structure list
      */
     public List<Ztree> initZtree(List<Menu> menuList) {
         return initZtree(menuList, null, false);
     }
 
     /**
-     * 对象转菜单树
+     *Object to menu tree
      *
-     * @param menuList     菜单列表
-     * @param roleMenuList 角色已存在菜单列表
-     * @param permsFlag    是否需要显示权限标识
-     * @return 树结构列表
+     * @param menuList     Menu list
+     * @param roleMenuList Role already exists in the menu list
+     * @param permsFlag    Do you need to display the authority ID
+     * @return Tree structure list
      */
     public List<Ztree> initZtree(List<Menu> menuList, List<String> roleMenuList, boolean permsFlag) {
         boolean isCheck = StringUtils.isNotNull(roleMenuList);

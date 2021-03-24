@@ -6,58 +6,58 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.system.post.domain.Post;
 
 /**
- * 岗位信息 服务层
+ * Job information service layer
  *
  * @author Crown
  */
 public interface IPostService extends BaseService<Post> {
 
     /**
-     * 查询岗位信息集合
+     * Query job information collection
      *
-     * @param post 岗位信息
-     * @return 岗位信息集合
+     * @param post Job information
+     * @return Post information collection
      */
     List<Post> selectPostList(Post post);
 
     /**
-     * 根据用户ID查询岗位
+     * Query position based on user ID
      *
-     * @param userId 用户ID
-     * @return 岗位列表
+     * @param userId User ID
+     * @return Job list
      */
     List<Post> selectAllPostsByUserId(Long userId);
 
     /**
-     * 根据用户ID查询岗位
+     * Query position based on user ID
      *
-     * @param userId 用户ID
-     * @return 岗位列表
+     * @param userId User ID
+     * @return Job list
      */
     List<Post> selectPostsByUserId(Long userId);
 
     /**
-     * 批量删除岗位信息
+     * Delete job information in bulk
      *
-     * @param ids 需要删除的数据ID
-     * @return 结果
-     * @throws Exception 异常
+     * @param ids ID of the data to be deleted
+     * @return result
+     * @throws Exception abnormal
      */
     boolean deletePostByIds(String ids);
 
     /**
-     * 校验岗位名称
+     * Check post name
      *
-     * @param post 岗位信息
-     * @return 结果
+     * @param post Job information
+     * @return result
      */
     boolean checkPostNameUnique(Post post);
 
     /**
-     * 校验岗位编码
+     * Check post code
      *
-     * @param post 岗位信息
-     * @return 结果
+     * @param post Job information
+     * @return result
      */
     boolean checkPostCodeUnique(Post post);
 }

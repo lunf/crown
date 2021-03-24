@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 数据字典信息
+ * Data dictionary information
  *
  * @author Crown
  */
@@ -55,7 +55,7 @@ public class DictTypeController extends WebController<DictType> {
         return getTableData(list);
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.EXPORT)
+    @Log(title = "Dictionary type", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
@@ -67,7 +67,7 @@ public class DictTypeController extends WebController<DictType> {
     }
 
     /**
-     * 新增字典类型
+     * New dictionary type
      */
     @GetMapping("/add")
     public String add() {
@@ -75,19 +75,19 @@ public class DictTypeController extends WebController<DictType> {
     }
 
     /**
-     * 新增保存字典类型
+     * Added save dictionary type
      */
-    @Log(title = "字典类型", businessType = BusinessType.INSERT)
+    @Log(title = "Dictionary type", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
     public void addSave(@Validated DictType dict) {
-        ApiAssert.isTrue(ErrorCodeEnum.DICT_TYPE_EXIST.overrideMsg("字典类型[" + dict.getDictType() + "]已存在"), dictTypeService.checkDictTypeUnique(dict));
+        ApiAssert.isTrue(ErrorCodeEnum.DICT_TYPE_EXIST.overrideMsg("Dictionary type[" + dict.getDictType() + "]exists"), dictTypeService.checkDictTypeUnique(dict));
         dictTypeService.save(dict);
     }
 
     /**
-     * 修改字典类型
+     * Modify dictionary type
      */
     @GetMapping("/edit/{dictId}")
     public String edit(@PathVariable("dictId") Long dictId, ModelMap mmap) {
@@ -96,18 +96,18 @@ public class DictTypeController extends WebController<DictType> {
     }
 
     /**
-     * 修改保存字典类型
+     * Modify the saved dictionary type
      */
-    @Log(title = "字典类型", businessType = BusinessType.UPDATE)
+    @Log(title = "Dictionary type", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated DictType dict) {
-        ApiAssert.isTrue(ErrorCodeEnum.DICT_TYPE_EXIST.overrideMsg("字典类型[" + dict.getDictType() + "]已存在"), dictTypeService.checkDictTypeUnique(dict));
+        ApiAssert.isTrue(ErrorCodeEnum.DICT_TYPE_EXIST.overrideMsg("Dictionary type[" + dict.getDictType() + "]exists"), dictTypeService.checkDictTypeUnique(dict));
         dictTypeService.updateDictType(dict);
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @Log(title = "Dictionary type", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -116,7 +116,7 @@ public class DictTypeController extends WebController<DictType> {
     }
 
     /**
-     * 查询字典详细
+     * View dictionary details
      */
     @RequiresPermissions("system:dict:list")
     @GetMapping("/detail/{dictId}")
@@ -127,7 +127,7 @@ public class DictTypeController extends WebController<DictType> {
     }
 
     /**
-     * 校验字典类型
+     * Check dictionary type
      */
     @PostMapping("/checkDictTypeUnique")
     @ResponseBody
@@ -136,7 +136,7 @@ public class DictTypeController extends WebController<DictType> {
     }
 
     /**
-     * 选择字典树
+     * Select dictionary tree
      */
     @GetMapping("/selectDictTree/{columnId}/{dictType}")
     public String selectDeptTree(@PathVariable("columnId") Long columnId, @PathVariable("dictType") String dictType,
@@ -147,7 +147,7 @@ public class DictTypeController extends WebController<DictType> {
     }
 
     /**
-     * 加载字典列表树
+     * Load dictionary list tree
      */
     @GetMapping("/treeData")
     @ResponseBody

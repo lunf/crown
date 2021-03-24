@@ -9,7 +9,7 @@ import org.crown.project.system.notice.mapper.NoticeMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * 公告 服务层实现
+ * Announcement Service layer implementation
  *
  * @author Crown
  */

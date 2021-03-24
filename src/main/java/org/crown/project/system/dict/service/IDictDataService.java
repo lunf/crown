@@ -6,34 +6,34 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.system.dict.domain.DictData;
 
 /**
- * 字典 业务层
+ * Dictionary Business layer
  *
  * @author Crown
  */
 public interface IDictDataService extends BaseService<DictData> {
 
     /**
-     * 根据条件分页查询字典数据
+     * Paging query dictionary data according to conditions
      *
-     * @param dictData 字典数据信息
-     * @return 字典数据集合信息
+     * @param dictData Dictionary data information
+     * @return Dictionary data collection information
      */
     List<DictData> selectDictDataList(DictData dictData);
 
     /**
-     * 根据字典类型查询字典数据
+     * Query dictionary data according to dictionary type
      *
-     * @param dictType 字典类型
-     * @return 字典数据集合信息
+     * @param dictType Dictionary type
+     * @return Dictionary data collection information
      */
     List<DictData> selectDictDataByType(String dictType);
 
     /**
-     * 根据字典类型和字典键值查询字典数据信息
+     * Query dictionary data information according to dictionary type and dictionary key value
      *
-     * @param dictType  字典类型
-     * @param dictValue 字典键值
-     * @return 字典标签
+     * @param dictType  Dictionary type
+     * @param dictValue Dictionary key
+     * @return Dictionary tag
      */
     String selectDictLabel(String dictType, String dictValue);
 

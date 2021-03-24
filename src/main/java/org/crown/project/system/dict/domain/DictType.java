@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 字典类型对象 sys_dict_type
+ * Dictionary type object sys_dict_type
  *
  * @author Crown
  */
@@ -23,36 +23,36 @@ public class DictType extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 字典主键
+     * Dictionary primary key
      */
-    @Excel(name = "字典主键")
+    @Excel(name = "Dictionary primary key")
     @TableId
     private Long dictId;
 
     /**
-     * 字典名称
+     * Dictionary name
      */
-    @Excel(name = "字典名称")
-    @NotBlank(message = "字典名称不能为空")
-    @Size(max = 100, message = "字典类型名称长度不能超过100个字符")
+    @Excel(name = "Dictionary name")
+    @NotBlank(message = "Dictionary name cannot be empty")
+    @Size(max = 100, message = "The length of the dictionary type name cannot exceed 100 characters")
     private String dictName;
 
     /**
-     * 字典类型
+     * Dictionary type
      */
-    @Excel(name = "字典类型")
-    @NotBlank(message = "字典类型不能为空")
-    @Size(max = 100, message = "字典类型类型长度不能超过100个字符")
+    @Excel(name = "Dictionary type")
+    @NotBlank(message = "The dictionary type cannot be empty")
+    @Size(max = 100, message = "The length of the dictionary type cannot exceed 100 characters")
     private String dictType;
 
     /**
-     * 状态（0正常 1停用）
+     * Status (0 normal, 1 disabled)
      */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
+    @Excel(name = "status", readConverterExp = "0=normal, 1=disabled")
     private String status;
 
     /**
-     * 备注
+     * Remarks
      */
     private String remark;
 

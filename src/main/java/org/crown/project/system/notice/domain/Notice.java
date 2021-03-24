@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 通知公告表 sys_notice
+ * Notice Announcement Form sys_notice
  *
  * @author Crown
  */
@@ -22,31 +22,31 @@ public class Notice extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 公告ID
+     * Announcement ID
      */
     @TableId
     private Long noticeId;
     /**
-     * 公告标题
+     * Announcement title
      */
-    @NotBlank(message = "公告标题不能为空")
-    @Size(max = 50, message = "公告标题不能超过50个字符")
+    @NotBlank(message = "Announcement title cannot be empty")
+    @Size(max = 50, message = "Announcement title cannot exceed 50 characters")
     private String noticeTitle;
     /**
-     * 公告类型（1通知 2公告）
+     * Announcement type (1 notification, 2 announcement)
      */
     private String noticeType;
     /**
-     * 公告内容
+     * Announcement content
      */
     private String noticeContent;
     /**
-     * 公告状态（0正常 1关闭）
+     * Announcement status (0 normal, 1 closed)
      */
     private String status;
 
     /**
-     * 备注
+     * Remarks
      */
     private String remark;
 

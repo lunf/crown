@@ -11,95 +11,95 @@ import org.crown.project.system.role.domain.Role;
 import org.crown.project.system.user.domain.User;
 
 /**
- * 菜单 业务层
+ * Menu business layer
  *
  * @author Crown
  */
 public interface IMenuService extends BaseService<Menu> {
 
     /**
-     * 根据用户ID查询菜单
+     * Query menu based on user ID
      *
-     * @param user 用户信息
-     * @return 菜单列表
+     * @param user User Info
+     * @return Menu list
      */
     List<Menu> selectMenusByUser(User user);
 
     /**
-     * 查询系统菜单列表
+     * Query system menu list
      *
-     * @param menu 菜单信息
-     * @return 菜单列表
+     * @param menu Menu information
+     * @return Menu list
      */
     List<Menu> selectMenuList(Menu menu);
 
     /**
-     * 根据用户ID查询权限
+     * Query permissions based on user ID
      *
-     * @param userId 用户ID
-     * @return 权限列表
+     * @param userId User ID
+     * @return Permission list
      */
     Set<String> selectPermsByUserId(Long userId);
 
     /**
-     * 根据角色ID查询菜单
+     * Query menu based on role ID
      *
-     * @param role 角色对象
-     * @return 菜单列表
+     * @param role Role object
+     * @return Menu list
      */
     List<Ztree> roleMenuTreeData(Role role);
 
     /**
-     * 查询所有菜单信息
+     * Query all menu information
      *
-     * @return 菜单列表
+     * @return Menu list
      */
     List<Ztree> menuTreeData();
 
     /**
-     * 查询系统所有权限
+     * Query all permissions of the system
      *
-     * @return 权限列表
+     * @return Permission list
      */
     Map<String, String> selectPermsAll();
 
     /**
-     * 删除菜单管理信息
+     * Delete menu management information
      *
-     * @param menuId 菜单ID
-     * @return 结果
+     * @param menuId Menu ID
+     * @return result
      */
     boolean deleteMenuById(Long menuId);
 
     /**
-     * 根据菜单ID查询信息
+     * Query information based on menu ID
      *
-     * @param menuId 菜单ID
-     * @return 菜单信息
+     * @param menuId Menu ID
+     * @return Menu information
      */
     Menu selectMenuById(Long menuId);
 
     /**
-     * 新增保存菜单信息
+     * Added save menu information
      *
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu Menu information
+     * @return result
      */
     boolean insertMenu(Menu menu);
 
     /**
-     * 修改保存菜单信息
+     * Modify and save menu information
      *
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu Menu information
+     * @return result
      */
     boolean updateMenu(Menu menu);
 
     /**
-     * 校验菜单名称是否唯一
+     * Verify that the menu name is unique
      *
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu Menu information
+     * @return result
      */
     boolean checkMenuNameUnique(Menu menu);
 }
