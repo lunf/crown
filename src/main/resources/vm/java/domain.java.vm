@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * ${functionName}表 ${tableName}
+ * ${functionName}table ${tableName}
  *
  * @author ${author}
  */

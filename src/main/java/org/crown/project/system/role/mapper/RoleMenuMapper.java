@@ -5,7 +5,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.role.domain.RoleMenu;
 
 /**
- * 角色与菜单关联表 数据层
+ * Role and menu association table Data layer
  *
  * @author Crown
  */

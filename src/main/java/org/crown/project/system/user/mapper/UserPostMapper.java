@@ -7,7 +7,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.user.domain.UserPost;
 
 /**
- * 用户与岗位 表 数据层
+ * User and position table Data layer
  *
  * @author Crown
  */
@@ -15,10 +15,10 @@ import org.crown.project.system.user.domain.UserPost;
 public interface UserPostMapper extends BaseMapper<UserPost> {
 
     /**
-     * 批量新增用户岗位信息
+     * Add user post information in batches
      *
-     * @param userPostList 用户角色列表
-     * @return 结果
+     * @param userPostList User role list
+     * @return result
      */
     int batchUserPost(List<UserPost> userPostList);
 }

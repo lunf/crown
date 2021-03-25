@@ -1,18 +1,18 @@
 # **************************************************************
 # ----- Setting File with UTF8-----
-# ----- 邮件发送功能的账户信息配置文件 -----
-# ----- 此邮箱专门注册用于Hutool发送邮件测试，为公开邮箱 -----
+# ----- Account information configuration file for mail sending function -----
+# ----- This mailbox is specially registered for Hutool to send mail test, it is a public mailbox -----
 # **************************************************************
 
-# 邮件服务器的SMTP地址
+# SMTP address of the mail server
 host = smtp.yeah.net
-# 邮件服务器的SMTP端口
+# SMTP port of the mail server
 port = 465
-# 发件人（必须正确，否则发送失败）
-from = 小磊<hutool@yeah.net>
-# 用户名（注意：如果使用foxmail邮箱，此处user为qq号）
+# Sender (must be correct, otherwise the sending will fail)
+from = Xiao Lei <hutool@yeah.net>
+# User name (note: if you use foxmail, here user is the qq number)
 user = hutool
-# 密码
+# password
 pass = q1w2e3
-#使用 STARTTLS安全连接
+#Use STARTTLS to connect securely
 startttlsEnable = true

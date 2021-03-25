@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 角色表 sys_role
+ * Role table sys_role
  *
  * @author Crown
  */
@@ -26,73 +26,73 @@ public class Role extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 角色ID
+     * Role ID
      */
-    @Excel(name = "角色序号")
+    @Excel(name = "Role number")
     @TableId
     private Long roleId;
 
     /**
-     * 角色名称
+     * Role Name
      */
-    @Excel(name = "角色名称")
-    @NotBlank(message = "角色名称不能为空")
-    @Size(max = 30, message = "角色名称长度不能超过30个字符")
+    @Excel(name = "Role Name")
+    @NotBlank(message = "Role name cannot be empty")
+    @Size(max = 30, message = "The length of the role name cannot exceed 30 characters")
     private String roleName;
 
     /**
-     * 角色权限
+     * Role Permissions
      */
-    @Excel(name = "角色权限")
-    @NotBlank(message = "权限字符不能为空")
-    @Size(max = 100, message = "权限字符长度不能超过100个字符")
+    @Excel(name = "Role Permissions")
+    @NotBlank(message = "The permission character cannot be empty")
+    @Size(max = 100, message = "The permission character length cannot exceed 100 characters")
     private String roleKey;
 
     /**
-     * 角色排序
+     * Role ranking
      */
-    @Excel(name = "角色排序")
-    @NotBlank(message = "显示顺序不能为空")
+    @Excel(name = "Role ranking")
+    @NotBlank(message = "Display order cannot be empty")
     private String roleSort;
 
     /**
-     * 数据范围（1：所有数据权限；2：自定义数据权限；3：本部门数据权限；4：本部门及以下数据权限）
+     * Data scope (1: all data permissions; 2: custom data permissions; 3: data permissions for this department; 4: data permissions for this department and below)
      */
-    @Excel(name = "数据范围", readConverterExp = "1=所有数据权限,2=自定义数据权限,3=本部门数据权限,4=本部门及以下数据权限")
+    @Excel(name = "data range", readConverterExp = "1=All data permissions, 2=Custom data permissions, 3=Data permissions in this department, 4=Data permissions in this department and below")
     private String dataScope;
 
     /**
-     * 角色状态（0正常 1停用）
+     * Role status (0 normal, 1 disabled)
      */
-    @Excel(name = "角色状态", readConverterExp = "0=正常,1=停用")
+    @Excel(name = "Role status", readConverterExp = "0=normal, 1=disabled")
     private String status;
 
     /**
-     * 删除标志（0代表存在1代表删除）
+     * Delete flag (0 existing, 1 deleted)
      */
     @TableLogic
     @TableField(fill = FieldFill.INSERT)
     private Boolean deleted;
 
     /**
-     * 备注
+     * Remarks
      */
     private String remark;
 
     /**
-     * 用户是否存在此角色标识 默认不存在
+     * Does the user exist? This role ID does not exist by default
      */
     @TableField(exist = false)
     private boolean flag = false;
 
     /**
-     * 菜单组
+     * Menu group
      */
     @TableField(exist = false)
     private Long[] menuIds;
 
     /**
-     * 部门组（数据权限）
+     * Department Group (Data Authority)
      */
     @TableField(exist = false)
     private Long[] deptIds;

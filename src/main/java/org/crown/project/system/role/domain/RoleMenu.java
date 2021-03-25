@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 角色和菜单关联 sys_role_menu
+ * Role and menu association sys_role_menu
  *
  * @author Crown
  */
@@ -13,12 +13,12 @@ import lombok.Setter;
 public class RoleMenu {
 
     /**
-     * 角色ID
+     * Role ID
      */
     private Long roleId;
 
     /**
-     * 菜单ID
+     * Menu ID
      */
     private Long menuId;
 

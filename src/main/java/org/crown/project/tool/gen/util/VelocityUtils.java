@@ -16,24 +16,24 @@ import com.alibaba.fastjson.JSONObject;
 public class VelocityUtils {
 
     /**
-     * 项目空间路径
+     * Project space path
      */
     private static final String PROJECT_PATH = "main/java";
 
     /**
-     * mybatis空间路径
+     * mybatis space path
      */
     private static final String MYBATIS_PATH = "main/resources/mapper";
 
     /**
-     * html空间路径
+     * html space path
      */
     private static final String TEMPLATES_PATH = "main/resources/templates";
 
     /**
-     * 设置模板变量信息
+     * Set template variable information
      *
-     * @return 模板列表
+     * @return Template list
      */
     public static VelocityContext prepareContext(GenTable genTable) {
         String moduleName = genTable.getModuleName();
@@ -85,9 +85,9 @@ public class VelocityUtils {
     }
 
     /**
-     * 获取模板信息
+     * Get template information
      *
-     * @return 模板列表
+     * @return Template list
      */
     public static List<String> getTemplateList(String tplCategory) {
         List<String> templates = new ArrayList<>();
@@ -110,18 +110,18 @@ public class VelocityUtils {
     }
 
     /**
-     * 获取文件名
+     * Get file name
      */
     public static String getFileName(String template, GenTable genTable) {
-        // 文件名称
+        // File name
         String fileName = "";
-        // 包路径
+        // Package path
         String packageName = genTable.getPackageName();
-        // 模块名
+        // Module name
         String moduleName = genTable.getModuleName();
-        // 大写类名
+        // Module name
         String className = genTable.getClassName();
-        // 业务名称
+        // Business name
         String businessName = genTable.getBusinessName();
 
         String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
@@ -157,10 +157,10 @@ public class VelocityUtils {
     }
 
     /**
-     * 获取包前缀
+     * Get package prefix
      *
-     * @param packageName 包名称
-     * @return 包前缀名称
+     * @param packageName Package name
+     * @return Package prefix name
      */
     public static String getPackagePrefix(String packageName) {
         int lastIndex = packageName.lastIndexOf(".");
@@ -168,10 +168,10 @@ public class VelocityUtils {
     }
 
     /**
-     * 根据列类型获取导入包
+     * Get the import package according to the column type
      *
-     * @param columns 列集合
-     * @return 返回需要导入的包列表
+     * @param columns Column set
+     * @return Return to the list of packages that need to be imported
      */
     public static HashSet<String> getImportList(List<GenTableColumn> columns) {
         HashSet<String> importList = new HashSet<>();
@@ -186,11 +186,11 @@ public class VelocityUtils {
     }
 
     /**
-     * 获取权限前缀
+     * Get permission prefix
      *
-     * @param moduleName   模块名称
-     * @param businessName 业务名称
-     * @return 返回权限前缀
+     * @param moduleName   Module name
+     * @param businessName Business name
+     * @return Return permission prefix
      */
     public static String getPermissionPrefix(String moduleName, String businessName) {
         return StringUtils.format("{}:{}", moduleName, businessName);
@@ -198,10 +198,10 @@ public class VelocityUtils {
     }
 
     /**
-     * 获取树编码
+     * Get tree encoding
      *
-     * @param paramsObj 生成其他选项
-     * @return 树编码
+     * @param paramsObj Generate other options
+     * @return Tree coding
      */
     public static String getTreecode(JSONObject paramsObj) {
         if (paramsObj.containsKey(GenConstants.TREE_CODE)) {
@@ -211,10 +211,10 @@ public class VelocityUtils {
     }
 
     /**
-     * 获取树父编码
+     * Get the tree parent code
      *
-     * @param paramsObj 生成其他选项
-     * @return 树父编码
+     * @param paramsObj Generate other options
+     * @return Tree parent encoding
      */
     public static String getTreeParentCode(JSONObject paramsObj) {
         if (paramsObj.containsKey(GenConstants.TREE_PARENT_CODE)) {
@@ -224,10 +224,10 @@ public class VelocityUtils {
     }
 
     /**
-     * 获取树名称
+     * Get the tree name
      *
-     * @param paramsObj 生成其他选项
-     * @return 树名称
+     * @param paramsObj Generate other options
+     * @return Tree name
      */
     public static String getTreeName(JSONObject paramsObj) {
         if (paramsObj.containsKey(GenConstants.TREE_NAME)) {
@@ -237,10 +237,10 @@ public class VelocityUtils {
     }
 
     /**
-     * 获取需要在哪一列上面显示展开按钮
+     * Get the column on which the expand button needs to be displayed
      *
-     * @param genTable 业务表对象
-     * @return 展开按钮列序号
+     * @param genTable Business table object
+     * @return Expand button column number
      */
     public static int getExpandColumn(GenTable genTable) {
         String options = genTable.getOptions();

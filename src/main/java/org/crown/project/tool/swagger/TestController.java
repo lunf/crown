@@ -21,11 +21,11 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * swagger 用户测试方法
+ * swagger User test method
  *
  * @author Crown
  */
-@Api("用户信息管理")
+@Api("User information management")
 @RestController
 @RequestMapping("/test/user")
 public class TestController extends WebController {
@@ -37,52 +37,52 @@ public class TestController extends WebController {
         users.put(2, new UserEntity(2, "crown", "admin123", "15666666666"));
     }
 
-    @ApiOperation("获取用户列表")
+    @ApiOperation("Get user list")
     @GetMapping("/list")
     public List<UserEntity> userList() {
         return new ArrayList<>(users.values());
     }
 
-    @ApiOperation("获取用户详细")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @ApiOperation("Get user details")
+    @ApiImplicitParam(name = "userId", value = "User ID", required = true, dataType = "int", paramType = "path")
     @GetMapping("/{userId}")
     public UserEntity getUser(@PathVariable Integer userId) {
         return users.get(userId);
     }
 
-    @ApiOperation("新增用户")
+    @ApiOperation("New users")
     @PostMapping("/save")
     public void save(UserEntity user) {
         users.put(user.getUserId(), user);
     }
 
-    @ApiOperation("更新用户")
+    @ApiOperation("Update user")
     @PutMapping("/update")
     public void update(UserEntity user) {
         users.remove(user.getUserId());
     }
 
-    @ApiOperation("删除用户信息")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @ApiOperation("Delete user information")
+    @ApiImplicitParam(name = "userId", value = "User ID", required = true, dataType = "int", paramType = "path")
     @DeleteMapping("/{userId}")
     public void delete(@PathVariable Integer userId) {
         users.remove(userId);
     }
 }
 
-@ApiModel("用户实体")
+@ApiModel("User entity")
 class UserEntity {
 
-    @ApiModelProperty("用户ID")
+    @ApiModelProperty("User ID")
     private Integer userId;
 
-    @ApiModelProperty("用户名称")
+    @ApiModelProperty("Username")
     private String username;
 
-    @ApiModelProperty("用户密码")
+    @ApiModelProperty("Password")
     private String password;
 
-    @ApiModelProperty("用户手机")
+    @ApiModelProperty("User phone")
     private String mobile;
 
     public UserEntity() {

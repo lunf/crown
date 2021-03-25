@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 用户和岗位关联 sys_user_post
+ * User and post association sys_user_post
  *
  * @author Crown
  */
@@ -13,11 +13,11 @@ import lombok.Setter;
 public class UserPost {
 
     /**
-     * 用户ID
+     * User ID
      */
     private Long userId;
     /**
-     * 岗位ID
+     * Post ID
      */
     private Long postId;
 

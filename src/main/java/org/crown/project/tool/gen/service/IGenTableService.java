@@ -14,88 +14,88 @@ import org.crown.project.tool.gen.domain.GenTable;
 public interface IGenTableService extends BaseService<GenTable> {
 
     /**
-     * 查询业务列表
+     * Query business list
      *
-     * @param genTable 业务信息
-     * @return 业务集合
+     * @param genTable Business information
+     * @return Business collection
      */
     List<GenTable> selectGenTableList(GenTable genTable);
 
     /**
-     * 查询据库列表
+     * Query database list
      *
-     * @param genTable 业务信息
-     * @return 数据库表集合
+     * @param genTable Business information
+     * @return Database table collection
      */
     List<GenTable> selectDbTableList(GenTable genTable);
 
     /**
-     * 查询据库列表
+     * Query database list
      *
-     * @param tableNames 表名称组
-     * @return 数据库表集合
+     * @param tableNames Table name group
+     * @return Database table collection
      */
     List<GenTable> selectDbTableListByNames(String[] tableNames);
 
     /**
-     * 查询业务信息
+     * Query business information
      *
-     * @param id 业务ID
-     * @return 业务信息
+     * @param id Business ID
+     * @return Business information
      */
     GenTable selectGenTableById(Long id);
 
     /**
-     * 修改业务
+     * Modify business
      *
-     * @param genTable 业务信息
-     * @return 结果
+     * @param genTable Business information
+     * @return result
      */
     void updateGenTable(GenTable genTable);
 
     /**
-     * 删除业务信息
+     * Delete business information
      *
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids ID of the data to be deleted
+     * @return result
      */
     void deleteGenTableByIds(String ids);
 
     /**
-     * 导入表结构
+     * Import table structure
      *
-     * @param tableList 导入表列表
+     * @param tableList Import table list
      */
     void importGenTable(List<GenTable> tableList);
 
     /**
-     * 预览代码
+     * Preview code
      *
-     * @param tableId 表编号
-     * @return 预览数据列表
+     * @param tableId Table number
+     * @return Preview data list
      */
     Map<String, String> previewCode(Long tableId);
 
     /**
-     * 生成代码
+     * Generate code
      *
-     * @param tableName 表名称
-     * @return 数据
+     * @param tableName Table name
+     * @return data
      */
     byte[] generatorCode(String tableName);
 
     /**
-     * 批量生成代码
+     * Batch code generation
      *
-     * @param tableNames 表数组
-     * @return 数据
+     * @param tableNames Table array
+     * @return data
      */
     byte[] generatorCode(String[] tableNames);
 
     /**
-     * 修改保存参数校验
+     * Modify and save parameter verification
      *
-     * @param genTable 业务信息
+     * @param genTable Business information
      */
     void validateEdit(GenTable genTable);
 }

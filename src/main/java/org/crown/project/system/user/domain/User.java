@@ -24,7 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 用户对象 sys_user
+ * User object sys_user
  *
  * @author Crown
  */
@@ -35,9 +35,9 @@ public class User extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * User ID
      */
-    @Excel(name = "用户序号", prompt = "用户编号")
+    @Excel(name = "User serial number", prompt = "用户编号")
     @TableId
     private Long userId;
 

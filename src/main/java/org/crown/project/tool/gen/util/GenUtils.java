@@ -10,14 +10,14 @@ import org.crown.project.tool.gen.domain.GenTable;
 import org.crown.project.tool.gen.domain.GenTableColumn;
 
 /**
- * 代码生成器 工具类
+ * Code generator tools
  *
  * @author Crown
  */
 public class GenUtils {
 
     /**
-     * 初始化表信息
+     * Initialize table information
      */
     public static void initTable(GenTable genTable, String operName) {
         String packagePath = Crowns.getGenerator().getPackagePath();
@@ -32,19 +32,19 @@ public class GenUtils {
     }
 
     /**
-     * 初始化列属性字段
+     * Initialize column attribute fields
      */
     public static void initColumnField(GenTableColumn column, GenTable table) {
         String dataType = getDbType(column.getColumnType());
         String columnName = column.getColumnName();
         column.setTableId(table.getTableId());
         column.setCreateBy(table.getCreateBy());
-        // 设置java字段名
+        // Set java field name
         column.setJavaField(StringUtils.toCamelCase(columnName));
 
         if (arraysContains(GenConstants.COLUMNTYPE_STR, dataType)) {
             column.setJavaType(GenConstants.TYPE_STRING);
-            // 字符串长度超过500设置为文本域
+            // Set the string length more than 500 as a text field
             Integer columnLength = getColumnLength(column.getColumnType());
             String htmlType = columnLength >= 500 ? GenConstants.HTML_TEXTAREA : GenConstants.HTML_INPUT;
             column.setHtmlType(htmlType);
@@ -54,16 +54,16 @@ public class GenUtils {
         } else if (arraysContains(GenConstants.COLUMNTYPE_NUMBER, dataType)) {
             column.setHtmlType(GenConstants.HTML_INPUT);
 
-            // 如果是浮点型
+            // If it is a floating point
             String[] str = StringUtils.split(StringUtils.substringBetween(column.getColumnType(), "(", ")"), ",");
             if (str != null && str.length == 2 && Integer.parseInt(str[1]) > 0) {
                 column.setJavaType(GenConstants.TYPE_DOUBLE);
             }
-            // 如果是整形
+            // If it is plastic surgery
             else if (str != null && str.length == 1 && Integer.parseInt(str[0]) <= 10) {
                 column.setJavaType(GenConstants.TYPE_INTEGER);
             }
-            // 长整形
+            // Long plastic
             else {
                 column.setJavaType(GenConstants.TYPE_LONG);
             }
@@ -71,31 +71,31 @@ public class GenUtils {
             column.setJavaType(CommonMap.javaTypeMap.get(dataType));
         }
 
-        // 插入字段（默认所有字段都需要插入）
+        // Insert fields (all fields need to be inserted by default)
         column.setIsInsert(GenConstants.REQUIRE);
 
-        // 编辑字段
+        // Edit field
         if (!arraysContains(GenConstants.COLUMNNAME_NOT_EDIT, columnName) && !column.isPk()) {
             column.setIsEdit(GenConstants.REQUIRE);
         }
-        // 列表字段
+        // List field
         if (!arraysContains(GenConstants.COLUMNNAME_NOT_LIST, columnName) && !column.isPk()) {
             column.setIsList(GenConstants.REQUIRE);
         }
-        // 查询字段
+        // Query field
         if (!arraysContains(GenConstants.COLUMNNAME_NOT_QUERY, columnName) && !column.isPk()) {
             column.setIsQuery(GenConstants.REQUIRE);
         }
 
-        // 查询字段类型
+        // Query field type
         if (StringUtils.endsWithIgnoreCase(columnName, "name")) {
             column.setQueryType(GenConstants.QUERY_LIKE);
         }
-        // 状态字段设置单选框
+        // Status field setting radio button
         if (StringUtils.endsWithIgnoreCase(columnName, "status")) {
             column.setHtmlType(GenConstants.HTML_RADIO);
         }
-        // 类型&性别字段设置下拉框
+        // Type & gender field setting drop-down box
         else if (StringUtils.endsWithIgnoreCase(columnName, "type")
                 || StringUtils.endsWithIgnoreCase(columnName, "sex")) {
             column.setHtmlType(GenConstants.HTML_SELECT);
@@ -103,21 +103,21 @@ public class GenUtils {
     }
 
     /**
-     * 校验数组是否包含指定值
+     * Check whether the array contains the specified value
      *
-     * @param arr         数组
-     * @param targetValue 值
-     * @return 是否包含
+     * @param arr         Array
+     * @param targetValue value
+     * @return Does it contain
      */
     public static boolean arraysContains(String[] arr, String targetValue) {
         return Arrays.asList(arr).contains(targetValue);
     }
 
     /**
-     * 获取模块名
+     * Get module name
      *
-     * @param packageName 包名
-     * @return 模块名
+     * @param packageName Package names
+     * @return Module name
      */
     public static String getModuleName(String packageName) {
         int lastIndex = packageName.lastIndexOf(".");
@@ -126,10 +126,10 @@ public class GenUtils {
     }
 
     /**
-     * 获取业务名
+     * Get business name
      *
-     * @param tableName 表名
-     * @return 业务名
+     * @param tableName Table Name
+     * @return Business name
      */
     public static String getBusinessName(String tableName) {
         int lastIndex = tableName.lastIndexOf("_");
@@ -138,20 +138,20 @@ public class GenUtils {
     }
 
     /**
-     * 关键字替换
+     * Keyword substitution
      *
-     * @param text 需要被替换的名字
-     * @return 替换后的名字
+     * @param text The name that needs to be replaced
+     * @return Replaced name
      */
     public static String replaceText(String text) {
         return text.replaceAll("(?:表)", "");
     }
 
     /**
-     * 获取数据库类型字段
+     * Get database type field
      *
-     * @param columnType 列类型
-     * @return 截取后的列类型
+     * @param columnType Column type
+     * @return Column type after interception
      */
     public static String getDbType(String columnType) {
         if (StringUtils.indexOf(columnType, "(") > 0) {
@@ -162,10 +162,10 @@ public class GenUtils {
     }
 
     /**
-     * 获取字段长度
+     * Get field length
      *
-     * @param columnType 列类型
-     * @return 截取后的列类型
+     * @param columnType Column type
+     * @return Column type after interception
      */
     public static Integer getColumnLength(String columnType) {
         if (StringUtils.indexOf(columnType, "(") > 0) {

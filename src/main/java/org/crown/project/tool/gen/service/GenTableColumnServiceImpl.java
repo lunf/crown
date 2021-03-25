@@ -9,7 +9,7 @@ import org.crown.project.tool.gen.mapper.GenTableColumnMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * 业务字段 服务层实现
+ * Business field Service layer implementation
  *
  * @author Crown
  */

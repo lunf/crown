@@ -6,33 +6,33 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.tool.gen.domain.GenTableColumn;
 
 /**
- * 业务字段 服务层
+ * Business field Service layer
  *
  * @author Crown
  */
 public interface IGenTableColumnService extends BaseService<GenTableColumn> {
 
     /**
-     * 查询业务字段列表
+     * Query the list of business fields
      *
      * @param tableId
-     * @return 业务字段集合
+     * @return Business field collection
      */
     List<GenTableColumn> selectGenTableColumnListByTableId(Long tableId);
 
     /**
-     * 删除业务字段信息
+     * Delete business field information
      *
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids ID of the data to be deleted
+     * @return result
      */
     boolean deleteGenTableColumnByIds(String ids);
 
     /**
-     * 根据表名称查询列信息
+     * Query column information based on table name
      *
-     * @param tableName 表名称
-     * @return 列信息
+     * @param tableName Table name
+     * @return Column information
      */
     List<GenTableColumn> selectDbTableColumnsByName(String tableName);
 }

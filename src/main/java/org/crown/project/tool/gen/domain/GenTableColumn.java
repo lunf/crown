@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 代码生成业务字段表 gen_table_column
+ * Code generation business field table gen_table_column
  *
  * @author Crown
  */
@@ -24,94 +24,94 @@ public class GenTableColumn extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 编号
+     * Column ID
      */
     @TableId
     private Long columnId;
 
     /**
-     * 归属表编号
+     * Table ID
      */
     private Long tableId;
 
     /**
-     * 列名称
+     * Column name
      */
     private String columnName;
 
     /**
-     * 列描述
+     * Column description
      */
     private String columnComment;
 
     /**
-     * 列类型
+     * Column type
      */
     private String columnType;
 
     /**
-     * JAVA类型
+     * JAV type
      */
     private String javaType;
 
     /**
-     * JAVA字段名
+     * JAVA field name
      */
-    @NotBlank(message = "Java属性不能为空")
+    @NotBlank(message = "Java properties cannot be empty")
     private String javaField;
 
     /**
-     * 是否主键（1是）
+     * Whether the primary key (1 yes)
      */
     private String isPk;
 
     /**
-     * 是否自增（1是）
+     * Whether it is self-increasing (1 yes)
      */
     private String isIncrement;
 
     /**
-     * 是否必填（1是）
+     * Is it required (1 yes)
      */
     private String isRequired;
 
     /**
-     * 是否为插入字段（1是）
+     * Is it an insert field（1 yes）
      */
     private String isInsert;
 
     /**
-     * 是否编辑字段（1是）
+     * Whether to edit the field（1 yes）
      */
     private String isEdit;
 
     /**
-     * 是否列表字段（1是）
+     * List field（1 yes）
      */
     private String isList;
 
     /**
-     * 是否查询字段（1是）
+     * Whether to query the field（1 yes）
      */
     private String isQuery;
 
     /**
-     * 查询方式（EQ等于、NE不等于、GT大于、LT小于、LIKE模糊、BETWEEN范围）
+     * Query method (EQ is equal to, NE is not equal to, GT is greater than, LT is less than, LIKE fuzzy, BETWEEN range)
      */
     private String queryType;
 
     /**
-     * 显示类型（input文本框、textarea文本域、select下拉框、checkbox复选框、radio单选框、datetime日期控件）
+     * Display type (input text box, textarea text field, select drop-down box, checkbox checkbox, radio single selection box, datetime date control)
      */
     private String htmlType;
 
     /**
-     * 字典类型
+     * Dictionary type
      */
     private String dictType;
 
     /**
-     * 排序
+     * Sort
      */
     private Integer sort;
 

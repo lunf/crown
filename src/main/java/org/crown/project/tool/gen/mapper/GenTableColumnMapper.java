@@ -7,7 +7,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.tool.gen.domain.GenTableColumn;
 
 /**
- * 业务字段 数据层
+ * Business field data layer
  *
  * @author Crown
  */
@@ -15,10 +15,10 @@ import org.crown.project.tool.gen.domain.GenTableColumn;
 public interface GenTableColumnMapper extends BaseMapper<GenTableColumn> {
 
     /**
-     * 根据表名称查询列信息
+     * Query column information based on table name
      *
-     * @param tableName 表名称
-     * @return 列信息
+     * @param tableName Table name
+     * @return Column information
      */
     List<GenTableColumn> selectDbTableColumnsByName(String tableName);
 

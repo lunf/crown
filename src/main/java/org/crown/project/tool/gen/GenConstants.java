@@ -1,138 +1,138 @@
 package org.crown.project.tool.gen;
 
 /**
- * 代码生成通用常量
+ * Code generation general constants
  *
  * @author Crown
  */
 public class GenConstants {
 
     /**
-     * 单表（增删改查）
+     * Single table (addition, deletion, modification and check)
      */
     public static final String TPL_CRUD = "crud";
 
     /**
-     * 树表（增删改查）
+     * Tree table (addition, deletion, modification, query)
      */
     public static final String TPL_TREE = "tree";
 
     /**
-     * 树编码字段
+     * Tree encoding field
      */
     public static final String TREE_CODE = "treeCode";
 
     /**
-     * 树父编码字段
+     * Tree parent encoding field
      */
     public static final String TREE_PARENT_CODE = "treeParentCode";
 
     /**
-     * 树名称字段
+     * Tree name field
      */
     public static final String TREE_NAME = "treeName";
 
     /**
-     * 数据库字符串类型
+     * Database string type
      */
     public static final String[] COLUMNTYPE_STR = {"char", "varchar", "narchar", "varchar2", "tinytext", "text",
             "mediumtext", "longtext"};
 
     /**
-     * 数据库时间类型
+     * Database time type
      */
     public static final String[] COLUMNTYPE_TIME = {"datetime", "time", "date", "timestamp"};
 
     /**
-     * 数据库数字类型
+     * Database number type
      */
     public static final String[] COLUMNTYPE_NUMBER = {"tinyint", "smallint", "mediumint", "int", "number", "integer",
             "bigint", "float", "float", "double", "decimal"};
 
     /**
-     * 页面不需要编辑字段
+     * No need to edit fields on the page
      */
     public static final String[] COLUMNNAME_NOT_EDIT = {"id", "create_by", "create_time", "deleted"};
 
     /**
-     * 页面不需要显示的列表字段
+     * List fields that do not need to be displayed on the page
      */
     public static final String[] COLUMNNAME_NOT_LIST = {"id", "create_by", "create_time", "deleted", "update_by",
             "update_time"};
 
     /**
-     * 页面不需要查询字段
+     * The page does not require query fields
      */
     public static final String[] COLUMNNAME_NOT_QUERY = {"id", "create_by", "create_time", "deleted", "update_by",
             "update_time", "remark"};
 
     /**
-     * 文本框
+     * Text box
      */
     public static final String HTML_INPUT = "input";
 
     /**
-     * 文本域
+     * Text field
      */
     public static final String HTML_TEXTAREA = "textarea";
 
     /**
-     * 下拉框
+     * Drop down box
      */
     public static final String HTML_SELECT = "select";
 
     /**
-     * 单选框
+     * Single box
      */
     public static final String HTML_RADIO = "radio";
 
     /**
-     * 复选框
+     * Checkbox
      */
     public static final String HTML_CHECKBOX = "checkbox";
 
     /**
-     * 日期控件
+     * Date control
      */
     public static final String HTML_DATETIME = "datetime";
 
     /**
-     * 字符串类型
+     * String type
      */
     public static final String TYPE_STRING = "String";
 
     /**
-     * 整型
+     * Integer
      */
     public static final String TYPE_INTEGER = "Integer";
 
     /**
-     * 长整型
+     * Long integer
      */
     public static final String TYPE_LONG = "Long";
 
     /**
-     * 浮点型
+     * Floating point
      */
     public static final String TYPE_DOUBLE = "Double";
 
     /**
-     * 高精度计算类型
+     * High-precision calculation type
      */
     public static final String TYPE_BIGDECIMAL = "BigDecimal";
 
     /**
-     * 时间类型
+     * Time type
      */
     public static final String TYPE_DATE = "Date";
 
     /**
-     * 模糊查询
+     * Fuzzy query
      */
     public static final String QUERY_LIKE = "LIKE";
 
     /**
-     * 需要
+     * need
      */
     public static final String REQUIRE = "1";
 }

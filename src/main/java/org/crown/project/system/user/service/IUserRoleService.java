@@ -4,7 +4,7 @@ import org.crown.framework.service.BaseService;
 import org.crown.project.system.user.domain.UserRole;
 
 /**
- * 用户 业务层
+ * User business layer
  *
  * @author Crown
  */

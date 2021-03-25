@@ -7,7 +7,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.tool.gen.domain.GenTable;
 
 /**
- * 业务 数据层
+ * Business data layer
  *
  * @author Crown
  */
@@ -15,34 +15,34 @@ import org.crown.project.tool.gen.domain.GenTable;
 public interface GenTableMapper extends BaseMapper<GenTable> {
 
     /**
-     * 查询据库列表
+     * Query database list
      *
-     * @param genTable 业务信息
-     * @return 数据库表集合
+     * @param genTable Business information
+     * @return Database table collection
      */
     List<GenTable> selectDbTableList(GenTable genTable);
 
     /**
-     * 查询据库列表
+     * Query database list
      *
-     * @param tableNames 表名称组
-     * @return 数据库表集合
+     * @param tableNames Table name group
+     * @return Database table collection
      */
     List<GenTable> selectDbTableListByNames(String[] tableNames);
 
     /**
-     * 查询表ID业务信息
+     * Query table ID business information
      *
-     * @param id 业务ID
-     * @return 业务信息
+     * @param id Business ID
+     * @return Business information
      */
     GenTable selectGenTableById(Long id);
 
     /**
-     * 查询表名称业务信息
+     * Query table name business information
      *
-     * @param tableName 表名称
-     * @return 业务信息
+     * @param tableName Table name
+     * @return Business information
      */
     GenTable selectGenTableByName(String tableName);
 

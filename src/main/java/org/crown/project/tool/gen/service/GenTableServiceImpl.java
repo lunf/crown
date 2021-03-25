@@ -39,7 +39,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 业务 服务层实现
+ * Business service layer implementation
  *
  * @author Crown
  */
@@ -100,7 +100,7 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTableMapper, GenTabl
                 String tableName = table.getTableName();
                 GenUtils.initTable(table, operName);
                 if (save(table)) {
-                    // 保存列信息
+                    // Save column information
                     List<GenTableColumn> genTableColumns = genTableColumnService.selectDbTableColumnsByName(tableName);
                     for (GenTableColumn column : genTableColumns) {
                         GenUtils.initColumnField(column, table);
@@ -108,8 +108,8 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTableMapper, GenTabl
                     }
                 }
             } catch (Exception e) {
-                log.error("表名 " + table.getTableName() + " 导入失败：", e);
-                ApiAssert.failure(ErrorCodeEnum.GEN_IMPORT_TABLE_ERROR.overrideMsg("生成代码表名[" + table.getTableName() + "]，导入错误"));
+                log.error("Table Name " + table.getTableName() + " Import failed：", e);
+                ApiAssert.failure(ErrorCodeEnum.GEN_IMPORT_TABLE_ERROR.overrideMsg("Generate code table name[" + table.getTableName() + "]，Import error"));
             }
         }
     }
@@ -117,19 +117,19 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTableMapper, GenTabl
     @Override
     public Map<String, String> previewCode(Long tableId) {
         Map<String, String> dataMap = new LinkedHashMap<>();
-        // 查询表信息
+        // Query form information
         GenTable table = baseMapper.selectGenTableById(tableId);
-        // 查询列信息
+        // Query column information
         List<GenTableColumn> columns = table.getColumns();
         setPkColumn(table, columns);
         VelocityInitializer.initVelocity();
 
         VelocityContext context = VelocityUtils.prepareContext(table);
 
-        // 获取模板列表
+        // Get a list of templates
         List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory());
         for (String template : templates) {
-            // 渲染模板
+            // Render template
             StringWriter sw = new StringWriter();
             Template tpl = Velocity.getTemplate(template, Constants.UTF8);
             tpl.merge(context, sw);
@@ -159,12 +159,12 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTableMapper, GenTabl
     }
 
     /**
-     * 查询表信息并生成代码
+     * Query table information and generate code
      */
     private void generatorCode(String tableName, ZipOutputStream zip) {
-        // 查询表信息
+        // Query form information
         GenTable table = baseMapper.selectGenTableByName(tableName);
-        // 查询列信息
+        // Query column information
         List<GenTableColumn> columns = table.getColumns();
         setPkColumn(table, columns);
 
@@ -172,21 +172,21 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTableMapper, GenTabl
 
         VelocityContext context = VelocityUtils.prepareContext(table);
 
-        // 获取模板列表
+        // Get a list of templates
         List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory());
         for (String template : templates) {
-            // 渲染模板
+            // Render template
             StringWriter sw = new StringWriter();
             Template tpl = Velocity.getTemplate(template, Constants.UTF8);
             tpl.merge(context, sw);
             try {
-                // 添加到zip
+                // Add to zip
                 zip.putNextEntry(new ZipEntry(VelocityUtils.getFileName(template, table)));
                 IOUtils.write(sw.toString(), zip, Constants.UTF8);
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();
             } catch (IOException e) {
-                log.error("渲染模板失败，表名：" + table.getTableName(), e);
+                log.error("Failed to render template, table name：" + table.getTableName(), e);
             }
         }
     }
@@ -197,20 +197,20 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTableMapper, GenTabl
             String options = JSON.toJSONString(genTable.getParams());
             JSONObject paramsObj = JSONObject.parseObject(options);
             if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_CODE))) {
-                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "树编码字段不能为空");
+                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "Tree code field cannot be empty");
             } else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_PARENT_CODE))) {
-                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "树父编码字段不能为空");
+                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "The tree parent code field cannot be empty");
             } else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_NAME))) {
-                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "树名称字段不能为空");
+                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, "The tree name field cannot be empty");
             }
         }
     }
 
     /**
-     * 设置主键列信息
+     * Set the primary key column information
      *
-     * @param table   业务表信息
-     * @param columns 业务字段列表
+     * @param table   Business table information
+     * @param columns Business field list
      */
     public void setPkColumn(GenTable table, List<GenTableColumn> columns) {
         for (GenTableColumn column : columns) {
@@ -225,9 +225,9 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTableMapper, GenTabl
     }
 
     /**
-     * 设置代码生成其他选项值
+     * Set the code to generate other option values
      *
-     * @param genTable 设置后的生成对象
+     * @param genTable Generated object after setting
      */
     public void setTableFromOptions(GenTable genTable) {
         JSONObject paramsObj = JSONObject.parseObject(genTable.getOptions());

@@ -6,7 +6,7 @@ import org.crown.project.system.role.mapper.RoleDeptMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * 角色 业务层处理
+ * Role business layer processing
  *
  * @author Crown
  */

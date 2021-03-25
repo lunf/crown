@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 代码生成 操作处理
+ * Code generation operation processing
  *
  * @author Crown
  */
@@ -51,7 +51,7 @@ public class GenController extends WebController {
     }
 
     /**
-     * 查询代码生成列表
+     * Query code generation list
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/list")
@@ -63,7 +63,7 @@ public class GenController extends WebController {
     }
 
     /**
-     * 查询数据库列表
+     * Query database list
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/db/list")
@@ -75,7 +75,7 @@ public class GenController extends WebController {
     }
 
     /**
-     * 查询数据表字段列表
+     * Query the list of data table fields
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/column/list")
@@ -89,7 +89,7 @@ public class GenController extends WebController {
     }
 
     /**
-     * 导入表结构
+     * Import table structure
      */
     @RequiresPermissions("tool:gen:list")
     @GetMapping("/importTable")
@@ -98,21 +98,21 @@ public class GenController extends WebController {
     }
 
     /**
-     * 导入表结构（保存）
+     * Import table structure (save)
      */
     @RequiresPermissions("tool:gen:list")
-    @Log(title = "代码生成", businessType = BusinessType.IMPORT)
+    @Log(title = "Code generation", businessType = BusinessType.IMPORT)
     @PostMapping("/importTable")
     @ResponseBody
     public void importTableSave(String tables) {
         String[] tableNames = StringUtils.split2Array(tables);
-        // 查询表信息
+        // Query form information
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
         genTableService.importGenTable(tableList);
     }
 
     /**
-     * 修改代码生成业务
+     * Modify code generation business
      */
     @GetMapping("/edit/{tableId}")
     public String edit(@PathVariable("tableId") Long tableId, ModelMap mmap) {
@@ -122,10 +122,10 @@ public class GenController extends WebController {
     }
 
     /**
-     * 修改保存代码生成业务
+     * Modify and save code generation business
      */
     @RequiresPermissions("tool:gen:edit")
-    @Log(title = "代码生成", businessType = BusinessType.UPDATE)
+    @Log(title = "Code generation", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated GenTable genTable) {
@@ -134,7 +134,7 @@ public class GenController extends WebController {
     }
 
     @RequiresPermissions("tool:gen:remove")
-    @Log(title = "代码生成", businessType = BusinessType.DELETE)
+    @Log(title = "Code generation", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public void remove(String ids) {
@@ -142,7 +142,7 @@ public class GenController extends WebController {
     }
 
     /**
-     * 预览代码
+     * Preview code
      */
     @RequiresPermissions("tool:gen:preview")
     @GetMapping("/preview/{tableId}")
@@ -152,10 +152,10 @@ public class GenController extends WebController {
     }
 
     /**
-     * 生成代码
+     * Generate code
      */
     @RequiresPermissions("tool:gen:code")
-    @Log(title = "代码生成", businessType = BusinessType.GENCODE)
+    @Log(title = "Code generation", businessType = BusinessType.GENCODE)
     @GetMapping("/genCode/{tableName}")
     public void genCode(HttpServletResponse response, @PathVariable("tableName") String tableName) throws IOException {
         byte[] data = genTableService.generatorCode(tableName);
@@ -163,10 +163,10 @@ public class GenController extends WebController {
     }
 
     /**
-     * 批量生成代码
+     * Batch code generation
      */
     @RequiresPermissions("tool:gen:code")
-    @Log(title = "代码生成", businessType = BusinessType.GENCODE)
+    @Log(title = "Code generation", businessType = BusinessType.GENCODE)
     @GetMapping("/batchGenCode")
     public void batchGenCode(HttpServletResponse response, String tables) throws IOException {
         String[] tableNames = StringUtils.split2Array(tables);
@@ -175,7 +175,7 @@ public class GenController extends WebController {
     }
 
     /**
-     * 生成zip文件
+     * Generate zip file
      */
     private void genCode(HttpServletResponse response, byte[] data) throws IOException {
         response.reset();

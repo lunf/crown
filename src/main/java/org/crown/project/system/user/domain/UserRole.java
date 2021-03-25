@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 用户和角色关联 sys_user_role
+ * User and role association sys_user_role
  *
  * @author Crown
  */
@@ -13,12 +13,12 @@ import lombok.Setter;
 public class UserRole {
 
     /**
-     * 用户ID
+     * User ID
      */
     private Long userId;
 
     /**
-     * 角色ID
+     * Role ID
      */
     private Long roleId;
 

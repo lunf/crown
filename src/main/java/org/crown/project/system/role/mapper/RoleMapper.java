@@ -7,7 +7,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.role.domain.Role;
 
 /**
- * 角色表 数据层
+ * Role table Data layer
  *
  * @author Crown
  */
@@ -15,18 +15,18 @@ import org.crown.project.system.role.domain.Role;
 public interface RoleMapper extends BaseMapper<Role> {
 
     /**
-     * 根据条件分页查询角色数据
+     * Paging query role data based on conditions
      *
-     * @param role 角色信息
-     * @return 角色数据集合信息
+     * @param role Role information
+     * @return Role data collection information
      */
     List<Role> selectRoleList(Role role);
 
     /**
-     * 根据用户ID查询角色
+     * Query role based on user ID
      *
-     * @param userId 用户ID
-     * @return 角色列表
+     * @param userId User ID
+     * @return Role list
      */
     List<Role> selectRolesByUserId(Long userId);
 

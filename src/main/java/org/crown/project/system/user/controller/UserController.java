@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 用户信息
+ * User Info
  *
  * @author Crown
  */
@@ -63,17 +63,17 @@ public class UserController extends WebController<User> {
         return getTableData(list);
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.EXPORT)
+    @Log(title = "User Management", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:user:export")
     @PostMapping("/export")
     @ResponseBody
     public ExcelDTO export(User user) {
         List<User> list = userService.selectUserList(user);
         ExcelUtils<User> util = new ExcelUtils<>(User.class);
-        return new ExcelDTO(util.exportExcel(list, "用户数据"));
+        return new ExcelDTO(util.exportExcel(list, "User data"));
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.IMPORT)
+    @Log(title = "User Management", businessType = BusinessType.IMPORT)
     @RequiresPermissions("system:user:import")
     @PostMapping("/importData")
     @ResponseBody
@@ -89,11 +89,11 @@ public class UserController extends WebController<User> {
     @ResponseBody
     public ExcelDTO importTemplate() {
         ExcelUtils<User> util = new ExcelUtils<>(User.class);
-        return new ExcelDTO(util.importTemplateExcel("用户数据"));
+        return new ExcelDTO(util.importTemplateExcel("User data"));
     }
 
     /**
-     * 新增用户
+     * New users
      */
     @GetMapping("/add")
     public String add(ModelMap mmap) {
@@ -103,22 +103,22 @@ public class UserController extends WebController<User> {
     }
 
     /**
-     * 新增保存用户
+     * Add save user
      */
     @RequiresPermissions("system:user:add")
-    @Log(title = "用户管理", businessType = BusinessType.INSERT)
+    @Log(title = "User Management", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public void addSave(@Validated User user) {
         ApiAssert.isFalse(ErrorCodeEnum.USER_CANNOT_UPDATE_SUPER_ADMIN, User.isAdmin(user.getUserId()));
-        ApiAssert.isTrue(ErrorCodeEnum.USER_ACCOUNT_EXIST.overrideMsg(String.format("登录账号[%s]已存在", user.getLoginName())), userService.checkLoginNameUnique(user.getLoginName()));
-        ApiAssert.isTrue(ErrorCodeEnum.USER_PHONE_EXIST.overrideMsg(String.format("手机号[%s]已存在", user.getPhonenumber())), userService.checkPhoneUnique(user));
-        ApiAssert.isTrue(ErrorCodeEnum.USER_EMAIL_EXIST.overrideMsg(String.format("邮箱[%s]已存在", user.getEmail())), userService.checkEmailUnique(user));
+        ApiAssert.isTrue(ErrorCodeEnum.USER_ACCOUNT_EXIST.overrideMsg(String.format("Login account [%s] already exists", user.getLoginName())), userService.checkLoginNameUnique(user.getLoginName()));
+        ApiAssert.isTrue(ErrorCodeEnum.USER_PHONE_EXIST.overrideMsg(String.format("Mobile phone number [%s] already exists", user.getPhonenumber())), userService.checkPhoneUnique(user));
+        ApiAssert.isTrue(ErrorCodeEnum.USER_EMAIL_EXIST.overrideMsg(String.format("The mailbox [%s] already exists", user.getEmail())), userService.checkEmailUnique(user));
         userService.insertUser(user);
     }
 
     /**
-     * 修改用户
+     * Modify user
      */
     @GetMapping("/edit/{userId}")
     public String edit(@PathVariable("userId") Long userId, ModelMap mmap) {
@@ -129,21 +129,21 @@ public class UserController extends WebController<User> {
     }
 
     /**
-     * 修改保存用户
+     * Modify save user
      */
     @RequiresPermissions("system:user:edit")
-    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "User Management", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public void editSave(@Validated User user) {
         ApiAssert.isFalse(ErrorCodeEnum.USER_CANNOT_UPDATE_SUPER_ADMIN, User.isAdmin(user.getUserId()));
-        ApiAssert.isTrue(ErrorCodeEnum.USER_PHONE_EXIST.overrideMsg(String.format("手机号[%s]已存在", user.getPhonenumber())), userService.checkPhoneUnique(user));
-        ApiAssert.isTrue(ErrorCodeEnum.USER_EMAIL_EXIST.overrideMsg(String.format("邮箱[%s]已存在", user.getEmail())), userService.checkEmailUnique(user));
+        ApiAssert.isTrue(ErrorCodeEnum.USER_PHONE_EXIST.overrideMsg(String.format("Mobile phone number [%s] already exists", user.getPhonenumber())), userService.checkPhoneUnique(user));
+        ApiAssert.isTrue(ErrorCodeEnum.USER_EMAIL_EXIST.overrideMsg(String.format("The mailbox [%s] already exists", user.getEmail())), userService.checkEmailUnique(user));
         userService.updateUser(user);
     }
 
     @RequiresPermissions("system:user:resetPwd")
-    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
+    @Log(title = "reset Password", businessType = BusinessType.UPDATE)
     @GetMapping("/resetPwd/{userId}")
     public String resetPwd(@PathVariable("userId") Long userId, ModelMap mmap) {
         mmap.put("user", userService.selectUserById(userId));
@@ -151,7 +151,7 @@ public class UserController extends WebController<User> {
     }
 
     @RequiresPermissions("system:user:resetPwd")
-    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
+    @Log(title = "reset Password", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
     @ResponseBody
     public void resetPwd(User user) {
@@ -163,7 +163,7 @@ public class UserController extends WebController<User> {
     }
 
     @RequiresPermissions("system:user:remove")
-    @Log(title = "用户管理", businessType = BusinessType.DELETE)
+    @Log(title = "User Management", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public void remove(String ids) {
@@ -171,7 +171,7 @@ public class UserController extends WebController<User> {
     }
 
     /**
-     * 校验用户名
+     * Verify user name
      */
     @PostMapping("/checkLoginNameUnique")
     @ResponseBody
@@ -180,7 +180,7 @@ public class UserController extends WebController<User> {
     }
 
     /**
-     * 校验手机号码
+     * Check mobile phone number
      */
     @PostMapping("/checkPhoneUnique")
     @ResponseBody
@@ -189,7 +189,7 @@ public class UserController extends WebController<User> {
     }
 
     /**
-     * 校验email邮箱
+     * Verify email address
      */
     @PostMapping("/checkEmailUnique")
     @ResponseBody
@@ -198,9 +198,9 @@ public class UserController extends WebController<User> {
     }
 
     /**
-     * 用户状态修改
+     * User status modification
      */
-    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "User Management", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:user:edit")
     @PostMapping("/changeStatus")
     @ResponseBody

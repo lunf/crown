@@ -131,7 +131,7 @@
 #end                
 #end
                 {
-                    title: '操作',
+                    title: 'operating',
                     align: 'center',
                     align: 'left',
                     formatter: function(value, row, index) {

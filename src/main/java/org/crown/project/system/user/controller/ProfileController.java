@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 个人信息 业务处理
+ * Personal information business processing
  *
  * @author Crown
  */
@@ -41,7 +41,7 @@ public class ProfileController extends WebController {
     private PasswordService passwordService;
 
     /**
-     * 个人信息
+     * Personal information
      */
     @GetMapping
     public String profile(ModelMap mmap) {
@@ -66,7 +66,7 @@ public class ProfileController extends WebController {
         return prefix + "/resetPwd";
     }
 
-    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
+    @Log(title = "reset Password", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
     @ResponseBody
     public void resetPwd(String oldPassword, @RequestParam("newPassword") String newPassword) {
@@ -78,7 +78,7 @@ public class ProfileController extends WebController {
     }
 
     /**
-     * 修改用户
+     * Modify user
      */
     @GetMapping("/edit")
     public String edit(ModelMap mmap) {
@@ -88,7 +88,7 @@ public class ProfileController extends WebController {
     }
 
     /**
-     * 修改头像
+     * Modify avatar
      */
     @GetMapping("/avatar")
     public String avatar(ModelMap mmap) {
@@ -98,7 +98,7 @@ public class ProfileController extends WebController {
     }
 
     /**
-     * 修改用户
+     * Modify user
      */
     @Log(title = "个人信息", businessType = BusinessType.UPDATE)
     @PostMapping("/update")
@@ -114,9 +114,9 @@ public class ProfileController extends WebController {
     }
 
     /**
-     * 保存头像
+     * Save avatar
      */
-    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @Log(title = "Personal information", businessType = BusinessType.UPDATE)
     @PostMapping("/updateAvatar")
     @ResponseBody
     public void updateAvatar(@RequestParam("avatarfile") MultipartFile file) {

@@ -14,7 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * 首页 业务处理
+ * Home Business Processing
  *
  * @author Crown
  */
@@ -27,12 +27,12 @@ public class IndexController extends WebController {
     @Autowired
     private CrownProperties crownConfig;
 
-    // 系统首页
+    // System Home
     @GetMapping("/index")
     public String index(ModelMap mmap) {
-        // 取身份信息
+        // Get identity information
         User user = getSysUser();
-        // 根据用户id取出菜单
+        // Take out the menu based on user id
         List<Menu> menus = menuService.selectMenusByUser(user);
         mmap.put("menus", menus);
         mmap.put("user", user);
@@ -41,7 +41,7 @@ public class IndexController extends WebController {
         return "index";
     }
 
-    // 系统介绍
+    // system introduction
     @GetMapping("/system/main")
     public String main() {
         return "main";

@@ -17,7 +17,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 业务表 gen_table
+ * Business table gen_table
  *
  * @author Crown
  */
@@ -29,102 +29,102 @@ public class GenTable extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 编号
+     * serial number
      */
     @TableId
     private Long tableId;
 
     /**
-     * 表名称
+     * Table name
      */
-    @NotBlank(message = "表名称不能为空")
+    @NotBlank(message = "Table name cannot be empty")
     private String tableName;
 
     /**
-     * 表描述
+     * Table description
      */
-    @NotBlank(message = "表描述不能为空")
+    @NotBlank(message = "Table description cannot be empty")
     private String tableComment;
 
     /**
-     * 实体类名称(首字母大写)
+     * 实Body class name (first letter capitalized)
      */
-    @NotBlank(message = "实体类名称不能为空")
+    @NotBlank(message = "The entity class name cannot be empty")
     private String className;
 
     /**
-     * 使用的模板（crud单表操作 tree树表操作）
+     * Template used (crud single table operation tree tree table operation)
      */
     private String tplCategory;
 
     /**
-     * 生成包路径
+     * Generate package path
      */
-    @NotBlank(message = "生成包路径不能为空")
+    @NotBlank(message = "The generated package path cannot be empty")
     private String packageName;
 
     /**
-     * 生成模块名
+     * Generate module name
      */
-    @NotBlank(message = "生成模块名不能为空")
+    @NotBlank(message = "The generated module name cannot be empty")
     private String moduleName;
 
     /**
-     * 生成业务名
+     * Generate business name
      */
-    @NotBlank(message = "生成业务名不能为空")
+    @NotBlank(message = "The generated business name cannot be empty")
     private String businessName;
 
     /**
-     * 生成功能名
+     * Generate function name
      */
-    @NotBlank(message = "生成功能名不能为空")
+    @NotBlank(message = "Generated function name cannot be empty")
     private String functionName;
 
     /**
-     * 生成作者
+     * Generate Author
      */
-    @NotBlank(message = "作者不能为空")
+    @NotBlank(message = "Author cannot be empty")
     private String functionAuthor;
 
     /**
-     * 主键信息
+     * Primary key information
      */
     @TableField(exist = false)
     private GenTableColumn pkColumn;
 
     /**
-     * 表列信息
+     * Listed information
      */
     @Valid
     @TableField(exist = false)
     private List<GenTableColumn> columns;
 
     /**
-     * 其它生成选项
+     * Other build options
      */
     private String options;
 
     /**
-     * 树编码字段
+     * Tree encoding field
      */
     @TableField(exist = false)
     private String treeCode;
 
     /**
-     * 树父编码字段
+     * Tree parent encoding field
      */
     @TableField(exist = false)
     private String treeParentCode;
 
     /**
-     * 树名称字段
+     * Tree name field
      */
     @TableField(exist = false)
     private String treeName;
 
     /**
-     * 备注
+     * Remarks
      */
     private String remark;
 

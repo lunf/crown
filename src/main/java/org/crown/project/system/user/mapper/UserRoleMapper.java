@@ -5,7 +5,7 @@ import org.crown.framework.mapper.BaseMapper;
 import org.crown.project.system.user.domain.UserRole;
 
 /**
- * 用户表 数据层
+ * User table data layer
  *
  * @author Crown
  */

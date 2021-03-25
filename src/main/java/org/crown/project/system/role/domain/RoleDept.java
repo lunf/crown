@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 角色和部门关联 sys_role_dept
+ * Role and department association sys_role_dept
  *
  * @author Crown
  */
@@ -13,12 +13,12 @@ import lombok.Setter;
 public class RoleDept {
 
     /**
-     * 角色ID
+     * Role ID
      */
     private Long roleId;
 
     /**
-     * 部门ID
+     * Department ID
      */
     private Long deptId;
 

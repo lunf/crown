@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 /**
- * 角色 业务层处理
+ * Role business layer processing
  *
  * @author Crown
  */
@@ -92,7 +92,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
         for (Long roleId : roleIds) {
             Role role = getById(roleId);
             if (userRoleService.query().eq(UserRole::getRoleId, roleId).exist()) {
-                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, role.getRoleName() + "已分配，不能删除");
+                throw new Crown2Exception(HttpServletResponse.SC_BAD_REQUEST, role.getRoleName() + "Allocated and cannot be deleted");
             }
         }
         return delete().in(Role::getRoleId, roleIds).execute();
@@ -101,7 +101,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     @Override
     @Transactional
     public boolean insertRole(Role role) {
-        // 新增角色信息
+        // New role information
         save(role);
         ShiroUtils.clearCachedAuthorizationInfo();
         return insertRoleMenu(role);
@@ -110,10 +110,10 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     @Override
     @Transactional
     public boolean updateRole(Role role) {
-        // 修改角色信息
+        // Modify role information
         updateById(role);
         ShiroUtils.clearCachedAuthorizationInfo();
-        // 删除角色与菜单关联
+        // Delete role and menu association
         roleMenuService.delete().eq(RoleMenu::getRoleId, role.getRoleId()).execute();
         return insertRoleMenu(role);
     }
@@ -121,18 +121,18 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     @Override
     @Transactional
     public boolean authDataScope(Role role) {
-        // 修改角色信息
+        // Modify role information
         updateById(role);
-        // 删除角色与部门关联
+        // Delete role and department association
         roleDeptService.delete().eq(RoleDept::getRoleId, role.getRoleId()).execute();
-        // 新增角色和部门信息（数据权限）
+        // Added role and department information (data permissions)
         return insertRoleDept(role);
     }
 
     /**
-     * 新增角色菜单信息
+     * New role menu information
      *
-     * @param role 角色对象
+     * @param role Role object
      */
     public boolean insertRoleMenu(Role role) {
         roleMenuService.saveBatch(
@@ -147,9 +147,9 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     }
 
     /**
-     * 新增角色部门信息(数据权限)
+     * New role department information (data permissions)
      *
-     * @param role 角色对象
+     * @param role Role object
      */
     private boolean insertRoleDept(Role role) {
         roleDeptService.saveBatch(
@@ -191,11 +191,11 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     }
 
     /**
-     * 批量取消授权用户角色
+     * Cancel authorized user roles in batches
      *
-     * @param roleId  角色ID
-     * @param userIds 需要删除的用户数据ID
-     * @return 结果
+     * @param roleId  Role ID
+     * @param userIds User data ID to be deleted
+     * @return result
      */
     public boolean deleteAuthUsers(Long roleId, String userIds) {
         return userRoleService.delete().eq(UserRole::getRoleId, roleId).in(UserRole::getUserId, StringUtils.split2List(userIds)).execute();
@@ -203,11 +203,11 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     }
 
     /**
-     * 批量选择授权用户角色
+     * Batch selection of authorized user roles
      *
-     * @param roleId  角色ID
-     * @param userIds 需要删除的用户数据ID
-     * @return 结果
+     * @param roleId  Role ID
+     * @param userIds User data ID to be deleted
+     * @return result
      */
     public boolean insertAuthUsers(Long roleId, String userIds) {
         userRoleService.saveBatch(

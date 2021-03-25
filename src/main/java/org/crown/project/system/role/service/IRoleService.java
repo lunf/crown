@@ -8,131 +8,131 @@ import org.crown.project.system.role.domain.Role;
 import org.crown.project.system.user.domain.UserRole;
 
 /**
- * 角色业务层
+ * Role business layer
  *
  * @author Crown
  */
 public interface IRoleService extends BaseService<Role> {
 
     /**
-     * 根据条件分页查询角色数据
+     * Paging query role data based on conditions
      *
-     * @param role 角色信息
-     * @return 角色数据集合信息
+     * @param role Role information
+     * @return Role data collection information
      */
     List<Role> selectRoleList(Role role);
 
     /**
-     * 根据用户ID查询角色
+     * Query role based on user ID
      *
-     * @param userId 用户ID
-     * @return 权限列表
+     * @param userId User ID
+     * @return Permission list
      */
     Set<String> selectRoleKeys(Long userId);
 
     /**
-     * 根据用户ID查询角色
+     * Query role based on user ID
      *
-     * @param userId 用户ID
-     * @return 角色列表
+     * @param userId User ID
+     * @return Role list
      */
     List<Role> selectRolesByUserId(Long userId);
 
     /**
-     * 查询所有角色
+     * Query all roles
      *
-     * @return 角色列表
+     * @return Role list
      */
     List<Role> selectRoleAll();
 
     /**
-     * 通过角色ID删除角色
+     * Delete role by role ID
      *
-     * @param roleId 角色ID
-     * @return 结果
+     * @param roleId Role ID
+     * @return result
      */
     boolean deleteRoleById(Long roleId);
 
     /**
-     * 批量删除角色用户信息
+     * Delete role user information in batches
      *
-     * @param ids 需要删除的数据ID
-     * @return 结果
-     * @throws Exception 异常
+     * @param ids ID of the data to be deleted
+     * @return result
+     * @throws Exception abnormal
      */
     boolean deleteRoleByIds(String ids);
 
     /**
-     * 新增保存角色信息
+     * Added save role information
      *
-     * @param role 角色信息
-     * @return 结果
+     * @param role Role information
+     * @return result
      */
     boolean insertRole(Role role);
 
     /**
-     * 修改数据权限信息
+     * Modify data permission information
      *
-     * @param role 角色信息
-     * @return 结果
+     * @param role Role information
+     * @return result
      */
     boolean authDataScope(Role role);
 
     /**
-     * 修改保存角色信息
+     * Modify and save role information
      *
-     * @param role 角色信息
-     * @return 结果
+     * @param role Role information
+     * @return result
      */
     boolean updateRole(Role role);
 
     /**
-     * 校验角色名称是否唯一
+     * Verify that the role name is unique
      *
-     * @param role 角色信息
-     * @return 结果
+     * @param role Role information
+     * @return result
      */
     boolean checkRoleNameUnique(Role role);
 
     /**
-     * 校验角色权限是否唯一
+     * Verify that the role permissions are unique
      *
-     * @param role 角色信息
-     * @return 结果
+     * @param role Role information
+     * @return result
      */
     boolean checkRoleKeyUnique(Role role);
 
     /**
-     * 角色状态修改
+     * Role status modification
      *
-     * @param role 角色信息
-     * @return 结果
+     * @param role Role information
+     * @return result
      */
     boolean changeStatus(Role role);
 
     /**
-     * 取消授权用户角色
+     * Cancel authorized user role
      *
-     * @param userRole 用户和角色关联信息
-     * @return 结果
+     * @param userRole User and role association information
+     * @return result
      */
     boolean deleteAuthUser(UserRole userRole);
 
     /**
-     * 批量取消授权用户角色
+     * Cancel authorized user roles in batches
      *
-     * @param roleId  角色ID
-     * @param userIds 需要删除的用户数据ID
-     * @return 结果
+     * @param roleId  Role ID
+     * @param userIds User data ID to be deleted
+     * @return result
      */
     boolean deleteAuthUsers(Long roleId, String userIds);
 
     /**
-     * 批量选择授权用户角色
+     * Batch selection of authorized user roles
      *
-     * @param roleId  角色ID
-     * @param userIds 需要删除的用户数据ID
-     * @return 结果
+     * @param roleId  Role ID
+     * @param userIds User data ID to be deleted
+     * @return result
      */
     boolean insertAuthUsers(Long roleId, String userIds);
 }

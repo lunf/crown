@@ -1,27 +1,27 @@
-# 开发环境配置
+# Development environment configuration
 server:
-  # 服务器的HTTP端口，默认为80
+  # The HTTP port of the server, the default is 80
   port: 8088
   servlet:
-    # 应用的访问路径
+    # Access path of the application
     context-path: /
   undertow:
-    # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程 不要设置过大，如果过大，启动项目会报错：打开文件数过多
+    # Set the number of IO threads. It mainly performs non-blocking tasks. They will be responsible for multiple connections. The default setting is one thread per CPU core. Do not set too large. If it is too large, the startup project will report an error: too many open files
     io-threads: 16
-    # 阻塞任务线程池, 当执行类似servlet请求阻塞IO操作, undertow会从这个线程池中取得线程 它的值设置取决于系统线程执行任务的阻塞系数，默认值是IO线程数*8
+    # Blocking task thread pool, when executing similar servlet request blocking IO operations, undertow will get threads from this thread pool. Its value setting depends on the blocking coefficient of system threads executing tasks. The default value is the number of IO threads*8
     worker-threads: 256
-    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理 每块buffer的空间大小,越小的空间被利用越充分，不要设置太大，以免影响其他应用，合适即可
+    # The following configuration will affect the buffers. These buffers will be used for server connection IO operations. It is a bit similar to netty's pooled memory management. The space size of each buffer is used. The smaller the space, the more fully utilized. Don't set too large, so as not to affect other Application, just suitable
     buffer-size: 1024
-    # 是否分配的直接内存(NIO直接分配的堆外内存)
+    # Whether to allocate direct memory (out-of-heap memory directly allocated by NIO)
     direct-buffers: true
-# 日志配置
+# Log configuration
 logging:
   config: classpath:log4j2.xml
-# Spring配置
+# Spring Configuration
 spring:
   datasource:
     dynamic:
-      hikari:  # 全局hikariCP参数，所有值和默认保持一致。(现已支持的参数如下,不清楚含义不要乱设置)
+      hikari:  # For global hikariCP parameters, all values are consistent with the default. (The currently supported parameters are as follows, don't set it randomly if you don't know the meaning)
         connection-timeout: 30000
         idle-timeout: 25000
         max-lifetime: 30000
@@ -39,8 +39,8 @@ spring:
           cacheServerConfiguration: true
           elideSetAutoCommits: true
           maintainTimeStats: false
-      primary: master #设置默认的数据源或者数据源组,默认值即为master
-      strict: false #设置严格模式,默认false不启动. 启动后再为匹配到指定数据源时候回抛出异常,不启动会使用默认数据源.
+      primary: master #Set the default data source or data source group, the default value is master
+      strict: false #Set the strict mode, the default false is not started. After starting, an exception will be thrown when the specified data source is matched, and the default data source will be used if it is not started.
       datasource:
         master:
           username: root
@@ -59,27 +59,27 @@ spring:
   aop:
     auto: true
     proxy-target-class: true
-  # 模板引擎
+  # Template engine
   thymeleaf:
     mode: HTML
     encoding: utf-8
-    # 禁用缓存
+    # Disable caching
     cache: false
-  # 资源信息
+  # Resource information
   messages:
-    # 国际化资源文件路径
+    # Internationalized resource file path
     basename: static/i18n/messages
-  # 文件上传
+  # File Upload
   servlet:
     multipart:
-      # 单个文件大小
+      # Single file size
       max-file-size:  10MB
-      # 设置总上传的文件大小
+      # Set the total uploaded file size
       max-request-size:  20MB
-  # 服务模块
+  # Service module
   devtools:
     restart:
-      # 热部署开关
+      # Hot deployment switch
       enabled: true
 mybatis-plus:
   configuration:
@@ -105,23 +105,23 @@ mybatis-plus:
   type-enums-package: org.crown.common.enums,org.crown.framework.enums
   type-aliases-package: org.crown.project.*.*.domain
   type-handlers-package: org.crown.framework.mybatisplus.typehandler
-# 项目相关配置
+# Project related configuration
 crown:
   email:
     enabled: false
     send: 10001@qq.com
-  # 代码生成
+  # Code generation
   generator:
     author: Caratacus
     package-path: org.crown.project.monitor
-  # 实例演示开关
+  # Example demo switch
   demo:
     enabled: false
-    # 获取ip地址开关
+    # Get ip address switch
   address:
     enabled: true
   password:
-    # 密码错误{maxRetryCount}次锁定10分钟
+    # Wrong password {maxRetryCount} locked for 10 minutes
     maxRetryCount: 5
   path:
     file-path: /develop/crown/filepath/

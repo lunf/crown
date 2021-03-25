@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 登录验证
+ * Login authentication
  *
  * @author Crown
  */
@@ -45,7 +45,7 @@ public class LoginController extends WebController {
         double avg = sum / size;
         double stddev = datas.stream().mapToDouble(e -> Math.pow(e - avg, 2)).sum();
         double val = stddev / size;
-        // 验证下拖动轨迹，为零时表示Y轴上下没有波动，非人为操作
+        // Drag the track under verification. When it is zero, it means that there is no fluctuation on the Y axis, which is not a human operation.
         return val != 0;
     }
 

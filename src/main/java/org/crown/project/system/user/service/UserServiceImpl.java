@@ -34,7 +34,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 
 /**
- * 用户 业务层处理
+ * User business layer processing
  *
  * @author Crown
  */
@@ -64,15 +64,15 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     @Override
     @DataScope
     public List<User> selectUserList(User user) {
-        // 生成数据权限过滤条件
+        // Generate data permission filter conditions
         return baseMapper.selectUserList(user);
     }
 
     /**
-     * 根据条件分页查询已分配用户角色列表
+     * Query the list of assigned user roles based on conditions
      *
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user User Info
+     * @return User information collection information
      */
     @DataScope
     public List<User> selectAllocatedList(User user) {
@@ -80,10 +80,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     }
 
     /**
-     * 根据条件分页查询未分配用户角色列表
+     * Query the list of unassigned user roles based on conditions
      *
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user User Info
+     * @return User information collection information
      */
     @DataScope
     public List<User> selectUnallocatedList(User user) {
@@ -124,11 +124,11 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     public boolean insertUser(User user) {
         user.randomSalt();
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
-        // 新增用户信息
+        // Add user information
         save(user);
-        // 新增用户岗位关联
+        // New user post association
         insertUserPost(user);
-        // 新增用户与角色管理
+        // New user and role management
         insertUserRole(user);
         return true;
     }
@@ -138,13 +138,13 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     public boolean updateUser(User user) {
         Long userId = user.getUserId();
         user.setUpdateBy(ShiroUtils.getLoginName());
-        // 删除用户与角色关联
+        // Delete user and role association
         userRoleService.delete().eq(UserRole::getUserId, userId).execute();
-        // 新增用户与角色管理
+        // New user and role management
         insertUserRole(user);
-        // 删除用户与岗位关联
+        // Delete user and post association
         userPostService.delete().eq(UserPost::getUserId, userId).execute();
-        // 新增用户与岗位管理
+        // New user and position management
         insertUserPost(user);
         return updateById(user);
     }
@@ -157,9 +157,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     }
 
     /**
-     * 新增用户角色信息
+     * New user role information
      *
-     * @param user 用户对象
+     * @param user User object
      */
     public void insertUserRole(User user) {
         userRoleService.saveBatch(
@@ -173,9 +173,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     }
 
     /**
-     * 新增用户岗位信息
+     * New user post information
      *
-     * @param user 用户对象
+     * @param user User object
      */
     public void insertUserPost(User user) {
         userPostService.saveBatch(
