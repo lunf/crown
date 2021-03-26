@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <title>登录Crown系统</title>
-    <meta name="description" content="Crown后台管理框架">
+    <title>Log in to the Crown system</title>
+    <meta name="description" content="Crown background management framework">
     <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
     <link href="../static/css/login.min.css" th:href="@{/css/login.min.css}" rel="stylesheet"/>
     <link href="../static/crown/css/crown-ui.css" th:href="@{/crown/css/crown-ui.css?v=3.4.0}" rel="stylesheet"/>
-    <!--滑块验证-->
+    <!--Slider verification-->
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
           th:href="@{https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet"/>
     <link href="https://cdn.bootcss.com/font-awesome/5.7.2/css/all.min.css"
@@ -57,18 +57,18 @@
         <div>
             <h1 class="logo-name">2.0</h1>
         </div>
-        <h3>欢迎使用 Crown</h3>
+        <h3>Welcome to Crown</h3>
         <form id="signupForm" class="m-t" role="form">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="用户名" name="username" required="" value="crown"/>
+                <input type="text" class="form-control" placeholder="username" name="username" required="" value="crown"/>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="密码" name="password" required="" value="crown"/>
+                <input type="password" class="form-control" placeholder="password" name="password" required="" value="crown"/>
             </div>
 
             <div class="slidercaptcha card row m-t">
                 <div class="card-header">
-                    <span>请完成安全验证</span>
+                    <span>Please complete security verification</span>
                 </div>
                 <div class="card-body">
                     <div id="captchaSp"></div>
@@ -87,10 +87,10 @@
     </div>
 </div>
 <script th:inline="javascript"> var ctx = [[@{/}]]; </script>
-<!-- 全局js -->
+<!-- Global js -->
 <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-<!-- 验证插件 -->
+<!-- Verify plugin -->
 <script src="../static/ajax/libs/validate/jquery.validate.min.js" th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
 <script src="../static/ajax/libs/validate/messages_zh.min.js" th:src="@{/ajax/libs/validate/messages_zh.min.js}"></script>
 <script src="../static/ajax/libs/layer/layer.min.js" th:src="@{/ajax/libs/layer/layer.min.js}"></script>

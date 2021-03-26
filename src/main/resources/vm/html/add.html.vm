@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('新增${functionName}')" />
+    <th:block th:include="include :: header('Add${functionName}')" />
 #foreach($column in $columns)
 #if($column.insert && !$column.superColumn && !$column.pk && $column.htmlType == "datetime")
     <th:block th:include="include :: datetimepicker-css" />
@@ -56,9 +56,9 @@
                 <label class="col-sm-3 control-label">${comment}：</label>
                 <div class="col-sm-8">
                     <select name="${field}" class="form-control m-b"#if($column.required) required#end>
-                        <option value="">所有</option>
+                        <option value="">all</option>
                     </select>
-                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> Please select dictionary attribute for code generation</span>
                 </div>
             </div>
 #elseif($column.htmlType == "radio" && "" != $dictType)
@@ -77,9 +77,9 @@
                 <div class="col-sm-8">
                     <div class="radio-box">
                         <input type="radio" name="${field}" value=""#if($column.required) required#end>
-                        <label th:for="${field}" th:text="未知"></label>
+                        <label th:for="${field}" th:text="unknown"></label>
                     </div>
-                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> Please select dictionary attribute for code generation</span>
                 </div>
             </div>
 #elseif($column.htmlType == "datetime")
@@ -138,7 +138,7 @@
         /*${functionName}-New-select parent department tree*/
         function select${BusinessName}Tree() {
             var options = {
-                title: '${functionName}选择',
+                title: '${functionName}select',
                 width: "380",
                 url: prefix + "/select${BusinessName}Tree/" + $("#treeId").val(),
                 callBack: doSubmit
